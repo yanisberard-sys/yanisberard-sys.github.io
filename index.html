@@ -42,8 +42,8 @@
   <div class="lead load d3">
     <div class="wrap">
       <figure>
-        <canvas id="phase" aria-label="Animated zoom into the Mandelbrot set. Click to choose where to zoom."></canvas>
-        <figcaption><b>The Mandelbrot set</b>, the parameters <span class="math">c</span> for which the orbit of 0 under <span class="math">z ↦ z² + c</span> stays bounded. The view dives slowly towards the boundary, where the colours count how fast the orbit escapes. Click anywhere on the image to dive there instead.</figcaption>
+        <div class="stage"><canvas id="phase" aria-label="Julia set that changes with the pointer"></canvas><canvas id="inset" aria-hidden="true"></canvas><span class="cval" id="cval"></span></div>
+        <figcaption><b>The filled Julia set</b> of <span class="math">z ↦ z² + c</span>. Move the cursor to change <span class="math">c</span>. The inset shows where <span class="math">c</span> sits in the Mandelbrot set: inside it, the Julia set is connected; outside, it breaks into dust. Left alone, <span class="math">c</span> travels around the circle |<span class="math">c</span>| = 0.7885.</figcaption>
       </figure>
     </div>
   </div>
@@ -97,10 +97,10 @@
           <a class="more" href="Groupe%20simple%2060.pdf">Read the proof <span>→</span></a>
         </article>
         <article class="story reveal">
-          <canvas data-fig="dual" aria-label="Subgroup lattice of Z/12 morphing into its dual"></canvas>
+          <canvas data-fig="dual" aria-label="Subgroup lattice of Z/2 × Z/4, with a subgroup and its dual highlighted in red"></canvas>
           <span class="kicker">Group theory</span>
           <h3>Duality for finite abelian groups</h3>
-          <p>If the order of a finite abelian group is not a perfect square, it has an even number of subgroups. Pictured: duality reverses the subgroup lattice of ℤ/12.</p>
+          <p>If the order of a finite abelian group is not a perfect square, it has an even number of subgroups. Pictured: the eight subgroups of ℤ/2 × ℤ/4. Duality pairs each one, in red, with its orthogonal.</p>
           <a class="more" href="dual.pdf">Read the proof <span>→</span></a>
         </article>
         <article class="story reveal">
@@ -217,7 +217,7 @@
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const DPR = Math.min(window.devicePixelRatio || 1, 2);
   let C = {};
-  const readColors = () => { const s = getComputedStyle(document.documentElement); ['ink','muted','rule','accent','paper','panel'].forEach(k => C[k] = s.getPropertyValue('--' + k).trim()); };
+  const readColors = () => { const s = getComputedStyle(document.documentElement); ['ink','muted','rule','accent','paper','panel','red'].forEach(k => C[k] = s.getPropertyValue('--' + k).trim()); };
   readColors();
   matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => { readColors(); drawAll(true); });
   new MutationObserver(() => { readColors(); drawAll(true); }).observe(document.documentElement, {attributes: true, attributeFilter: ['data-theme']});
@@ -237,56 +237,61 @@
     try { navigator.clipboard.writeText(txt).then(done, fallback); } catch (e) { fallback(); }
   });
 
-  /* ---------- Mandelbrot zoom (hero) ---------- */
+  /* ---------- Julia set (hero, WebGL) ---------- */
   const phase = document.getElementById('phase');
-  const pctx = phase.getContext('2d');
-  const SPOTS = [[-0.743643887037151, 0.131825904205330], [-0.101096363845620, 0.956286510809140], [-1.768778833, -0.001738996], [0.001643721971153, -0.822467633298876], [-0.77568377, 0.13646737]];
-  const STOPS = [[11,16,38],[43,63,240],[243,243,239],[242,165,65],[122,31,61],[11,16,38]];
-  const LUT = new Uint8Array(1024 * 3);
-  for (let i = 0; i < 1024; i++) { const t = i / 1024 * (STOPS.length - 1), k = Math.floor(t), f = t - k, A = STOPS[k], B = STOPS[k + 1]; for (let c = 0; c < 3; c++) LUT[i * 3 + c] = A[c] + (B[c] - A[c]) * f; }
-  const S0 = 3.3, C0 = [-0.6, 0], DIVE = 24;
-  let spot = 0, target = SPOTS[0], tStart = 0, res = 2.4;
-  phase.addEventListener('click', e => {
-    const r = phase.getBoundingClientRect(), v = view(T), vw = v.s * r.width / r.height;
-    target = [v.c[0] + (e.clientX - r.left - r.width / 2) / r.width * vw, v.c[1] - (e.clientY - r.top - r.height / 2) / r.height * v.s];
-    tStart = T;
-  });
-  function view(t) {
-    let u = (t - tStart) / DIVE;
-    if (u >= 1) { spot = (spot + 1) % SPOTS.length; target = SPOTS[spot]; tStart = t; u = 0; }
-    const e = u < .08 ? 0 : (u - .08) / .92;
-    const s = S0 * Math.exp(-9.2 * e), k = s / S0;
-    return {s, c: [target[0] + (C0[0] - target[0]) * k, target[1] + (C0[1] - target[1]) * k], u};
+  const gl = phase.getContext('webgl', {antialias: false});
+  const FS = `precision highp float;
+uniform vec2 res; uniform vec2 c; uniform float shift; uniform float scale;
+vec3 pal(float t){
+  t = fract(t);
+  vec3 a=vec3(.043,.063,.149), b=vec3(.169,.247,.941), d=vec3(.953,.953,.937), e=vec3(.949,.647,.255), f=vec3(.478,.122,.239);
+  float s = t*5.;
+  if(s<1.) return mix(a,b,s); if(s<2.) return mix(b,d,s-1.); if(s<3.) return mix(d,e,s-2.); if(s<4.) return mix(e,f,s-3.); return mix(f,a,s-4.);
+}
+vec3 shade(vec2 frag){
+  vec2 z = (frag - .5*res) / res.y * scale;
+  float n = 0.;
+  for(int i=0;i<300;i++){ if(dot(z,z)>256.) break; z = vec2(z.x*z.x - z.y*z.y, 2.*z.x*z.y) + c; n += 1.; }
+  if(n>=300.) return vec3(.04,.045,.065);
+  float nu = n + 1. - log2(log2(dot(z,z))*.5);
+  return pal(sqrt(nu)*.16 + shift);
+}
+void main(){ gl_FragColor = vec4((shade(gl_FragCoord.xy + vec2(.25)) + shade(gl_FragCoord.xy - vec2(.25)))*.5, 1.); }`;
+  let glOK = !!gl; const U = {};
+  if (glOK) {
+    const sh = (t, src) => { const o = gl.createShader(t); gl.shaderSource(o, src); gl.compileShader(o); if (!gl.getShaderParameter(o, gl.COMPILE_STATUS)) glOK = false; return o; };
+    const pr = gl.createProgram(); gl.attachShader(pr, sh(gl.VERTEX_SHADER, 'attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}')); gl.attachShader(pr, sh(gl.FRAGMENT_SHADER, FS)); gl.linkProgram(pr); gl.useProgram(pr);
+    gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer()); gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1,1,-1,-1,1,1,1]), gl.STATIC_DRAW);
+    const loc = gl.getAttribLocation(pr, 'p'); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+    ['res','c','shift','scale'].forEach(k => U[k] = gl.getUniformLocation(pr, k));
   }
-  function drawPhase(t) {
-    const r = phase.getBoundingClientRect();
-    if (!r.width) return;
-    const t0 = performance.now();
-    const W = Math.max(160, Math.round(Math.min(640, r.width / res))), H = Math.round(W * r.height / r.width);
-    if (phase.width !== W || phase.height !== H) { phase.width = W; phase.height = H; }
-    const v = view(t), sp = v.s / H, x0 = v.c[0] - sp * W / 2, y0 = v.c[1] + sp * H / 2;
-    const maxIt = Math.min(420, Math.round(90 + 38 * Math.log2(S0 / v.s)));
-    const img = pctx.createImageData(W, H), d = img.data, shift = t * .02;
-    for (let j = 0; j < H; j++) {
-      const cy = y0 - j * sp;
-      for (let i = 0; i < W; i++) {
-        const cx = x0 + i * sp, o = (j * W + i) * 4;
-        let x = 0, y = 0, x2 = 0, y2 = 0, n = 0;
-        const q = (cx - .25) * (cx - .25) + cy * cy;
-        if (q * (q + cx - .25) < .25 * cy * cy || (cx + 1) * (cx + 1) + cy * cy < .0625) n = maxIt;
-        while (n < maxIt && x2 + y2 < 256) { y = 2 * x * y + cy; x = x2 - y2 + cx; x2 = x * x; y2 = y * y; n++; }
-        if (n >= maxIt) { d[o] = 10; d[o+1] = 11; d[o+2] = 16; }
-        else {
-          const nu = n + 1 - Math.log2(Math.log2(x2 + y2) / 2);
-          let f = Math.sqrt(nu) * .11 + shift; f -= Math.floor(f);
-          const L = Math.floor(f * 1023) * 3; d[o] = LUT[L]; d[o+1] = LUT[L+1]; d[o+2] = LUT[L+2];
-        }
-        d[o+3] = 255;
-      }
+  const inset = document.getElementById('inset'), ictx = inset.getContext('2d'), MB = {x0: -2.2, x1: .7, y0: -1.15, y1: 1.15}, cval = document.getElementById('cval');
+  let mbImg = null, jTarget = null, cJ = [.7885 * Math.cos(1.9), .7885 * Math.sin(1.9)];
+  const fitC = el => { const r = el.getBoundingClientRect(), w = Math.round(r.width * DPR), h = Math.round(r.height * DPR); if (w && (el.width !== w || el.height !== h)) { el.width = w; el.height = h; return true; } return false; };
+  function insetBase() {
+    fitC(inset); const W = inset.width, H = inset.height; if (!W) return; const img = ictx.createImageData(W, H), d = img.data;
+    for (let j = 0; j < H; j++) for (let i = 0; i < W; i++) {
+      const cx = MB.x0 + (i + .5) / W * (MB.x1 - MB.x0), cy = MB.y1 - (j + .5) / H * (MB.y1 - MB.y0);
+      let x = 0, y = 0, n = 0; while (n < 120 && x * x + y * y < 4) { const t = x * x - y * y + cx; y = 2 * x * y + cy; x = t; n++; }
+      const o = (j * W + i) * 4, v = Math.min(1, Math.sqrt(n / 40)), inside = n >= 120;
+      d[o] = inside ? 236 : 13 + 30 * v; d[o+1] = inside ? 235 : 15 + 48 * v; d[o+2] = inside ? 229 : 23 + 200 * v; d[o+3] = 235;
     }
-    pctx.putImageData(img, 0, 0);
-    const dt = performance.now() - t0;
-    if (dt > 28 && res < 5) res += .25; else if (dt < 12 && res > 1.6) res -= .1;
+    mbImg = img;
+  }
+  phase.addEventListener('pointermove', e => { const r = phase.getBoundingClientRect(); jTarget = [MB.x0 + (e.clientX - r.left) / r.width * (MB.x1 - MB.x0), MB.y1 - (e.clientY - r.top) / r.height * (MB.y1 - MB.y0)]; });
+  phase.addEventListener('pointerleave', () => jTarget = null);
+  function drawPhase(t) {
+    if (fitC(phase) || !mbImg) insetBase();
+    const tg = jTarget || [.7885 * Math.cos(t * .09 + 1.9), .7885 * Math.sin(t * .09 + 1.9)];
+    cJ[0] += (tg[0] - cJ[0]) * .06; cJ[1] += (tg[1] - cJ[1]) * .06;
+    if (glOK) { gl.viewport(0, 0, phase.width, phase.height); gl.uniform2f(U.res, phase.width, phase.height); gl.uniform2f(U.c, cJ[0], cJ[1]); gl.uniform1f(U.shift, t * .015); gl.uniform1f(U.scale, 2.7); gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4); }
+    if (mbImg) {
+      ictx.putImageData(mbImg, 0, 0);
+      const px = (cJ[0] - MB.x0) / (MB.x1 - MB.x0) * inset.width, py = (MB.y1 - cJ[1]) / (MB.y1 - MB.y0) * inset.height;
+      ictx.strokeStyle = ictx.fillStyle = '#f2a541'; ictx.lineWidth = 1.5 * DPR;
+      ictx.beginPath(); ictx.arc(px, py, 5 * DPR, 0, 7); ictx.stroke(); ictx.beginPath(); ictx.arc(px, py, 1.6 * DPR, 0, 7); ictx.fill();
+    }
+    cval.textContent = `c = ${cJ[0].toFixed(3)} ${cJ[1] < 0 ? '−' : '+'} ${Math.abs(cJ[1]).toFixed(3)} i`;
   }
 
   /* ---------- small figures ---------- */
@@ -335,14 +340,31 @@
       ctx.globalAlpha = 1; ctx.fillStyle = C.muted; ctx.font = `600 ${12 * DPR}px Archivo, sans-serif`; ctx.fillText('|A₅| = 60', 16 * DPR, h - 16 * DPR);
     },
     dual(ctx, w, h, t) {
-      const P = {1: [0, 0], 2: [-.7, 1], 3: [.7, 1], 4: [-1.4, 2], 6: [0, 2], 12: [-.7, 3]}, E = [[1,2],[1,3],[2,4],[2,6],[3,6],[4,12],[6,12]];
-      let k = (Math.sin(t * .5) + 1) / 2; k = k * k * (3 - 2 * k);
-      const s = Math.min(w / 3.6, h / 4.1), cx = w / 2 + .35 * s, cy = h / 2 + 1.5 * s;
-      const pos = d => { const a = P[d], b = P[12 / d]; return [cx + s * (a[0] + (b[0] - a[0]) * k), cy - s * (a[1] + (b[1] - a[1]) * k)]; };
-      ctx.strokeStyle = C.ink; ctx.lineWidth = 1.5 * DPR; E.forEach(([a, b]) => { const p = pos(a), q = pos(b); ctx.beginPath(); ctx.moveTo(p[0], p[1]); ctx.lineTo(q[0], q[1]); ctx.stroke(); });
-      ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.font = `italic ${15 * DPR}px "Source Serif 4", Georgia, serif`;
-      Object.keys(P).forEach(d => { const p = pos(+d); ctx.fillStyle = C.panel; ctx.strokeStyle = C.accent; ctx.lineWidth = 2 * DPR; ctx.beginPath(); ctx.arc(p[0], p[1], 15 * DPR, 0, 7); ctx.fill(); ctx.stroke(); ctx.fillStyle = C.ink; ctx.fillText(d, p[0], p[1] + DPR); });
-      ctx.textAlign = 'left'; ctx.textBaseline = 'alphabetic'; ctx.fillStyle = C.muted; ctx.font = `600 ${12 * DPR}px Archivo, sans-serif`; ctx.fillText('ORDER d  ↦  12 / d', 16 * DPR, h - 16 * DPR);
+      // subgroup lattice of Z/2 x Z/4; duality H -> H^perp pairs nodes vertically
+      const N = {o: [0, 0, '0'], a: [-1, 1, '⟨(1,0)⟩'], b: [0, 1, '2G'], c: [1, 1, '⟨(1,2)⟩'], A: [-1, 2, '⟨(0,1)⟩'], B: [0, 2, 'G[2]'], Cc: [1, 2, '⟨(1,1)⟩'], g: [0, 3, 'G']};
+      const E = [['o','a'],['o','b'],['o','c'],['a','B'],['b','A'],['b','B'],['b','Cc'],['c','B'],['A','g'],['B','g'],['Cc','g']];
+      const PAIRS = [['a','A'],['b','B'],['c','Cc'],['o','g']], PER = 2.8;
+      const tt = Math.max(0, t), k = Math.floor(tt / PER) % PAIRS.length, ph = (tt % PER) / PER, fade = Math.min(1, ph * 5, (1 - ph) * 5);
+      const [p1, p2] = PAIRS[k];
+      const sx = Math.min(w / 3.3, 150 * DPR), sy = h / 3.9, cx = w / 2, by = h - sy * .45;
+      const P = id => [cx + N[id][0] * sx, by - N[id][1] * sy];
+      ctx.strokeStyle = C.ink; ctx.globalAlpha = .55; ctx.lineWidth = 1.4 * DPR;
+      E.forEach(([u, v]) => { const p = P(u), q = P(v); ctx.beginPath(); ctx.moveTo(p[0], p[1]); ctx.lineTo(q[0], q[1]); ctx.stroke(); });
+      ctx.globalAlpha = 1;
+      // dashed arc between the pair
+      const p = P(p1), q = P(p2), bend = (N[p1][0] <= 0 ? -1 : 1) * sx * .55;
+      ctx.globalAlpha = fade; ctx.strokeStyle = C.red; ctx.lineWidth = 2 * DPR; ctx.setLineDash([5 * DPR, 5 * DPR]);
+      ctx.beginPath(); ctx.moveTo(p[0], p[1]); ctx.quadraticCurveTo((p[0] + q[0]) / 2 + bend, (p[1] + q[1]) / 2, q[0], q[1]); ctx.stroke(); ctx.setLineDash([]); ctx.globalAlpha = 1;
+      ctx.font = `${13 * DPR}px "Source Serif 4", Georgia, serif`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      Object.keys(N).forEach(id => {
+        const [x, y] = P(id), lab = N[id][2], tw = ctx.measureText(lab).width + 14 * DPR, hh = 24 * DPR, on = id === p1 || id === p2;
+        ctx.fillStyle = C.panel; ctx.strokeStyle = C.ink; ctx.lineWidth = 1.2 * DPR;
+        ctx.beginPath(); ctx.roundRect ? ctx.roundRect(x - tw / 2, y - hh / 2, tw, hh, hh / 2) : ctx.rect(x - tw / 2, y - hh / 2, tw, hh); ctx.fill(); ctx.stroke();
+        if (on) { ctx.globalAlpha = fade; ctx.fillStyle = C.red; ctx.beginPath(); ctx.roundRect ? ctx.roundRect(x - tw / 2, y - hh / 2, tw, hh, hh / 2) : ctx.rect(x - tw / 2, y - hh / 2, tw, hh); ctx.fill(); ctx.globalAlpha = 1; }
+        ctx.fillStyle = on && fade > .5 ? '#fff' : C.ink; ctx.fillText(lab, x, y + DPR);
+      });
+      ctx.textAlign = 'left'; ctx.textBaseline = 'alphabetic'; ctx.fillStyle = C.muted; ctx.font = `600 ${12 * DPR}px Archivo, sans-serif`;
+      ctx.fillText(`${N[p1][2]}⊥ = ${N[p2][2]}`, 16 * DPR, h - 14 * DPR);
     },
     euler(ctx, w, h, t) {
       const s = Math.min(w, h) * .3, cx = w / 2, cy = h / 2;

@@ -1,6 +1,6 @@
 /* Layout: a magazine front page. Masthead, full-bleed lead figure, one feature story with a side figure, a story grid, a coloured band, then the colophon. */
 :root{
-  --paper:#f3f3ef; --ink:#14151a; --muted:#5d5f6a; --rule:#d4d4cc; --panel:#e7e7e1; --accent:#2b3ff0;
+  --paper:#f3f3ef; --ink:#14151a; --muted:#5d5f6a; --rule:#d4d4cc; --panel:#e7e7e1; --accent:#2b3ff0; --red:#d23a2a;
   --display:"Newsreader","Iowan Old Style",Georgia,serif;
   --body:"Source Serif 4",Georgia,"Times New Roman",serif;
   --label:"Archivo","Helvetica Neue",Arial,sans-serif;
@@ -8,8 +8,8 @@
   --gutter:max(clamp(16px,4vw,40px),env(safe-area-inset-left,0px));
   --gutter-r:max(clamp(16px,4vw,40px),env(safe-area-inset-right,0px));
 }
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#111216;--ink:#ecebe5;--muted:#a3a4ae;--rule:#2d2e35;--panel:#1b1c22;--accent:#8c98ff;color-scheme:dark}}
-:root[data-theme="dark"]{--paper:#111216;--ink:#ecebe5;--muted:#a3a4ae;--rule:#2d2e35;--panel:#1b1c22;--accent:#8c98ff;color-scheme:dark}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#111216;--ink:#ecebe5;--muted:#a3a4ae;--rule:#2d2e35;--panel:#1b1c22;--accent:#8c98ff;--red:#ff6b57;color-scheme:dark}}
+:root[data-theme="dark"]{--paper:#111216;--ink:#ecebe5;--muted:#a3a4ae;--rule:#2d2e35;--panel:#1b1c22;--accent:#8c98ff;--red:#ff6b57;color-scheme:dark}
 
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:72px}
@@ -44,8 +44,11 @@ p{margin:0}
 @keyframes rise{from{transform:translateY(18px);opacity:.001}to{transform:none;opacity:1}}
 
 .lead figure{margin:0}
-.lead canvas{display:block;width:100%;aspect-ratio:16/7;max-width:100%;background:var(--panel);cursor:crosshair;touch-action:pan-y}
-@media (max-width:640px){.lead canvas{aspect-ratio:4/3}}
+.stage{position:relative;width:100%;max-width:100%;aspect-ratio:16/7;background:#0d0f17;overflow:hidden}
+@media (max-width:640px){.stage{aspect-ratio:4/3}}
+.stage #phase{position:absolute;inset:0;width:100%;height:100%;display:block;cursor:crosshair;touch-action:pan-y}
+.stage #inset{position:absolute;right:14px;bottom:14px;width:min(26%,220px);aspect-ratio:13/10;height:auto;border:1px solid rgba(255,255,255,.35);pointer-events:none}
+.cval{position:absolute;left:14px;bottom:12px;font-family:var(--label);font-size:12px;letter-spacing:.06em;color:rgba(255,255,255,.75);font-variant-numeric:tabular-nums;pointer-events:none}
 figcaption{font-family:var(--label);font-size:13px;line-height:1.5;color:var(--muted);padding-top:10px;max-width:80ch}
 figcaption b{color:var(--ink);font-weight:600}
 .math{font-family:var(--body);font-style:italic;color:var(--ink);font-size:14px}
