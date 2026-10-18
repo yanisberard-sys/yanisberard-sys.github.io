@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Photography · Yanis Bérard</title>
+<meta name="description" content="Photographs by Yanis Bérard.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="strap"><div class="wrap"><span>Mathematics · École normale supérieure de Rennes</span><span>Photography</span></div></div>
+
+<header class="mast">
+  <div class="wrap">
+    <a class="brand" href="index.html">Y. Bérard</a>
+    <nav class="nav" aria-label="Sections">
+      <a href="index.html#research">Research</a>
+      <a href="index.html#projects">Projects</a>
+      <a href="index.html#tipe">TIPE</a>
+      <a href="index.html#teaching">Teaching</a>
+      <a href="index.html#about">About</a>
+      <a href="photography.html" aria-current="page" style="border-color:var(--ink)">Photography</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="ghead">
+    <div class="wrap">
+      <span class="kicker load">Photography</span>
+      <h1 class="load d2">Streets, rock <em>and light</em></h1>
+      <p class="load d3">Pictures taken along the way: demonstrations in Paris, sea cliffs, and the high plateaus of South America.</p>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="gallery">
+      <figure id="p1" class="reveal"><button type="button" data-i="0"><img src="photos/paris-rivoli.jpg" alt="Hôtel Regina in Paris at golden hour, with police vans and riot police in the street" width="1311" height="2000"></button><figcaption><b>Paris, rue de Rivoli.</b> Golden hour on the Hôtel Regina, smoke drifting down the arcades.</figcaption></figure>
+      <figure id="p3" class="reveal"><button type="button" data-i="2"><img src="photos/escalade-falaise.jpg" alt="Two climbers on a sea cliff above the ocean" width="1600" height="1200" loading="lazy"></button><figcaption><b>Sea cliff.</b> A route above the swell.</figcaption></figure>
+      <figure id="p2" class="reveal"><button type="button" data-i="1"><img src="photos/paris-cortege.jpg" alt="Black and white photo of demonstrators in front of a statue in Paris" width="800" height="1599" loading="lazy"></button><figcaption><b>Paris, in the march.</b> Faces in the crowd, under a sculpted moustache.</figcaption></figure>
+      <figure id="p5" class="reveal"><button type="button" data-i="4"><img src="photos/uyuni.jpg" alt="Cacti lit by the rising sun above a white salt flat" width="1200" height="1600" loading="lazy"></button><figcaption><b>Salar de Uyuni.</b> First light on the cacti.</figcaption></figure>
+      <figure id="p4" class="reveal"><button type="button" data-i="3"><img src="photos/escalade-dws.jpg" alt="A climber on a sea stack rising out of calm water" width="1501" height="2000" loading="lazy"></button><figcaption><b>Deep-water solo.</b> No rope, just the sea below.</figcaption></figure>
+    </div>
+  </div>
+</main>
+
+<dialog class="lb" id="lb" aria-label="Photograph">
+  <div class="lb-in">
+    <img id="lb-img" alt="">
+    <div class="lb-bar">
+      <span id="lb-cap"></span>
+      <div class="lb-nav">
+        <button type="button" id="lb-prev" aria-label="Previous photograph">←</button>
+        <button type="button" id="lb-next" aria-label="Next photograph">→</button>
+        <button type="button" id="lb-close">Close</button>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<footer>
+  <div class="wrap">
+    <span class="kicker">Contact</span>
+    <div class="mail"><a href="mailto:yanis.berard@ens-rennes.fr">yanis.berard@ens-rennes.fr</a></div>
+    <div class="colophon meta"><span>© 2026 Yanis Bérard</span><a href="index.html">Back to the front page</a></div>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduce && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.remove('pending'); io.unobserve(e.target); } }), {rootMargin: '0px 0px -8% 0px'});
+    document.querySelectorAll('.reveal').forEach(el => { if (el.getBoundingClientRect().top > innerHeight) { el.classList.add('pending'); io.observe(el); } });
+  }
+  const items = [];
+  document.querySelectorAll('.gallery button').forEach(b => { const fig = b.closest('figure'); items[+b.dataset.i] = {src: b.querySelector('img').src, alt: b.querySelector('img').alt, cap: fig.querySelector('figcaption').textContent}; });
+  const lb = document.getElementById('lb'), img = document.getElementById('lb-img'), cap = document.getElementById('lb-cap');
+  let cur = 0;
+  const show = i => { cur = (i + items.length) % items.length; img.src = items[cur].src; img.alt = items[cur].alt; cap.textContent = items[cur].cap; };
+  const open = i => { show(i); if (lb.showModal) lb.showModal(); else lb.setAttribute('open', ''); };
+  document.querySelectorAll('.gallery button').forEach(b => b.addEventListener('click', () => open(+b.dataset.i)));
+  document.getElementById('lb-prev').onclick = () => show(cur - 1);
+  document.getElementById('lb-next').onclick = () => show(cur + 1);
+  document.getElementById('lb-close').onclick = () => lb.close();
+  lb.addEventListener('click', e => { if (e.target === lb || e.target.classList.contains('lb-in')) lb.close(); });
+  addEventListener('keydown', e => { if (!lb.open) return; if (e.key === 'ArrowLeft') show(cur - 1); if (e.key === 'ArrowRight') show(cur + 1); });
+  const h = location.hash.match(/^#p(\d)$/);
+  if (h) { const b = document.querySelector(`#p${h[1]} button`); if (b) open(+b.dataset.i); }
+})();
+</script>
+</body>
+</html>

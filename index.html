@@ -7,151 +7,8 @@
 <meta name="description" content="Yanis Bérard, student at ENS Rennes. Riemann surfaces and complex algebraic geometry.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..800;1,6..96,400..800&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&display=swap">
-<style>
-/* Layout: a magazine front page. Masthead, full-bleed lead figure, one feature story with a side figure, a story grid, a coloured band, then the colophon. */
-:root{
-  --paper:#f3f3ef; --ink:#14151a; --muted:#5d5f6a; --rule:#d4d4cc; --panel:#e7e7e1; --accent:#2b3ff0;
-  --display:"Bodoni Moda","Didot","Bodoni 72",Georgia,serif;
-  --body:"Source Serif 4",Georgia,"Times New Roman",serif;
-  --label:"Archivo","Helvetica Neue",Arial,sans-serif;
-  --band:#16182a; --band-fg:#ecebe5;
-  --gutter:max(clamp(16px,4vw,40px),env(safe-area-inset-left,0px));
-  --gutter-r:max(clamp(16px,4vw,40px),env(safe-area-inset-right,0px));
-}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#111216;--ink:#ecebe5;--muted:#a3a4ae;--rule:#2d2e35;--panel:#1b1c22;--accent:#8c98ff;color-scheme:dark}}
-:root[data-theme="dark"]{--paper:#111216;--ink:#ecebe5;--muted:#a3a4ae;--rule:#2d2e35;--panel:#1b1c22;--accent:#8c98ff;color-scheme:dark}
-
-*{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:72px}
-body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:18px;line-height:1.6;-webkit-font-smoothing:antialiased}
-body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
-a{color:inherit}
-a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-.wrap{max-width:1200px;margin:0 auto;padding-left:var(--gutter);padding-right:var(--gutter-r)}
-.kicker{font-family:var(--label);font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
-.meta{font-family:var(--label);font-size:13px;color:var(--muted);letter-spacing:.02em}
-h1,h2,h3{font-family:var(--display);font-weight:500;text-wrap:balance;margin:0}
-p{margin:0}
-
-/* strap + masthead */
-.strap .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-block:10px;font-family:var(--label);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
-.mast{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--paper);border-block:1px solid var(--rule)}
-.mast .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:56px}
-.brand{font-family:var(--display);font-style:italic;font-size:24px;text-decoration:none;white-space:nowrap}
-.nav{display:flex;gap:22px;overflow-x:auto;scrollbar-width:none}
-.nav a{font-family:var(--label);font-size:12px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;white-space:nowrap;padding-block:6px;border-bottom:1px solid transparent;transition:border-color .2s}
-.nav a:hover{border-color:var(--ink)}
-
-/* hero */
-.hero .wrap{display:grid;grid-template-columns:1fr;gap:24px;padding-block:clamp(36px,6vw,72px) 28px}
-.hero h1{font-size:clamp(58px,12.5vw,168px);line-height:.86;letter-spacing:-.025em;font-weight:500}
-.hero h1 em{font-style:italic;font-weight:400}
-.hero .dek{font-size:clamp(19px,2.1vw,23px);line-height:1.45;max-width:34ch}
-.hero .dek strong{font-weight:600}
-@media (min-width:900px){.hero .wrap{grid-template-columns:1.6fr 1fr;align-items:end}.hero .dek{padding-bottom:12px}}
-.load{animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
-.load.d2{animation-delay:.12s}.load.d3{animation-delay:.24s}
-@keyframes rise{from{transform:translateY(18px);opacity:.001}to{transform:none;opacity:1}}
-
-.lead figure{margin:0}
-.lead canvas{display:block;width:100%;aspect-ratio:16/7;max-width:100%;background:var(--panel);cursor:crosshair;touch-action:pan-y}
-@media (max-width:640px){.lead canvas{aspect-ratio:4/3}}
-figcaption{font-family:var(--label);font-size:13px;line-height:1.5;color:var(--muted);padding-top:10px;max-width:80ch}
-figcaption b{color:var(--ink);font-weight:600}
-.math{font-family:var(--body);font-style:italic;color:var(--ink);font-size:14px}
-
-/* sections */
-section{padding-block:clamp(56px,8vw,104px) 0}
-.shead{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:3px solid var(--ink);padding-top:14px;margin-bottom:clamp(28px,4vw,44px)}
-.shead h2{font-size:clamp(30px,4vw,44px);font-style:italic;font-weight:400}
-
-/* feature */
-.feature{display:grid;grid-template-columns:1fr;gap:clamp(28px,4vw,56px)}
-@media (min-width:900px){.feature{grid-template-columns:7fr 5fr}}
-.feature > *{min-width:0}
-.feature h3{font-size:clamp(40px,6vw,76px);line-height:.98;letter-spacing:-.015em;margin-block:10px 18px}
-.byline{border-block:1px solid var(--rule);padding-block:10px;margin-bottom:24px;display:flex;flex-wrap:wrap;gap:6px 18px}
-.copy{display:grid;gap:18px;max-width:64ch}
-.copy .first::first-letter{font-family:var(--display);float:left;font-size:4.6em;line-height:.78;padding:6px 10px 0 0;font-weight:500}
-.pull{font-family:var(--display);font-style:italic;font-size:clamp(26px,3vw,34px);line-height:1.2;padding-block:16px;margin:8px 0;border-block:1px solid var(--rule);text-wrap:balance}
-.pull::before{content:"“";color:var(--accent);margin-right:2px}
-.pull::after{content:"”";color:var(--accent)}
-.more{display:inline-flex;align-items:center;gap:8px;font-family:var(--label);font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;color:var(--accent);padding-block:4px;border-bottom:1px solid currentColor;justify-self:start}
-.more span{transition:transform .25s}
-.more:hover span{transform:translateX(5px)}
-.side canvas{display:block;width:100%;aspect-ratio:1;max-width:100%;background:var(--panel)}
-@media (min-width:900px){.side{position:sticky;top:96px;align-self:start}}
-
-/* story grid */
-.stories{display:grid;grid-template-columns:1fr;gap:48px 32px}
-@media (min-width:700px){.stories{grid-template-columns:repeat(2,1fr)}.story.wide{grid-column:span 2}}
-@media (min-width:1050px){.stories{grid-template-columns:repeat(3,1fr)}.story.wide{grid-column:span 2}}
-.story{display:grid;gap:12px;align-content:start;min-width:0}
-.story canvas{display:block;width:100%;height:260px;max-width:100%;background:var(--panel);transition:filter .3s}
-.story h3{font-size:clamp(26px,2.6vw,32px);line-height:1.08}
-.story.wide h3{font-size:clamp(30px,3.6vw,44px)}
-.story p{color:var(--muted);font-size:17px}
-.story .row{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
-
-/* band */
-.band{margin-top:clamp(56px,8vw,104px);background:var(--band);color:var(--band-fg)}
-.band .wrap{display:grid;grid-template-columns:1fr;gap:clamp(28px,4vw,56px);padding-block:clamp(48px,7vw,88px);align-items:center}
-@media (min-width:900px){.band .wrap{grid-template-columns:5fr 6fr}}
-.band .wrap > *{min-width:0}
-.band canvas{display:block;width:100%;aspect-ratio:1;max-width:520px;background:transparent}
-.band .kicker{color:var(--band-fg);opacity:.7}
-.band h2{font-size:clamp(36px,5vw,64px);line-height:1;margin-block:12px 18px}
-.band p{max-width:52ch;opacity:.85}
-.band ul{list-style:none;padding:0;margin:22px 0 0;display:grid;gap:10px}
-.band li{border-top:1px solid color-mix(in srgb,var(--band-fg) 25%,transparent);padding-top:10px;font-family:var(--display);font-size:22px;font-style:italic}
-.band figcaption{color:var(--band-fg);opacity:.6}
-
-/* columns */
-.cols{display:grid;grid-template-columns:1fr;gap:32px}
-@media (min-width:800px){.cols{grid-template-columns:repeat(3,1fr)}}
-.col{border-top:1px solid var(--rule);padding-top:16px;display:grid;gap:10px;align-content:start;min-width:0}
-.col h3{font-size:25px;line-height:1.15}
-.col p{font-size:17px;color:var(--muted)}
-.col .meta{font-variant-numeric:tabular-nums}
-
-/* about */
-.about{display:grid;grid-template-columns:1fr;gap:clamp(28px,4vw,56px)}
-@media (min-width:900px){.about{grid-template-columns:4fr 5fr 4fr}}
-.about > *{min-width:0}
-.photo{position:relative;background:var(--panel);overflow:hidden;max-width:100%}
-.photo img{display:block;width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
-.photo:hover img{transform:scale(1.04)}
-.photo.portrait{aspect-ratio:4/5}
-.photo.wide{aspect-ratio:21/8;margin-top:clamp(40px,6vw,72px)}
-@media (max-width:640px){.photo.wide{aspect-ratio:4/3}}
-.ph{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:16px;font-family:var(--label);font-size:13px;color:var(--muted);background:repeating-linear-gradient(135deg,transparent 0 14px,color-mix(in srgb,var(--rule) 70%,transparent) 14px 15px)}
-.ph code{font-size:12px;color:var(--ink)}
-.bio{display:grid;gap:16px;align-content:start}
-.bio .lede{font-family:var(--display);font-size:clamp(24px,2.6vw,30px);line-height:1.25}
-dl.cv{margin:0;display:grid;grid-template-columns:auto 1fr;gap:12px 18px;align-content:start}
-dl.cv dt{font-family:var(--label);font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap;padding-top:3px}
-dl.cv dd{margin:0;font-size:16px;line-height:1.45}
-dl.cv dd small{display:block;color:var(--muted);font-size:14px}
-.facts{margin-top:28px;display:grid;gap:14px}
-.facts div{border-top:1px solid var(--rule);padding-top:10px}
-.facts .kicker{color:var(--muted);display:block;margin-bottom:4px}
-
-/* footer */
-footer{margin-top:clamp(64px,9vw,120px);border-top:3px solid var(--ink)}
-footer .wrap{display:grid;gap:24px;padding-block:32px 48px}
-footer h2{font-size:clamp(44px,8vw,104px);font-style:italic;font-weight:400;line-height:.95}
-.mail{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}
-.mail a{font-family:var(--display);font-size:clamp(22px,3vw,34px);text-decoration:none;border-bottom:1px solid var(--rule);word-break:break-all}
-.mail button{font-family:var(--label);font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:none;color:var(--ink);border:1px solid var(--ink);padding:8px 14px;cursor:pointer;transition:background .2s,color .2s}
-.mail button:hover{background:var(--ink);color:var(--paper)}
-.colophon{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;border-top:1px solid var(--rule);padding-top:16px}
-
-/* scroll reveal: only for blocks that start below the fold */
-.reveal.pending{opacity:0;transform:translateY(28px)}
-.reveal{transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
-@media (prefers-reduced-motion:reduce){.load{animation:none}.reveal{transition:none}.reveal.pending{opacity:1;transform:none}html{scroll-behavior:auto}}
-</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&display=swap">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -167,6 +24,7 @@ footer h2{font-size:clamp(44px,8vw,104px);font-style:italic;font-weight:400;line
       <a href="#tipe">TIPE</a>
       <a href="#teaching">Teaching</a>
       <a href="#about">About</a>
+      <a href="photography.html">Photography</a>
     </nav>
   </div>
 </header>
@@ -297,13 +155,24 @@ footer h2{font-size:clamp(44px,8vw,104px);font-style:italic;font-weight:400;line
     </div>
   </section>
 
+  <section id="photography">
+    <div class="wrap">
+      <div class="shead reveal"><h2>Photography</h2><span class="meta">Streets, rock and light</span></div>
+      <div class="shots reveal">
+        <a href="photography.html#p1"><img src="photos/paris-rivoli.jpg" alt="Hôtel Regina in Paris at golden hour, with police vans in the street" loading="lazy"><span>Paris, rue de Rivoli</span></a>
+        <a href="photography.html#p5"><img src="photos/uyuni.jpg" alt="Cacti at sunrise above a salt flat" loading="lazy"><span>Salar de Uyuni</span></a>
+        <a href="photography.html#p4"><img src="photos/escalade-dws.jpg" alt="A climber on a sea stack" loading="lazy"><span>Deep-water solo</span></a>
+      </div>
+      <div class="shots-foot"><a class="more" href="photography.html">All photographs <span>→</span></a></div>
+    </div>
+  </section>
+
   <section id="about">
     <div class="wrap">
       <div class="shead reveal"><h2>About</h2><a class="more" href="CV_YB_en.pdf">Download my CV <span>→</span></a></div>
       <div class="about">
         <div class="photo portrait reveal">
           <img src="portrait-web.jpg" alt="Portrait of Yanis Bérard" onerror="this.remove()">
-          <div class="ph">Your portrait goes here<br><code>portrait-web.jpg</code></div>
         </div>
         <div class="bio reveal">
           <p class="lede">I grew up in Saint-Étienne, went through classes préparatoires in Lyon, and entered ENS Rennes in 2025.</p>
@@ -322,6 +191,10 @@ footer h2{font-size:clamp(44px,8vw,104px);font-style:italic;font-weight:400;line
           <dt>2022</dt><dd>Baccalauréat, mention Très Bien<small>Lycée Honoré d'Urfé, Saint-Étienne</small></dd>
         </dl>
       </div>
+      <figure class="reveal" style="margin:0">
+        <div class="photo wide"><img src="photos/escalade-falaise.jpg" alt="Two climbers on a sea cliff above the ocean" loading="lazy"></div>
+        <figcaption>Climbing above the sea.</figcaption>
+      </figure>
     </div>
   </section>
 </main>
