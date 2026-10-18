@@ -22,7 +22,10 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&display=swap">
 <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32.png">
 <link rel="apple-touch-icon" href="../images/apple-touch-icon.png">
-<link rel="stylesheet" href="../style.css?v=6">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous" onload="renderMathInElement(document.body,{delimiters:[{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false}],throwOnError:false})"></script>
+<link rel="stylesheet" href="../style.css?v=7">
 </head>
 <body>
 
@@ -49,7 +52,7 @@
   <div class="hero">
     <div class="wrap">
       <h1 class="load">Yanis <em>Bérard</em></h1>
-      <div class="dek load d2"><p>Bienvenue ! Je suis actuellement élève en deuxième année à l’ENS Rennes en mathématiques. J’apprécie la géométrie algébrique la topologie, la théorie des groupes et bien d’autres domaines. À coté de cela, je pratique l'escalade, fait de la photographie et voyage.</p></div>
+      <div class="dek load d2"><p>Bienvenue ! Je suis actuellement élève en deuxième année à l’ENS Rennes en mathématiques. J’apprécie la géométrie algébrique, la topologie, la théorie des groupes et bien d’autres domaines. À côté de cela, je pratique l’escalade, fais de la photographie et voyage.</p></div>
     </div>
   </div>
 
@@ -57,29 +60,29 @@
     <div class="wrap">
       <figure>
         <div class="stage"><canvas id="phase" aria-label="Ensemble de Julia qui change avec le pointeur"></canvas><canvas id="inset" aria-hidden="true"></canvas><span class="cval" id="cval"></span></div>
-        <figcaption><b>L’ensemble de Julia rempli</b> de <span class="math">z ↦ z² + c</span>. Déplacer le curseur change <span class="math">c</span>. La vignette montre où se trouve <span class="math">c</span> dans l’ensemble de Mandelbrot. Si l'on ne fait rien <span class="math">c</span> parcourt le cercle de rayon 0,7885.</figcaption>
+        <figcaption><b>L’ensemble de Julia rempli</b> de $z \mapsto z^2 + c$. Déplacer le curseur change $c$. La vignette montre où se trouve $c$ dans l’ensemble de Mandelbrot. Si l’on ne fait rien, $c$ parcourt le cercle de rayon $0{,}7885$.</figcaption>
       </figure>
     </div>
   </div>
 
   <section id="research">
     <div class="wrap">
-      <div class="shead reveal"><h2>Recherche</h2><span class="meta">Stage de première année</span></div>
+      <div class="shead reveal"><h2>Stages</h2><span class="meta">Stage de première année</span></div>
       <article class="feature">
         <div class="reveal">
           <span class="kicker">Géométrie algébrique complexe</span>
-          <h3>Un cas particulier du théorème GAGA de Serre </h3>
+          <h3>Un cas particulier du théorème GAGA de Serre</h3>
           <div class="byline meta"><span>Institut Camille Jordan, Lyon</span><span>Mai – juin 2026</span><span>Encadré par Jean-Yves Welschinger</span></div>
           <div class="copy">
-            <p class="first">L'idée de ce stage était d'étudier les surfaces de Riemann, leurs plongements, et la régularité des fonctions holomorphe.</p>
-            <p>Le rapport commence par définir l'objet, en passant par la théorie des revêtements et la formule de Riemann–Hurwitz. Ensuite, il construit la cohomologie des faisceaux, puis démontre le théorème de Riemann–Roch et la dualité de Serre. De là, il déduit que toute surface de Riemann compacte peut être plongée dans un espace projectif.</p>
-            <p>Ensuite, j'énonce le théorème de Chow qui montre que les fermés analytiques de l’espace projectif sont algébriques. Enfin je démontre GAGA dans le cas particulier des surfaces de Riemann compactes et du faisceau des fonctions régulières.</p>
+            <p class="first">L’idée de ce stage était d’étudier les surfaces de Riemann, leurs plongements, et la régularité des fonctions holomorphes.</p>
+            <p>Le rapport commence par définir l’objet, en passant par la théorie des revêtements et la formule de Riemann–Hurwitz. Ensuite, il construit la cohomologie des faisceaux, puis démontre le théorème de Riemann–Roch et la dualité de Serre. De là, il déduit que toute surface de Riemann compacte peut être plongée dans un espace projectif.</p>
+            <p>Puis, j’énonce le théorème de Chow qui montre que les fermés analytiques de l’espace projectif sont algébriques. Enfin, je démontre GAGA dans le cas particulier des surfaces de Riemann compactes et du faisceau des fonctions régulières.</p>
             <a class="more" href="../papers/gaga.pdf">Lire le mémoire <span>→</span></a>
           </div>
         </div>
         <figure class="side reveal">
           <canvas data-fig="sqrt" aria-label="Modèle en rotation de la surface de Riemann de la racine carrée"></canvas>
-          <figcaption><b>Un revètement de degré 2 du disque unité.</b> Un point qui fait une fois le tour du point de ramification arrive sur l’autre feuillet. Il lui faut deux tours complets pour revenir.</figcaption>
+          <figcaption><b>Un revêtement de degré 2 du disque unité.</b> Un point qui fait une fois le tour du point de ramification arrive sur l’autre feuillet. Il lui faut deux tours complets pour revenir.</figcaption>
         </figure>
       </article>
     </div>
@@ -93,7 +96,7 @@
           <canvas data-fig="bezout" aria-label="Une ellipse et une cubique mobile, avec leurs points d’intersection réels"></canvas>
           <div class="row"><span class="kicker">Courbes algébriques · 2026</span><span class="meta">Exposé de trois heures</span></div>
           <h3>Une preuve élémentaire du théorème de Bézout</h3>
-          <p>Intersections de courbes projectives planes, multiplicités d’intersection locales, exemples explicites et sens géométrique du décompte. La figure dénombre les intersections réelles entre une conique et une cubique (<span class="math">\mathbb{R}</span> n'est pas algébriquement clos.)<span>.</p>
+          <p>Intersections de courbes projectives planes, multiplicités d’intersection locales, exemples explicites et sens géométrique du décompte. La figure dénombre les intersections réelles entre une conique et une cubique ($\mathbb{R}$ n’est pas algébriquement clos).</p>
           <a class="more" href="../papers/bezout.pdf">Lire le texte <span>→</span></a>
         </article>
         <article class="story reveal">
@@ -106,15 +109,15 @@
         <article class="story reveal">
           <canvas data-fig="ico" aria-label="Icosaèdre en rotation"></canvas>
           <span class="kicker">Théorie des groupes</span>
-          <h3>Classification des groupes simples d'ordre &lt 60</h3>
-          <p>Les seuls groupes simples d’ordre inférieur à 60 sont les groupes cycliques d’ordre premier. La borne est optimale : le groupe des rotations de l’icosaèdre est <span class="math">\mathfrak A_5</span>, d’ordre 60.</p>
+          <h3>Classification des groupes simples d’ordre $&lt; 60$</h3>
+          <p>Les seuls groupes simples d’ordre inférieur à 60 sont les groupes cycliques d’ordre premier. La borne est optimale : le groupe des rotations de l’icosaèdre est $\mathfrak{A}_5$, d’ordre 60.</p>
           <a class="more" href="../papers/groupes-simples-60.pdf">Lire la preuve <span>→</span></a>
         </article>
         <article class="story reveal">
           <canvas data-fig="dual" aria-label="Treillis des sous-groupes de C4 × C2, avec un sous-groupe et son dual en rouge"></canvas>
           <span class="kicker">Théorie des groupes</span>
           <h3>Dualité des groupes abéliens finis</h3>
-          <p>Si l’ordre d’un groupe abélien fini n’est pas un carré parfait, il a un nombre pair de sous-groupes. En image : les huit sous-groupes de C₄ × C₂ = ⟨a, b | a⁴ = b² = 1, ab = ba⟩. La dualité associe chacun, en rouge, à son orthogonal.</p>
+          <p>Si l’ordre d’un groupe abélien fini n’est pas un carré parfait, il a un nombre pair de sous-groupes. En image : les huit sous-groupes de $C_4 \times C_2 = \langle a, b \mid a^4 = b^2 = 1,\ ab = ba \rangle$. La dualité associe chacun, en rouge, à son orthogonal.</p>
           <a class="more" href="../papers/dualite.pdf">Lire la preuve <span>→</span></a>
         </article>
         <article class="story reveal">
@@ -148,12 +151,12 @@
       <article class="tipe-row flip">
         <figure class="reveal">
           <canvas data-fig="tree" aria-label="Marche aléatoire sur le graphe de Cayley du groupe libre à deux générateurs"></canvas>
-          <figcaption>Une marche aléatoire sur le graphe de Cayley du groupe libre F₂. Comme la marche sur ℤᵈ pour d ≥ 3, elle est transiente : elle s’éloigne et ne revient pas.</figcaption>
+          <figcaption>Une marche aléatoire sur le graphe de Cayley du groupe libre $F_2$. Comme la marche sur $\mathbb{Z}^d$ pour $d \geq 3$, elle est transiente : elle s’éloigne et ne revient pas.</figcaption>
         </figure>
         <div class="reveal">
           <span class="kicker">2023 – 2024 · Lycée La Martinière Monplaisir</span>
           <h3>Pile ou face : entre paradoxes et marches aléatoires</h3>
-          <p>Alice et Bob jouent à pile ou face et parient chacun sur un motif. Le calcul des temps d’attente moyens explique pourquoi certains paris gagnent plus souvent que l’intuition ne le dit. Le TIPE passe ensuite aux marches aléatoires sur ℤᵈ et au théorème de Pólya : la marche aléatoire simple revient presque sûrement à son point de départ si et seulement si d ≤ 2.</p>
+          <p>Alice et Bob jouent à pile ou face et parient chacun sur un motif. Le calcul des temps d’attente moyens explique pourquoi certains paris gagnent plus souvent que l’intuition ne le dit. Le TIPE passe ensuite aux marches aléatoires sur $\mathbb{Z}^d$ et au théorème de Pólya : la marche aléatoire simple revient presque sûrement à son point de départ si et seulement si $d \leq 2$.</p>
           <a class="more" href="../tipe/pile-ou-face.pdf">Voir les diapositives <span>→</span></a>
         </div>
       </article>
@@ -161,7 +164,7 @@
       <article class="tipe-row">
         <figure class="reveal">
           <canvas data-fig="game" aria-label="Un jeu d’engendrement sur le groupe diédral D3, suivi sur son treillis de sous-groupes"></canvas>
-          <figcaption>Une partie sur le groupe diédral D₃. Le sous-groupe engendré par le sac, en surbrillance, monte dans le treillis jusqu’à être le groupe entier.</figcaption>
+          <figcaption>Une partie sur le groupe diédral $D_3$. Le sous-groupe engendré par le sac, en surbrillance, monte dans le treillis jusqu’à être le groupe entier.</figcaption>
         </figure>
         <div class="reveal">
           <span class="kicker">2024 – 2025 · Lycée du Parc</span>
@@ -200,9 +203,9 @@
     <div class="wrap">
       <div class="shead reveal"><h2>Photographie</h2><span class="meta">De Paris aux Andes</span></div>
       <div class="shots reveal">
-        <a href="photography.html#p1"><img src="../photos/paris-rivoli.jpg" alt="L’hôtel Regina,le 17 octobre 2026" loading="lazy"><span>Paris</span></a>
+        <a href="photography.html#p1"><img src="../photos/paris-rivoli.jpg" alt="L’hôtel Regina, le 17 octobre 2026" loading="lazy"><span>Paris</span></a>
         <a href="photography.html#p7"><img src="../photos/uyuni.jpg" alt="Des cactus au lever du soleil au-dessus d’un salar" loading="lazy"><span>Salar d’Uyuni, Bolivie</span></a>
-        <a href="photography.html#p9"><img src="../photos/escalade-dws.jpg" alt="Peu avant l'éclipse" loading="lazy"><span>Playa de Arnía, Espagne</span></a>
+        <a href="photography.html#p9"><img src="../photos/escalade-dws.jpg" alt="Peu avant l’éclipse" loading="lazy"><span>Playa de Arnía, Espagne</span></a>
       </div>
       <div class="shots-foot"><a class="more" href="photography.html">Toutes les photos <span>→</span></a></div>
     </div>
@@ -217,7 +220,7 @@
         </div>
         <div class="bio reveal">
           <p class="lede">J’ai grandi à Saint-Étienne, fait mes classes préparatoires à Lyon, et suis entré à l’ENS Rennes en 2025.</p>
-          <p>Aussi, j’ai travaillé comme ouvrier mécanicien chez NTD France et dans une ferme maraîchère.</p>
+          <p>J’ai aussi travaillé comme ouvrier mécanicien chez NTD France et dans une ferme maraîchère.</p>
           <div class="facts">
             <div><span class="kicker">Langues</span>Français (langue maternelle), anglais (C1), portugais (B2), espagnol (B1), italien (B1)</div>
             <div><span class="kicker">Outils</span>LaTeX, Python, OCaml</div>
@@ -229,7 +232,7 @@
           <dt>2025 – 26</dt><dd>Licence de Mathématiques, troisième année<small>Université de Rennes</small></dd>
           <dt>2024 – 25</dt><dd>CPGE MP*<small>Lycée du Parc, Lyon</small></dd>
           <dt>2022 – 24</dt><dd>CPGE MPSI, puis MP*<small>Lycée La Martinière Monplaisir, Lyon</small></dd>
-          <dt>2022</dt><dd>Baccalauréat, mention Très Bien<small>Lycée Honoré d'Urfé, Saint-Étienne</small></dd>
+          <dt>2022</dt><dd>Baccalauréat, mention Très Bien<small>Lycée Honoré d’Urfé, Saint-Étienne</small></dd>
         </dl>
       </div>
       <figure class="reveal" style="margin:0">

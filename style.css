@@ -180,3 +180,8 @@ footer h2{font-size:clamp(44px,8vw,104px);font-style:italic;font-weight:400;line
 .lb button{background:none;border:1px solid rgba(236,235,229,.4);color:inherit;font-family:var(--label);font-size:12px;letter-spacing:.1em;text-transform:uppercase;padding:8px 14px;cursor:pointer}
 .lb button:hover{background:rgba(236,235,229,.12)}
 .lb-nav{display:flex;gap:8px}
+
+/* KaTeX: inline maths sized to the text */
+.katex{font-size:1.06em}
+figcaption .katex,.meta .katex{font-size:1.1em}
+h3 .katex{font-size:.95em}

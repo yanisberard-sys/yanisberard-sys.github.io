@@ -25,3 +25,7 @@ Déposer le nouveau fichier dans le bon dossier **avec exactement le même nom**
 ## Deux langues
 
 Le site existe en anglais (racine) et en français (`fr/`). Le drapeau en haut à droite passe d'une version à l'autre. Une modification de texte doit être faite dans les deux versions.
+
+## Écrire des mathématiques
+
+Les formules s'écrivent en LaTeX entre dollars, directement dans le texte : `$\mathfrak{A}_5$`, `$z \mapsto z^2 + c$`, `$\mathbb{Z}^d$`. Elles sont mises en forme automatiquement (KaTeX). Pour un vrai signe dollar, écrire `\$`. Dans le code HTML, `<` s'écrit `&lt;` même dans une formule : `$&lt; 60$`.
