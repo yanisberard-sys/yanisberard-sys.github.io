@@ -12,7 +12,9 @@ Site statique publié avec GitHub Pages : https://yanisberard-sys.github.io/
 | `style.css` | Mise en forme commune aux deux pages |
 | `papers/` | Textes : `gaga.pdf` (rapport de stage), `bezout.pdf`, `kakeya.pdf`, `groupes-simples-60.pdf`, `dualite.pdf`, `maths-en-jeans.pdf` |
 | `tipe/` | `elections.pdf`, `pile-ou-face.pdf`, `treillis.pdf` |
-| `cv/` | `CV_YB_en.pdf`, `CV_YB_fr.pdf` |
+| `cv/` | `CV_YB_en.pdf`, `CV_YB_fr.pdf` et leurs sources `.tex` |
+| `vendor/katex/` | Mise en forme des formules mathématiques |
+| `menu.js` | Menu des téléphones |
 | `images/` | Portrait, icônes de l'onglet |
 | `photos/` | Photos de la galerie |
 | `sitemap.xml`, `robots.txt` | Référencement |
@@ -28,4 +30,4 @@ Le site existe en anglais (racine) et en français (`fr/`). Le drapeau en haut �
 
 ## Écrire des mathématiques
 
-Les formules s'écrivent en LaTeX entre dollars, directement dans le texte : `$\mathfrak{A}_5$`, `$z \mapsto z^2 + c$`, `$\mathbb{Z}^d$`. Elles sont mises en forme automatiquement (KaTeX). Pour un vrai signe dollar, écrire `\$`. Dans le code HTML, `<` s'écrit `&lt;` même dans une formule : `$&lt; 60$`.
+Les formules s'écrivent en LaTeX entre dollars, directement dans le texte : `$\mathfrak{A}_5$`, `$z \mapsto z^2 + c$`, `$\mathbb{Z}^d$`. Elles sont mises en forme automatiquement par KaTeX, hébergé dans `vendor/katex/` (aucun service extérieur). Les formules déjà présentes sur le site sont pré-calculées dans le HTML, elles s'affichent donc instantanément. Pour un vrai signe dollar, écrire `\$`. Dans le code HTML, `<` s'écrit `&lt;` même dans une formule : `$&lt; 60$`.

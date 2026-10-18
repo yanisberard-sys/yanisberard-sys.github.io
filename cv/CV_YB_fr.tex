@@ -1,0 +1,96 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage[margin=1.3cm,top=0.9cm,bottom=0.8cm]{geometry}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\setlist{topsep=2pt}
+\usepackage{xcolor}
+\usepackage{amssymb}
+
+% Couleurs et mise en forme des sections
+\definecolor{primary}{RGB}{30, 80, 130}
+\titleformat{\section}{\Large\bfseries\color{primary}}{}{0em}{}[\titlerule]
+\titlespacing{\section}{0pt}{0.9ex}{0.5ex}
+
+\begin{document}
+	\pagestyle{empty}
+
+	% En-tête
+	\begin{center}
+		{\Huge \textbf{Yanis Bérard}}\\[0.2cm]
+		{\Large Élève à l'École Normale Supérieure de Rennes -- Mathématiques}\\[0.2cm]
+		\href{mailto:yanis.berard@ens-rennes.fr}{yanis.berard@ens-rennes.fr} ~|~ 07 68 83 62 00 ~|~ \href{https://yanisberard-sys.github.io/fr/}{yanisberard-sys.github.io}
+	\end{center}
+
+	\vspace{0cm}
+
+	\section*{Formation}
+	\begin{itemize}[leftmargin=1em, label={}]
+		\item \textbf{ENS Rennes} \hfill \textit{2025 -- aujourd'hui} \\
+		Élève normalien, Magistère de Mathématiques (parcours mathématiques fondamentales).
+		\vspace{0.02cm}
+
+		\item \textbf{Université de Rennes} \hfill \textit{2025 -- aujourd'hui} \\
+		Master de Mathématiques, première année (M1, depuis 2026) ; Licence de Mathématiques, troisième année (L3, 2025 -- 2026).
+		\vspace{0.02cm}
+
+		\item \textbf{Lycée du Parc, Lyon} \hfill \textit{2024 -- 2025} \\
+		CPGE MP*1.
+		\vspace{0.02cm}
+
+		\item \textbf{Lycée La Martinière Monplaisir, Lyon} \hfill \textit{2022 -- 2024} \\
+		CPGE MPSI $\rightarrow$ MP*.
+		\vspace{0.02cm}
+
+		\item \textbf{Lycée Honoré d'Urfé, Saint-Étienne} \hfill \textit{2022} \\
+		Baccalauréat, spécialités Mathématiques et Physique-Chimie, mention Très Bien.
+	\end{itemize}
+
+	\section*{Expérience de recherche}
+	\begin{itemize}[leftmargin=1em, label={}]
+		\item \textbf{Stage de recherche, Institut Camille Jordan, Lyon} \hfill \textit{mai -- juin 2026} \\
+		Encadré par Jean-Yves Welschinger. Mémoire : \textit{Holomorphie locale et algébricité globale : le chemin vers GAGA} (surfaces de Riemann compactes, théorie des revêtements et formule de Riemann--Hurwitz, cohomologie des faisceaux, théorème de Riemann--Roch, dualité de Serre, plongement projectif, théorème de Chow, GAGA pour les courbes).
+		\vspace{0.02cm}
+
+		\item \textbf{Laboratoire GATE, Saint-Étienne} \hfill \textit{2023} \\
+		Étude de la théorie du vote et simulations numériques autour du théorème d'impossibilité d'Arrow.
+	\end{itemize}
+
+	\section*{Projets universitaires}
+	\begin{itemize}[leftmargin=1.5em, label=\textbullet, itemsep=2pt]
+		\item \textbf{Mémoire d'exposition (2026) :} \textit{Une preuve élémentaire du théorème de Bézout sur les courbes algébriques}. Étude des intersections de courbes projectives planes, multiplicités d'intersection locales, exemples explicites et interprétation géométrique. Exposé de trois heures devant d'autres étudiants.
+		\item \textbf{Mémoire d'exposition :} \textit{La conjecture de Kakeya} sur les corps finis et locaux, et sur les réels.
+		\item \textbf{Notes de théorie des groupes :} groupes simples d'ordre $< 60$ ; dualité des groupes abéliens finis.
+		\item \textbf{MATh.en.JEANS (2022) :} retrouver un triangle à partir de ses points remarquables.
+	\end{itemize}
+
+	\section*{TIPE}
+	\begin{itemize}[leftmargin=1.5em, label=\textbullet, itemsep=2pt]
+		\item \textbf{Élections, les règles du jeu démocratique} (2022--23) : théorème d'Arrow, choix social computationnel.
+		\item \textbf{Pile ou face : entre paradoxes et marches aléatoires} (2023--24) : temps d'attente, théorème de Pólya.
+		\item \textbf{Treillis de groupes finis et applications} (2024--25) : un jeu d'engendrement sur les groupes finis.
+	\end{itemize}
+
+	\section*{Enseignement, médiation \& autres expériences}
+	\begin{itemize}[leftmargin=1em, label={}]
+		\item \textbf{Professeur particulier en mathématiques et physique} \hfill \textit{2021 -- aujourd'hui} \\
+		Cours réguliers auprès d'élèves du collège aux classes préparatoires (CPGE), notamment préparation aux concours des Grandes Écoles.
+		\vspace{0.02cm}
+
+		\item \textbf{Médiation scientifique :} Organisation des \emph{Rencontres des Jeunes Mathématiciennes et Informaticiennes}, conception d'un atelier.
+		\vspace{0.02cm}
+
+		\item \textbf{Ouvrier mécanicien} -- \textit{NTD France} ; \textbf{Maraîchage} -- \textit{Ferme Le Bénitier aux Oiseaux}
+	\end{itemize}
+
+	\section*{Compétences}
+	\begin{itemize}[leftmargin=1.5em, label=\textbullet, itemsep=2pt]
+		\item \textbf{Langues :} français (langue maternelle), anglais (C1), portugais (B2), espagnol (B1), italien (B1).
+		\item \textbf{Informatique :} \LaTeX, Python, OCaml.
+		\item \textbf{Centres d'intérêt :} escalade (champion de la Loire junior), ski, course à pied, vélo, échecs.
+	\end{itemize}
+
+\end{document}

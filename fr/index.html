@@ -22,10 +22,10 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&display=swap">
 <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32.png">
 <link rel="apple-touch-icon" href="../images/apple-touch-icon.png">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous" onload="renderMathInElement(document.body,{delimiters:[{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false}],throwOnError:false})"></script>
-<link rel="stylesheet" href="../style.css?v=7">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css">
+<script defer src="../vendor/katex/katex.min.js"></script>
+<script defer src="../vendor/katex/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false}],throwOnError:false})"></script>
+<link rel="stylesheet" href="../style.css?v=8">
 </head>
 <body>
 
@@ -35,7 +35,7 @@
 <header class="mast">
   <div class="wrap">
     <a class="brand" href="#top">Y. Bérard</a>
-    <nav class="nav" aria-label="Sections">
+    <nav class="nav" id="nav" aria-label="Sections">
       <a href="#research">Stages</a>
       <a href="#projects">Projets</a>
       <a href="#tipe">TIPE</a>
@@ -44,6 +44,7 @@
       <a href="photography.html">Photographie</a>
     </nav>
     <div class="lang"><a href="../" hreflang="en" lang="en" title="English" aria-label="English"><svg viewBox="0 0 60 30" aria-hidden="true"><clipPath id="ukc"><path d="M30,15h30v15zv15h-30zh-30v-15zv-15h30z"/></clipPath><rect width="60" height="30" fill="#012169"/><path d="M0,0L60,30M60,0L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0L60,30M60,0L0,30" clip-path="url(#ukc)" stroke="#C8102E" stroke-width="4"/><path d="M30,0v30M0,15h60" stroke="#fff" stroke-width="10"/><path d="M30,0v30M0,15h60" stroke="#C8102E" stroke-width="6"/></svg></a><a href="./" hreflang="fr" lang="fr" title="Français" aria-label="Français" aria-current="true"><svg viewBox="0 0 3 2" aria-hidden="true"><rect width="1" height="2" fill="#0055A4"/><rect x="1" width="1" height="2" fill="#fff"/><rect x="2" width="1" height="2" fill="#EF4135"/></svg></a></div>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav" aria-label="Menu"><span></span><span></span><span></span></button>
     
   </div>
 </header>
@@ -60,7 +61,7 @@
     <div class="wrap">
       <figure>
         <div class="stage"><canvas id="phase" aria-label="Ensemble de Julia qui change avec le pointeur"></canvas><canvas id="inset" aria-hidden="true"></canvas><span class="cval" id="cval"></span></div>
-        <figcaption><b>L’ensemble de Julia rempli</b> de $z \mapsto z^2 + c$. Déplacer le curseur change $c$. La vignette montre où se trouve $c$ dans l’ensemble de Mandelbrot. Si l’on ne fait rien, $c$ parcourt le cercle de rayon $0{,}7885$.</figcaption>
+        <figcaption><b>L’ensemble de Julia rempli</b> de <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.522em;vertical-align:-0.011em;"></span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">↦</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">c</span></span></span></span>. Déplacer le curseur ou toucher l’image change <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">c</span></span></span></span>. La vignette montre où se trouve <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">c</span></span></span></span> dans l’ensemble de Mandelbrot. Si l’on ne fait rien, <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">c</span></span></span></span> parcourt le cercle de rayon <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord">0</span><span class="mord"><span class="mpunct">,</span></span><span class="mord">7885</span></span></span></span>.</figcaption>
       </figure>
     </div>
   </div>
@@ -96,7 +97,7 @@
           <canvas data-fig="bezout" aria-label="Une ellipse et une cubique mobile, avec leurs points d’intersection réels"></canvas>
           <div class="row"><span class="kicker">Courbes algébriques · 2026</span><span class="meta">Exposé de trois heures</span></div>
           <h3>Une preuve élémentaire du théorème de Bézout</h3>
-          <p>Intersections de courbes projectives planes, multiplicités d’intersection locales, exemples explicites et sens géométrique du décompte. La figure dénombre les intersections réelles entre une conique et une cubique ($\mathbb{R}$ n’est pas algébriquement clos).</p>
+          <p>Intersections de courbes projectives planes, multiplicités d’intersection locales, exemples explicites et sens géométrique du décompte. La figure dénombre les intersections réelles entre une conique et une cubique (<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6889em;"></span><span class="mord mathbb">R</span></span></span></span> n’est pas algébriquement clos).</p>
           <a class="more" href="../papers/bezout.pdf">Lire le texte <span>→</span></a>
         </article>
         <article class="story reveal">
@@ -109,15 +110,15 @@
         <article class="story reveal">
           <canvas data-fig="ico" aria-label="Icosaèdre en rotation"></canvas>
           <span class="kicker">Théorie des groupes</span>
-          <h3>Classification des groupes simples d’ordre $&lt; 60$</h3>
-          <p>Les seuls groupes simples d’ordre inférieur à 60 sont les groupes cycliques d’ordre premier. La borne est optimale : le groupe des rotations de l’icosaèdre est $\mathfrak{A}_5$, d’ordre 60.</p>
+          <h3>Classification des groupes simples d’ordre <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">60</span></span></span></span></h3>
+          <p>Les seuls groupes simples d’ordre inférieur à 60 sont les groupes cycliques d’ordre premier. La borne est optimale : le groupe des rotations de l’icosaèdre est <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8414em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathfrak">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">5</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>, d’ordre 60.</p>
           <a class="more" href="../papers/groupes-simples-60.pdf">Lire la preuve <span>→</span></a>
         </article>
         <article class="story reveal">
           <canvas data-fig="dual" aria-label="Treillis des sous-groupes de C4 × C2, avec un sous-groupe et son dual en rouge"></canvas>
           <span class="kicker">Théorie des groupes</span>
           <h3>Dualité des groupes abéliens finis</h3>
-          <p>Si l’ordre d’un groupe abélien fini n’est pas un carré parfait, il a un nombre pair de sous-groupes. En image : les huit sous-groupes de $C_4 \times C_2 = \langle a, b \mid a^4 = b^2 = 1,\ ab = ba \rangle$. La dualité associe chacun, en rouge, à son orthogonal.</p>
+          <p>Si l’ordre d’un groupe abélien fini n’est pas un carré parfait, il a un nombre pair de sous-groupes. En image : les huit sous-groupes de <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">⟨</span><span class="mord mathnormal">a</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∣</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace"> </span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">ab</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">ba</span><span class="mclose">⟩</span></span></span></span>. La dualité associe chacun, en rouge, à son orthogonal.</p>
           <a class="more" href="../papers/dualite.pdf">Lire la preuve <span>→</span></a>
         </article>
         <article class="story reveal">
@@ -151,12 +152,12 @@
       <article class="tipe-row flip">
         <figure class="reveal">
           <canvas data-fig="tree" aria-label="Marche aléatoire sur le graphe de Cayley du groupe libre à deux générateurs"></canvas>
-          <figcaption>Une marche aléatoire sur le graphe de Cayley du groupe libre $F_2$. Comme la marche sur $\mathbb{Z}^d$ pour $d \geq 3$, elle est transiente : elle s’éloigne et ne revient pas.</figcaption>
+          <figcaption>Une marche aléatoire sur le graphe de Cayley du groupe libre <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">F</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>. Comme la marche sur <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8491em;"></span><span class="mord"><span class="mord mathbb">Z</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8491em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">d</span></span></span></span></span></span></span></span></span></span></span> pour <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8304em;vertical-align:-0.136em;"></span><span class="mord mathnormal">d</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">3</span></span></span></span>, elle est transiente : elle s’éloigne et ne revient pas.</figcaption>
         </figure>
         <div class="reveal">
           <span class="kicker">2023 – 2024 · Lycée La Martinière Monplaisir</span>
           <h3>Pile ou face : entre paradoxes et marches aléatoires</h3>
-          <p>Alice et Bob jouent à pile ou face et parient chacun sur un motif. Le calcul des temps d’attente moyens explique pourquoi certains paris gagnent plus souvent que l’intuition ne le dit. Le TIPE passe ensuite aux marches aléatoires sur $\mathbb{Z}^d$ et au théorème de Pólya : la marche aléatoire simple revient presque sûrement à son point de départ si et seulement si $d \leq 2$.</p>
+          <p>Alice et Bob jouent à pile ou face et parient chacun sur un motif. Le calcul des temps d’attente moyens explique pourquoi certains paris gagnent plus souvent que l’intuition ne le dit. Le TIPE passe ensuite aux marches aléatoires sur <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8491em;"></span><span class="mord"><span class="mord mathbb">Z</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8491em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">d</span></span></span></span></span></span></span></span></span></span></span> et au théorème de Pólya : la marche aléatoire simple revient presque sûrement à son point de départ si et seulement si <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8304em;vertical-align:-0.136em;"></span><span class="mord mathnormal">d</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2</span></span></span></span>.</p>
           <a class="more" href="../tipe/pile-ou-face.pdf">Voir les diapositives <span>→</span></a>
         </div>
       </article>
@@ -164,7 +165,7 @@
       <article class="tipe-row">
         <figure class="reveal">
           <canvas data-fig="game" aria-label="Un jeu d’engendrement sur le groupe diédral D3, suivi sur son treillis de sous-groupes"></canvas>
-          <figcaption>Une partie sur le groupe diédral $D_3$. Le sous-groupe engendré par le sac, en surbrillance, monte dans le treillis jusqu’à être le groupe entier.</figcaption>
+          <figcaption>Une partie sur le groupe diédral <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>. Le sous-groupe engendré par le sac, en surbrillance, monte dans le treillis jusqu’à être le groupe entier.</figcaption>
         </figure>
         <div class="reveal">
           <span class="kicker">2024 – 2025 · Lycée du Parc</span>
@@ -321,9 +322,13 @@ void main(){ gl_FragColor = vec4((shade(gl_FragCoord.xy + vec2(.25)) + shade(gl_
     }
     mbImg = img;
   }
-  phase.addEventListener('pointermove', e => { const r = phase.getBoundingClientRect(); jTarget = [MB.x0 + (e.clientX - r.left) / r.width * (MB.x1 - MB.x0), MB.y1 - (e.clientY - r.top) / r.height * (MB.y1 - MB.y0)]; });
-  phase.addEventListener('pointerleave', () => jTarget = null);
+  let jHold = 0;
+  const jSet = e => { const r = phase.getBoundingClientRect(); jTarget = [MB.x0 + (e.clientX - r.left) / r.width * (MB.x1 - MB.x0), MB.y1 - (e.clientY - r.top) / r.height * (MB.y1 - MB.y0)]; };
+  phase.addEventListener('pointermove', e => { if (e.pointerType === 'mouse' || e.buttons) { jSet(e); if (e.pointerType !== 'mouse') jHold = performance.now() + 8000; } });
+  phase.addEventListener('pointerdown', e => { jSet(e); if (e.pointerType !== 'mouse') jHold = performance.now() + 8000; });
+  phase.addEventListener('pointerleave', e => { if (e.pointerType === 'mouse') jTarget = null; });
   function drawPhase(t) {
+    if (jHold && performance.now() > jHold) { jHold = 0; jTarget = null; }
     if (fitC(phase) || !mbImg) insetBase();
     const tg = jTarget || [.7885 * Math.cos(t * .09 + 1.9), .7885 * Math.sin(t * .09 + 1.9)];
     cJ[0] += (tg[0] - cJ[0]) * .06; cJ[1] += (tg[1] - cJ[1]) * .06;
@@ -549,5 +554,6 @@ void main(){ gl_FragColor = vec4((shade(gl_FragCoord.xy + vec2(.25)) + shade(gl_
   else { let t0 = performance.now(); const loop = now => { T = (now - t0) / 1000; drawAll(false); requestAnimationFrame(loop); }; requestAnimationFrame(loop); }
 })();
 </script>
+<script defer src="../menu.js"></script>
 </body>
 </html>

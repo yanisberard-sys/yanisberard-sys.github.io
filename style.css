@@ -185,3 +185,19 @@ footer h2{font-size:clamp(44px,8vw,104px);font-style:italic;font-weight:400;line
 .katex{font-size:1.06em}
 figcaption .katex,.meta .katex{font-size:1.1em}
 h3 .katex{font-size:.95em}
+
+/* mobile menu */
+.menu-btn{display:none;flex:none;width:40px;height:40px;margin-right:-8px;padding:10px 9px;background:none;border:0;cursor:pointer;flex-direction:column;justify-content:space-between}
+.menu-btn span{display:block;height:2px;background:var(--ink);transition:transform .25s,opacity .2s}
+.mast.open .menu-btn span:nth-child(1){transform:translateY(8px) rotate(45deg)}
+.mast.open .menu-btn span:nth-child(2){opacity:0}
+.mast.open .menu-btn span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+@media (max-width:760px){
+  .menu-btn{display:flex}
+  .mast .wrap > .nav{margin-left:0}
+  .lang{margin-left:auto}
+  .nav{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;background:var(--paper);border-bottom:1px solid var(--rule);padding:4px max(16px,env(safe-area-inset-right,0px)) 12px max(16px,env(safe-area-inset-left,0px));box-shadow:0 12px 24px -16px rgba(0,0,0,.25);overflow:visible}
+  .mast.open .nav{display:flex}
+  .nav a{font-size:14px;padding:14px 0;border-bottom:1px solid var(--rule)}
+  .nav a:last-child{border-bottom:0}
+}
