@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Yanis Bérard</title>
+<meta name="description" content="Yanis Bérard, student at ENS Rennes. Riemann surfaces and complex algebraic geometry.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..800;1,6..96,400..800&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&display=swap">
+<style>
+/* Layout: a magazine front page. Masthead, full-bleed lead figure, one feature story with a side figure, a story grid, a coloured band, then the colophon. */
+:root{
+  --paper:#f3f3ef; --ink:#14151a; --muted:#5d5f6a; --rule:#d4d4cc; --panel:#e7e7e1; --accent:#2b3ff0;
+  --display:"Bodoni Moda","Didot","Bodoni 72",Georgia,serif;
+  --body:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --label:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --band:#16182a; --band-fg:#ecebe5;
+  --gutter:max(clamp(16px,4vw,40px),env(safe-area-inset-left,0px));
+  --gutter-r:max(clamp(16px,4vw,40px),env(safe-area-inset-right,0px));
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#111216;--ink:#ecebe5;--muted:#a3a4ae;--rule:#2d2e35;--panel:#1b1c22;--accent:#8c98ff;color-scheme:dark}}
+:root[data-theme="dark"]{--paper:#111216;--ink:#ecebe5;--muted:#a3a4ae;--rule:#2d2e35;--panel:#1b1c22;--accent:#8c98ff;color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:18px;line-height:1.6;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+a{color:inherit}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.wrap{max-width:1200px;margin:0 auto;padding-left:var(--gutter);padding-right:var(--gutter-r)}
+.kicker{font-family:var(--label);font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.meta{font-family:var(--label);font-size:13px;color:var(--muted);letter-spacing:.02em}
+h1,h2,h3{font-family:var(--display);font-weight:500;text-wrap:balance;margin:0}
+p{margin:0}
+
+/* strap + masthead */
+.strap .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-block:10px;font-family:var(--label);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.mast{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--paper);border-block:1px solid var(--rule)}
+.mast .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:56px}
+.brand{font-family:var(--display);font-style:italic;font-size:24px;text-decoration:none;white-space:nowrap}
+.nav{display:flex;gap:22px;overflow-x:auto;scrollbar-width:none}
+.nav a{font-family:var(--label);font-size:12px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;white-space:nowrap;padding-block:6px;border-bottom:1px solid transparent;transition:border-color .2s}
+.nav a:hover{border-color:var(--ink)}
+
+/* hero */
+.hero .wrap{display:grid;grid-template-columns:1fr;gap:24px;padding-block:clamp(36px,6vw,72px) 28px}
+.hero h1{font-size:clamp(58px,12.5vw,168px);line-height:.86;letter-spacing:-.025em;font-weight:500}
+.hero h1 em{font-style:italic;font-weight:400}
+.hero .dek{font-size:clamp(19px,2.1vw,23px);line-height:1.45;max-width:34ch}
+.hero .dek strong{font-weight:600}
+@media (min-width:900px){.hero .wrap{grid-template-columns:1.6fr 1fr;align-items:end}.hero .dek{padding-bottom:12px}}
+.load{animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
+.load.d2{animation-delay:.12s}.load.d3{animation-delay:.24s}
+@keyframes rise{from{transform:translateY(18px);opacity:.001}to{transform:none;opacity:1}}
+
+.lead figure{margin:0}
+.lead canvas{display:block;width:100%;aspect-ratio:16/7;max-width:100%;background:var(--panel);cursor:crosshair;touch-action:pan-y}
+@media (max-width:640px){.lead canvas{aspect-ratio:4/3}}
+figcaption{font-family:var(--label);font-size:13px;line-height:1.5;color:var(--muted);padding-top:10px;max-width:80ch}
+figcaption b{color:var(--ink);font-weight:600}
+.math{font-family:var(--body);font-style:italic;color:var(--ink);font-size:14px}
+
+/* sections */
+section{padding-block:clamp(56px,8vw,104px) 0}
+.shead{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:3px solid var(--ink);padding-top:14px;margin-bottom:clamp(28px,4vw,44px)}
+.shead h2{font-size:clamp(30px,4vw,44px);font-style:italic;font-weight:400}
+
+/* feature */
+.feature{display:grid;grid-template-columns:1fr;gap:clamp(28px,4vw,56px)}
+@media (min-width:900px){.feature{grid-template-columns:7fr 5fr}}
+.feature > *{min-width:0}
+.feature h3{font-size:clamp(40px,6vw,76px);line-height:.98;letter-spacing:-.015em;margin-block:10px 18px}
+.byline{border-block:1px solid var(--rule);padding-block:10px;margin-bottom:24px;display:flex;flex-wrap:wrap;gap:6px 18px}
+.copy{display:grid;gap:18px;max-width:64ch}
+.copy .first::first-letter{font-family:var(--display);float:left;font-size:4.6em;line-height:.78;padding:6px 10px 0 0;font-weight:500}
+.pull{font-family:var(--display);font-style:italic;font-size:clamp(26px,3vw,34px);line-height:1.2;padding-block:16px;margin:8px 0;border-block:1px solid var(--rule);text-wrap:balance}
+.pull::before{content:"“";color:var(--accent);margin-right:2px}
+.pull::after{content:"”";color:var(--accent)}
+.more{display:inline-flex;align-items:center;gap:8px;font-family:var(--label);font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;color:var(--accent);padding-block:4px;border-bottom:1px solid currentColor;justify-self:start}
+.more span{transition:transform .25s}
+.more:hover span{transform:translateX(5px)}
+.side canvas{display:block;width:100%;aspect-ratio:1;max-width:100%;background:var(--panel)}
+@media (min-width:900px){.side{position:sticky;top:96px;align-self:start}}
+
+/* story grid */
+.stories{display:grid;grid-template-columns:1fr;gap:48px 32px}
+@media (min-width:700px){.stories{grid-template-columns:repeat(2,1fr)}.story.wide{grid-column:span 2}}
+@media (min-width:1050px){.stories{grid-template-columns:repeat(3,1fr)}.story.wide{grid-column:span 2}}
+.story{display:grid;gap:12px;align-content:start;min-width:0}
+.story canvas{display:block;width:100%;height:260px;max-width:100%;background:var(--panel);transition:filter .3s}
+.story h3{font-size:clamp(26px,2.6vw,32px);line-height:1.08}
+.story.wide h3{font-size:clamp(30px,3.6vw,44px)}
+.story p{color:var(--muted);font-size:17px}
+.story .row{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+
+/* band */
+.band{margin-top:clamp(56px,8vw,104px);background:var(--band);color:var(--band-fg)}
+.band .wrap{display:grid;grid-template-columns:1fr;gap:clamp(28px,4vw,56px);padding-block:clamp(48px,7vw,88px);align-items:center}
+@media (min-width:900px){.band .wrap{grid-template-columns:5fr 6fr}}
+.band .wrap > *{min-width:0}
+.band canvas{display:block;width:100%;aspect-ratio:1;max-width:520px;background:transparent}
+.band .kicker{color:var(--band-fg);opacity:.7}
+.band h2{font-size:clamp(36px,5vw,64px);line-height:1;margin-block:12px 18px}
+.band p{max-width:52ch;opacity:.85}
+.band ul{list-style:none;padding:0;margin:22px 0 0;display:grid;gap:10px}
+.band li{border-top:1px solid color-mix(in srgb,var(--band-fg) 25%,transparent);padding-top:10px;font-family:var(--display);font-size:22px;font-style:italic}
+.band figcaption{color:var(--band-fg);opacity:.6}
+
+/* columns */
+.cols{display:grid;grid-template-columns:1fr;gap:32px}
+@media (min-width:800px){.cols{grid-template-columns:repeat(3,1fr)}}
+.col{border-top:1px solid var(--rule);padding-top:16px;display:grid;gap:10px;align-content:start;min-width:0}
+.col h3{font-size:25px;line-height:1.15}
+.col p{font-size:17px;color:var(--muted)}
+.col .meta{font-variant-numeric:tabular-nums}
+
+/* about */
+.about{display:grid;grid-template-columns:1fr;gap:clamp(28px,4vw,56px)}
+@media (min-width:900px){.about{grid-template-columns:4fr 5fr 4fr}}
+.about > *{min-width:0}
+.photo{position:relative;background:var(--panel);overflow:hidden;max-width:100%}
+.photo img{display:block;width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.photo:hover img{transform:scale(1.04)}
+.photo.portrait{aspect-ratio:4/5}
+.photo.wide{aspect-ratio:21/8;margin-top:clamp(40px,6vw,72px)}
+@media (max-width:640px){.photo.wide{aspect-ratio:4/3}}
+.ph{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:16px;font-family:var(--label);font-size:13px;color:var(--muted);background:repeating-linear-gradient(135deg,transparent 0 14px,color-mix(in srgb,var(--rule) 70%,transparent) 14px 15px)}
+.ph code{font-size:12px;color:var(--ink)}
+.bio{display:grid;gap:16px;align-content:start}
+.bio .lede{font-family:var(--display);font-size:clamp(24px,2.6vw,30px);line-height:1.25}
+dl.cv{margin:0;display:grid;grid-template-columns:auto 1fr;gap:12px 18px;align-content:start}
+dl.cv dt{font-family:var(--label);font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap;padding-top:3px}
+dl.cv dd{margin:0;font-size:16px;line-height:1.45}
+dl.cv dd small{display:block;color:var(--muted);font-size:14px}
+.facts{margin-top:28px;display:grid;gap:14px}
+.facts div{border-top:1px solid var(--rule);padding-top:10px}
+.facts .kicker{color:var(--muted);display:block;margin-bottom:4px}
+
+/* footer */
+footer{margin-top:clamp(64px,9vw,120px);border-top:3px solid var(--ink)}
+footer .wrap{display:grid;gap:24px;padding-block:32px 48px}
+footer h2{font-size:clamp(44px,8vw,104px);font-style:italic;font-weight:400;line-height:.95}
+.mail{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}
+.mail a{font-family:var(--display);font-size:clamp(22px,3vw,34px);text-decoration:none;border-bottom:1px solid var(--rule);word-break:break-all}
+.mail button{font-family:var(--label);font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:none;color:var(--ink);border:1px solid var(--ink);padding:8px 14px;cursor:pointer;transition:background .2s,color .2s}
+.mail button:hover{background:var(--ink);color:var(--paper)}
+.colophon{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;border-top:1px solid var(--rule);padding-top:16px}
+
+/* scroll reveal: only for blocks that start below the fold */
+.reveal.pending{opacity:0;transform:translateY(28px)}
+.reveal{transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
+@media (prefers-reduced-motion:reduce){.load{animation:none}.reveal{transition:none}.reveal.pending{opacity:1;transform:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+
+<div class="strap"><div class="wrap"><span>Mathematics · École normale supérieure de Rennes</span><span>Riemann surfaces &amp; complex algebraic geometry</span></div></div>
+
+<header class="mast">
+  <div class="wrap">
+    <a class="brand" href="#top">Y. Bérard</a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#research">Research</a>
+      <a href="#projects">Projects</a>
+      <a href="#tipe">TIPE</a>
+      <a href="#teaching">Teaching</a>
+      <a href="#about">About</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="hero">
+    <div class="wrap">
+      <h1 class="load">Yanis<br><em>Bérard</em></h1>
+      <p class="dek load d2">Student at the <strong>École normale supérieure de Rennes</strong>, in the first year of a master's in pure mathematics. I work on Riemann surfaces and complex algebraic geometry.</p>
+    </div>
+  </div>
+
+  <div class="lead load d3">
+    <div class="wrap">
+      <figure>
+        <canvas id="phase" aria-label="Animated phase portrait of a rational function. Moving the pointer moves one of its zeros."></canvas>
+        <figcaption><b>Phase portrait</b> of <span class="math">f(z) = (z − a)(z − b)²(z − c) / (z − p)(z − q)</span>. Hue encodes arg <span class="math">f</span>, the bands encode log |<span class="math">f</span>|. Each colour wheel is a zero, each reversed wheel a pole. Move your cursor over the image to drag the zero <span class="math">a</span>.</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <section id="research">
+    <div class="wrap">
+      <div class="shead reveal"><h2>Research</h2><span class="meta">Internship · Master's level</span></div>
+      <article class="feature">
+        <div class="reveal">
+          <span class="kicker">Complex algebraic geometry</span>
+          <h3>Local holomorphy and global algebraicity: the road to GAGA</h3>
+          <div class="byline meta"><span>Institut Camille Jordan, Lyon</span><span>May – June 2026</span><span>Supervised by Jean-Yves Welschinger</span></div>
+          <div class="copy">
+            <p class="first">My first research internship followed a single thread through the theory of compact Riemann surfaces: how an object defined by local, analytic data turns out to be globally algebraic.</p>
+            <p>The report starts from covering theory and the Riemann–Hurwitz formula, builds sheaf cohomology, and proves the Riemann–Roch theorem and Serre duality. These give enough meromorphic functions to embed every compact Riemann surface in projective space.</p>
+            <p class="pull">Every compact Riemann surface is a smooth projective algebraic curve.</p>
+            <p>Chow's theorem then shows that closed analytic subsets of projective space are algebraic. GAGA for curves completes the picture: on a projective curve, analytic and algebraic coherent sheaves have the same cohomology.</p>
+            <a class="more" href="papers/GAGA.pdf">Read the report <span>→</span></a>
+          </div>
+        </div>
+        <figure class="side reveal">
+          <canvas data-fig="sqrt" aria-label="Rotating model of the Riemann surface of the square root"></canvas>
+          <figcaption><b>The Riemann surface of √z.</b> A point that goes once around the branch point lands on the other sheet. It needs two full turns to come back.</figcaption>
+        </figure>
+      </article>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="wrap">
+      <div class="shead reveal"><h2>Projects</h2><span class="meta">Expository texts</span></div>
+      <div class="stories">
+        <article class="story wide reveal">
+          <canvas data-fig="bezout" aria-label="An ellipse and a moving cubic, with their real intersection points marked"></canvas>
+          <div class="row"><span class="kicker">Algebraic curves · 2026</span><span class="meta">Three-hour talk</span></div>
+          <h3>An elementary proof of Bézout's theorem</h3>
+          <p>Intersections of plane projective curves, local intersection multiplicities, explicit examples and the geometric meaning of the count. In the figure, the real intersections of a conic and a cubic come and go, while Bézout counts six over the complex numbers.</p>
+          <a class="more" href="papers/Bezout.pdf">Read the text <span>→</span></a>
+        </article>
+        <article class="story reveal">
+          <canvas data-fig="kakeya" aria-label="A needle of length 4 turning inside a deltoid"></canvas>
+          <span class="kicker">Harmonic analysis</span>
+          <h3>The Kakeya conjecture</h3>
+          <p>A good bound for the Kakeya problem over finite fields and local fields, and a discussion of the problem over the reals. Pictured: Kakeya's needle, turning inside a deltoid.</p>
+          <a class="more" href="papers/Kakeya.pdf">Read the paper <span>→</span></a>
+        </article>
+        <article class="story reveal">
+          <canvas data-fig="ico" aria-label="Rotating icosahedron"></canvas>
+          <span class="kicker">Group theory</span>
+          <h3>No simple groups below 60</h3>
+          <p>The only simple groups of order less than 60 are the cyclic groups of prime order. The bound is sharp: the rotation group of the icosahedron is A₅, of order 60.</p>
+          <a class="more" href="papers/Groupe_simple_60.pdf">Read the proof <span>→</span></a>
+        </article>
+        <article class="story reveal">
+          <canvas data-fig="dual" aria-label="Subgroup lattice of Z/12 morphing into its dual"></canvas>
+          <span class="kicker">Group theory</span>
+          <h3>Duality for finite abelian groups</h3>
+          <p>If the order of a finite abelian group is not a perfect square, it has an even number of subgroups. Pictured: duality reverses the subgroup lattice of ℤ/12.</p>
+          <a class="more" href="papers/dual.pdf">Read the proof <span>→</span></a>
+        </article>
+        <article class="story reveal">
+          <canvas data-fig="euler" aria-label="Moving triangle with its centroid, orthocentre, circumcentre and Euler line"></canvas>
+          <span class="kicker">Euclidean geometry · 2022</span>
+          <h3>Recovering a triangle from its centres</h3>
+          <p>Given special points of a triangle (centroid, orthocentre, circumcentre…), can one find its three vertices? An early MATh.en.JEANS report.</p>
+          <a class="more" href="papers/Rapport_Maths_en_Jeans.pdf">Read the report <span>→</span></a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <div class="band" id="tipe">
+    <div class="wrap">
+      <figure class="reveal" style="margin:0">
+        <canvas data-fig="tree" aria-label="Random walk on the Cayley graph of the free group on two generators"></canvas>
+        <figcaption>A random walk on the Cayley graph of the free group F₂ drifts off to the boundary.</figcaption>
+      </figure>
+      <div class="reveal">
+        <span class="kicker">TIPE · Classes préparatoires</span>
+        <h2>Groups, lattices and random walks</h2>
+        <p>My TIPE had two parts. The first studied lattices of subgroups of finite groups and their applications. The second followed random walks on groups and the Poisson boundary, where the long-run behaviour of the walk is read off a space at infinity.</p>
+        <ul>
+          <li>Lattices of finite groups</li>
+          <li>Random walks and the Poisson boundary</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <section id="teaching">
+    <div class="wrap">
+      <div class="shead reveal"><h2>Teaching &amp; outreach</h2><span class="meta">Since 2021</span></div>
+      <div class="cols">
+        <div class="col reveal">
+          <span class="meta">2021 – today</span>
+          <h3>Private tutoring</h3>
+          <p>Mathematics and physics lessons for students from middle school to classes préparatoires, including preparation for the Grandes Écoles entrance exams.</p>
+        </div>
+        <div class="col reveal">
+          <span class="meta">Outreach</span>
+          <h3>Rencontres des Jeunes Mathématiciennes et Informaticiennes</h3>
+          <p>Member of the organising team, and designer of one of the workshops.</p>
+        </div>
+        <div class="col reveal">
+          <span class="meta">2023 · Saint-Étienne</span>
+          <h3>Voting theory at the GATE lab</h3>
+          <p>A first taste of research: social choice and numerical simulations around Arrow's impossibility theorem.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap">
+      <div class="shead reveal"><h2>About</h2><a class="more" href="cv/CV_Yanis_Berard.pdf">Download my CV <span>→</span></a></div>
+      <div class="about">
+        <div class="photo portrait reveal">
+          <img src="images/portrait.jpg" alt="Portrait of Yanis Bérard" onerror="this.remove()">
+          <div class="ph">Your portrait goes here<br><code>images/portrait.jpg</code></div>
+        </div>
+        <div class="bio reveal">
+          <p class="lede">I grew up in Saint-Étienne, went through classes préparatoires in Lyon, and entered ENS Rennes in 2025.</p>
+          <p>Before mathematics took over, I worked as a mechanic at NTD France and on a market-gardening farm. Outside the library I climb (I was junior champion of the Loire), ski, run, cycle and play chess.</p>
+          <div class="facts">
+            <div><span class="kicker">Languages</span>French (native), English (C1), Portuguese (B2), Spanish (B1), Italian (B1)</div>
+            <div><span class="kicker">Tools</span>LaTeX, Python, OCaml</div>
+          </div>
+        </div>
+        <dl class="cv reveal">
+          <dt>2026 –</dt><dd>Master's in Mathematics, first year<small>Université de Rennes</small></dd>
+          <dt>2025 –</dt><dd>Normalien, Magistère de Mathématiques<small>ENS Rennes</small></dd>
+          <dt>2025 – 26</dt><dd>Licence de Mathématiques, third year<small>Université de Rennes</small></dd>
+          <dt>2024 – 25</dt><dd>CPGE MP*<small>Lycée du Parc, Lyon</small></dd>
+          <dt>2022 – 24</dt><dd>CPGE MPSI, then MP*<small>Lycée La Martinière Monplaisir, Lyon</small></dd>
+          <dt>2022</dt><dd>Baccalauréat, mention Très Bien<small>Lycée Honoré d'Urfé, Saint-Étienne</small></dd>
+        </dl>
+      </div>
+      <figure class="reveal" style="margin:0">
+        <div class="photo wide">
+          <img src="images/escalade.jpg" alt="Climbing" onerror="this.remove()">
+          <div class="ph">A wide photo goes here, climbing for instance<br><code>images/escalade.jpg</code></div>
+        </div>
+        <figcaption>Climbing. Junior champion of the Loire.</figcaption>
+      </figure>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="kicker">Contact</span>
+    <h2>Write to me</h2>
+    <div class="mail">
+      <a id="mail" href="mailto:yanis.berard@ens-rennes.fr">yanis.berard@ens-rennes.fr</a>
+      <button type="button" id="copy">Copy address</button>
+    </div>
+    <div class="colophon meta"><span>© 2026 Yanis Bérard</span><span>Last updated October 2026</span></div>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const DPR = Math.min(window.devicePixelRatio || 1, 2);
+  let C = {};
+  const readColors = () => { const s = getComputedStyle(document.documentElement); ['ink','muted','rule','accent','paper','panel'].forEach(k => C[k] = s.getPropertyValue('--' + k).trim()); };
+  readColors();
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => { readColors(); drawAll(true); });
+  new MutationObserver(() => { readColors(); drawAll(true); }).observe(document.documentElement, {attributes: true, attributeFilter: ['data-theme']});
+
+  /* ---------- scroll reveal ---------- */
+  if (!reduce && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.remove('pending'); io.unobserve(e.target); } }), {rootMargin: '0px 0px -8% 0px'});
+    document.querySelectorAll('.reveal').forEach(el => { if (el.getBoundingClientRect().top > innerHeight) { el.classList.add('pending'); io.observe(el); } });
+  }
+
+  /* ---------- copy email ---------- */
+  const copyBtn = document.getElementById('copy');
+  copyBtn.addEventListener('click', () => {
+    const txt = document.getElementById('mail').textContent;
+    const done = () => { copyBtn.textContent = 'Copied'; setTimeout(() => copyBtn.textContent = 'Copy address', 1800); };
+    const fallback = () => { const r = document.createRange(); r.selectNodeContents(document.getElementById('mail')); const s = getSelection(); s.removeAllRanges(); s.addRange(r); };
+    try { navigator.clipboard.writeText(txt).then(done, fallback); } catch (e) { fallback(); }
+  });
+
+  /* ---------- phase portrait (hero) ---------- */
+  const phase = document.getElementById('phase');
+  const pctx = phase.getContext('2d');
+  let ptr = null;
+  phase.addEventListener('pointermove', e => { const r = phase.getBoundingClientRect(); ptr = [(e.clientX - r.left) / r.width, (e.clientY - r.top) / r.height]; });
+  phase.addEventListener('pointerleave', () => ptr = null);
+  let aPos = [0.9, 0.3];
+  function hsv(h, s, v) {
+    const i = Math.floor(h * 6), f = h * 6 - i, p = v * (1 - s), q = v * (1 - f * s), t = v * (1 - (1 - f) * s);
+    switch (((i % 6) + 6) % 6) { case 0: return [v,t,p]; case 1: return [q,v,p]; case 2: return [p,v,t]; case 3: return [p,q,v]; case 4: return [t,p,v]; default: return [v,p,q]; }
+  }
+  function drawPhase(t) {
+    const r = phase.getBoundingClientRect();
+    if (!r.width) return;
+    const W = Math.round(Math.min(560, r.width / 2)), H = Math.round(W * r.height / r.width);
+    if (phase.width !== W || phase.height !== H) { phase.width = W; phase.height = H; }
+    const span = 3.4, vw = span * W / H;
+    let target = ptr ? [(ptr[0] - .5) * vw, -(ptr[1] - .5) * span] : [1.1 * Math.cos(t * .23) + .3, .7 * Math.sin(t * .31)];
+    aPos[0] += (target[0] - aPos[0]) * .08; aPos[1] += (target[1] - aPos[1]) * .08;
+    const roots = [[aPos[0], aPos[1], 1], [-1.3 + .15 * Math.sin(t * .17), .45, 2], [.5, -.85 + .1 * Math.cos(t * .2), 1], [-.35, -.55, -1], [1.9 + .2 * Math.sin(t * .13), .75, -1]];
+    const img = pctx.createImageData(W, H), d = img.data;
+    const TAU = Math.PI * 2, L2 = Math.LN2;
+    for (let j = 0; j < H; j++) {
+      const y = (.5 - j / H) * span;
+      for (let i = 0; i < W; i++) {
+        const x = (i / W - .5) * vw;
+        let arg = 0, lm = 0;
+        for (let k = 0; k < 5; k++) { const R = roots[k], dx = x - R[0], dy = y - R[1]; arg += R[2] * Math.atan2(dy, dx); lm += R[2] * .5 * Math.log(dx * dx + dy * dy + 1e-12); }
+        let h = arg / TAU + .58; h -= Math.floor(h);
+        let b = lm / L2; b -= Math.floor(b);
+        const v = .62 + .3 * Math.pow(b, .6);
+        const c = hsv(h, .58, v), o = (j * W + i) * 4;
+        d[o] = c[0] * 255; d[o+1] = c[1] * 255; d[o+2] = c[2] * 255; d[o+3] = 255;
+      }
+    }
+    pctx.putImageData(img, 0, 0);
+    const px = (aPos[0] / vw + .5) * W, py = (.5 - aPos[1] / span) * H;
+    pctx.strokeStyle = 'rgba(255,255,255,.9)'; pctx.lineWidth = 1.2;
+    pctx.beginPath(); pctx.arc(px, py, 6, 0, TAU); pctx.stroke();
+  }
+
+  /* ---------- small figures ---------- */
+  const figs = {
+    sqrt(ctx, w, h, t) {
+      const s = Math.min(w, h) * .36, cx = w / 2, cy = h * .5, phi = t * .22, ca = Math.cos(phi), sa = Math.sin(phi);
+      const P = (r, th) => { const x = r * Math.cos(th), y = r * Math.sin(th), z = Math.sqrt(r) * Math.cos(th / 2) * .85; const x1 = x * ca - y * sa, y1 = x * sa + y * ca; return [cx + s * x1, cy - s * z + s * .42 * y1]; };
+      ctx.lineWidth = DPR; ctx.strokeStyle = C.ink; ctx.globalAlpha = .45;
+      for (let r = .3; r <= 1.31; r += .25) { ctx.beginPath(); for (let k = 0; k <= 240; k++) { const p = P(r, k / 240 * 4 * Math.PI); k ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]); } ctx.stroke(); }
+      ctx.globalAlpha = .25;
+      for (let m = 0; m < 32; m++) { const th = m / 32 * 4 * Math.PI; ctx.beginPath(); for (let k = 0; k <= 20; k++) { const p = P(.04 + k / 20 * 1.26, th); k ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]); } ctx.stroke(); }
+      ctx.globalAlpha = 1;
+      const th0 = (t * .9) % (4 * Math.PI);
+      ctx.strokeStyle = C.accent; ctx.lineWidth = 2.5 * DPR; ctx.beginPath();
+      for (let k = 0; k <= 60; k++) { const p = P(1.05, th0 - (60 - k) / 60 * 2.2); k ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]); } ctx.stroke();
+      const e = P(1.05, th0); ctx.fillStyle = C.accent; ctx.beginPath(); ctx.arc(e[0], e[1], 5 * DPR, 0, 7); ctx.fill();
+      const o = P(0.0001, 0); ctx.fillStyle = C.ink; ctx.beginPath(); ctx.arc(o[0], o[1], 3.5 * DPR, 0, 7); ctx.fill();
+    },
+    bezout(ctx, w, h, t) {
+      const s = Math.min(w / 4.2, h / 2.4), cx = w / 2, cy = h / 2, X = x => cx + s * x, Y = y => cy - s * y;
+      const a = 1.35, b = .8, c = .5 * Math.sin(t * .45), cub = x => x * x * x - 1.25 * x + c;
+      ctx.lineWidth = DPR; ctx.strokeStyle = C.rule; ctx.beginPath(); ctx.moveTo(0, Y(0)); ctx.lineTo(w, Y(0)); ctx.moveTo(X(0), 0); ctx.lineTo(X(0), h); ctx.stroke();
+      ctx.lineWidth = 2 * DPR; ctx.strokeStyle = C.ink; ctx.beginPath(); ctx.ellipse(X(0), Y(0), a * s, b * s, 0, 0, 7); ctx.stroke();
+      ctx.strokeStyle = C.accent; ctx.beginPath(); for (let k = 0; k <= 300; k++) { const x = -2.1 + k / 300 * 4.2; k ? ctx.lineTo(X(x), Y(cub(x))) : ctx.moveTo(X(x), Y(cub(x))); } ctx.stroke();
+      const g = u => b * Math.sin(u) - cub(a * Math.cos(u)); let n = 0, prev = g(0);
+      for (let k = 1; k <= 1440; k++) { const u = k / 1440 * 2 * Math.PI, v = g(u); if (prev * v <= 0) { const uu = u - (Math.PI * 2 / 1440) * v / (v - prev); ctx.fillStyle = C.paper; ctx.strokeStyle = C.ink; ctx.lineWidth = 2 * DPR; ctx.beginPath(); ctx.arc(X(a * Math.cos(uu)), Y(b * Math.sin(uu)), 6 * DPR, 0, 7); ctx.fill(); ctx.stroke(); n++; } prev = v; }
+      ctx.fillStyle = C.muted; ctx.font = `600 ${12 * DPR}px Archivo, sans-serif`; ctx.fillText(`REAL INTERSECTIONS  ${n} / 6`, 16 * DPR, h - 16 * DPR);
+    },
+    kakeya(ctx, w, h, t, st) {
+      const s = Math.min(w, h) / 7.2, cx = w / 2, cy = h / 2, Z = u => [cx + s * (2 * Math.cos(u) + Math.cos(2 * u)), cy - s * (2 * Math.sin(u) - Math.sin(2 * u))];
+      ctx.lineWidth = 1.5 * DPR; ctx.strokeStyle = C.ink; ctx.beginPath(); for (let k = 0; k <= 300; k++) { const p = Z(k / 300 * 2 * Math.PI); k ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]); } ctx.stroke();
+      const u = t * .35; st.trail = st.trail || []; st.trail.push(u); if (st.trail.length > 70) st.trail.shift();
+      ctx.lineWidth = DPR; st.trail.forEach((v, i) => { const p = Z(v), q = Z(v + Math.PI); ctx.globalAlpha = i / st.trail.length * .25; ctx.strokeStyle = C.accent; ctx.beginPath(); ctx.moveTo(p[0], p[1]); ctx.lineTo(q[0], q[1]); ctx.stroke(); });
+      ctx.globalAlpha = 1; const p = Z(u), q = Z(u + Math.PI); ctx.lineWidth = 3 * DPR; ctx.strokeStyle = C.accent; ctx.beginPath(); ctx.moveTo(p[0], p[1]); ctx.lineTo(q[0], q[1]); ctx.stroke();
+      ctx.fillStyle = C.accent; [p, q].forEach(r => { ctx.beginPath(); ctx.arc(r[0], r[1], 4 * DPR, 0, 7); ctx.fill(); });
+    },
+    ico(ctx, w, h, t) {
+      const f = (1 + Math.sqrt(5)) / 2, V = [];
+      for (const i of [-1, 1]) for (const j of [-f, f]) V.push([0, i, j], [i, j, 0], [j, 0, i]);
+      const ax = t * .31, ay = t * .23, cx_ = Math.cos(ax), sx = Math.sin(ax), cy_ = Math.cos(ay), sy = Math.sin(ay);
+      const R = V.map(([x, y, z]) => { const y1 = y * cx_ - z * sx, z1 = y * sx + z * cx_; const x2 = x * cy_ + z1 * sy, z2 = -x * sy + z1 * cy_; return [x2, y1, z2]; });
+      const s = Math.min(w, h) * .2, cx = w / 2, cy = h / 2, E = [];
+      for (let i = 0; i < 12; i++) for (let j = i + 1; j < 12; j++) { const d = (V[i][0]-V[j][0])**2 + (V[i][1]-V[j][1])**2 + (V[i][2]-V[j][2])**2; if (Math.abs(d - 4) < .01) E.push([i, j, (R[i][2] + R[j][2]) / 2]); }
+      E.sort((a, b) => a[2] - b[2]).forEach(([i, j, z]) => { ctx.globalAlpha = z < 0 ? .22 : .9; ctx.strokeStyle = C.ink; ctx.lineWidth = (z < 0 ? 1 : 1.8) * DPR; ctx.beginPath(); ctx.moveTo(cx + s * R[i][0], cy + s * R[i][1]); ctx.lineTo(cx + s * R[j][0], cy + s * R[j][1]); ctx.stroke(); });
+      ctx.globalAlpha = 1; R.forEach(([x, y, z], k) => { ctx.fillStyle = k === 0 || k === 3 ? C.accent : C.ink; ctx.globalAlpha = z < 0 ? .3 : 1; ctx.beginPath(); ctx.arc(cx + s * x, cy + s * y, (k === 0 || k === 3 ? 5 : 3) * DPR, 0, 7); ctx.fill(); });
+      ctx.globalAlpha = 1; ctx.fillStyle = C.muted; ctx.font = `600 ${12 * DPR}px Archivo, sans-serif`; ctx.fillText('|A₅| = 60', 16 * DPR, h - 16 * DPR);
+    },
+    dual(ctx, w, h, t) {
+      const P = {1: [0, 0], 2: [-.7, 1], 3: [.7, 1], 4: [-1.4, 2], 6: [0, 2], 12: [-.7, 3]}, E = [[1,2],[1,3],[2,4],[2,6],[3,6],[4,12],[6,12]];
+      let k = (Math.sin(t * .5) + 1) / 2; k = k * k * (3 - 2 * k);
+      const s = Math.min(w / 3.6, h / 4.1), cx = w / 2 + .35 * s, cy = h / 2 + 1.5 * s;
+      const pos = d => { const a = P[d], b = P[12 / d]; return [cx + s * (a[0] + (b[0] - a[0]) * k), cy - s * (a[1] + (b[1] - a[1]) * k)]; };
+      ctx.strokeStyle = C.ink; ctx.lineWidth = 1.5 * DPR; E.forEach(([a, b]) => { const p = pos(a), q = pos(b); ctx.beginPath(); ctx.moveTo(p[0], p[1]); ctx.lineTo(q[0], q[1]); ctx.stroke(); });
+      ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.font = `italic ${15 * DPR}px "Source Serif 4", Georgia, serif`;
+      Object.keys(P).forEach(d => { const p = pos(+d); ctx.fillStyle = C.panel; ctx.strokeStyle = C.accent; ctx.lineWidth = 2 * DPR; ctx.beginPath(); ctx.arc(p[0], p[1], 15 * DPR, 0, 7); ctx.fill(); ctx.stroke(); ctx.fillStyle = C.ink; ctx.fillText(d, p[0], p[1] + DPR); });
+      ctx.textAlign = 'left'; ctx.textBaseline = 'alphabetic'; ctx.fillStyle = C.muted; ctx.font = `600 ${12 * DPR}px Archivo, sans-serif`; ctx.fillText('ORDER d  ↦  12 / d', 16 * DPR, h - 16 * DPR);
+    },
+    euler(ctx, w, h, t) {
+      const s = Math.min(w, h) * .3, cx = w / 2, cy = h / 2;
+      const A = [-.95 + .25 * Math.sin(t * .4), -.7], B = [1.05, -.65 + .25 * Math.sin(t * .33)], Cc = [-.1 + .55 * Math.cos(t * .27), .9 + .1 * Math.sin(t * .5)];
+      const Dd = 2 * (A[0] * (B[1] - Cc[1]) + B[0] * (Cc[1] - A[1]) + Cc[0] * (A[1] - B[1])), n = p => p[0] ** 2 + p[1] ** 2;
+      const O = [(n(A) * (B[1] - Cc[1]) + n(B) * (Cc[1] - A[1]) + n(Cc) * (A[1] - B[1])) / Dd, (n(A) * (Cc[0] - B[0]) + n(B) * (A[0] - Cc[0]) + n(Cc) * (B[0] - A[0])) / Dd];
+      const H = [A[0] + B[0] + Cc[0] - 2 * O[0], A[1] + B[1] + Cc[1] - 2 * O[1]], G = [(A[0] + B[0] + Cc[0]) / 3, (A[1] + B[1] + Cc[1]) / 3];
+      const S = p => [cx + s * p[0], cy - s * p[1]], Rr = Math.sqrt((A[0] - O[0]) ** 2 + (A[1] - O[1]) ** 2);
+      ctx.strokeStyle = C.rule; ctx.lineWidth = DPR; ctx.beginPath(); ctx.arc(S(O)[0], S(O)[1], Rr * s, 0, 7); ctx.stroke();
+      ctx.strokeStyle = C.ink; ctx.lineWidth = 1.8 * DPR; ctx.beginPath(); [A, B, Cc, A].forEach((p, i) => { const q = S(p); i ? ctx.lineTo(q[0], q[1]) : ctx.moveTo(q[0], q[1]); }); ctx.stroke();
+      const dx = H[0] - O[0], dy = H[1] - O[1], L = Math.hypot(dx, dy) || 1, e1 = S([O[0] - dx / L * 4, O[1] - dy / L * 4]), e2 = S([O[0] + dx / L * 4, O[1] + dy / L * 4]);
+      ctx.strokeStyle = C.accent; ctx.setLineDash([6 * DPR, 5 * DPR]); ctx.beginPath(); ctx.moveTo(e1[0], e1[1]); ctx.lineTo(e2[0], e2[1]); ctx.stroke(); ctx.setLineDash([]);
+      ctx.font = `italic ${15 * DPR}px "Source Serif 4", Georgia, serif`;
+      [[O, 'O'], [G, 'G'], [H, 'H']].forEach(([p, l]) => { const q = S(p); ctx.fillStyle = C.accent; ctx.beginPath(); ctx.arc(q[0], q[1], 4.5 * DPR, 0, 7); ctx.fill(); ctx.fillStyle = C.ink; ctx.fillText(l, q[0] + 8 * DPR, q[1] - 8 * DPR); });
+    },
+    tree(ctx, w, h, t, st) {
+      const ink = getComputedStyle(document.querySelector('.band')).color;
+      const s = Math.min(w, h), cx = w / 2, cy = h / 2, L0 = s * .24, r = .47, dir = [[1,0],[0,-1],[-1,0],[0,1]];
+      const pos = word => { let x = cx, y = cy, l = L0; for (const g of word) { x += l * dir[g][0]; y += l * dir[g][1]; l *= r; } return [x, y]; };
+      ctx.strokeStyle = ink; ctx.globalAlpha = .35; ctx.lineWidth = DPR;
+      const rec = (word, p, l, depth) => { if (depth > 6) return; for (let g = 0; g < 4; g++) { if (word.length && (word[word.length - 1] + 2) % 4 === g) continue; const q = [p[0] + l * dir[g][0], p[1] + l * dir[g][1]]; ctx.beginPath(); ctx.moveTo(p[0], p[1]); ctx.lineTo(q[0], q[1]); ctx.stroke(); rec(word.concat(g), q, l * r, depth + 1); } };
+      rec([], [cx, cy], L0, 1); ctx.globalAlpha = 1;
+      if (!st.word) { st.word = []; st.trail = []; st.last = 0; }
+      if (t - st.last > .28) { st.last = t; const g = Math.floor(Math.random() * 4); const wd = st.word; if (wd.length && (wd[wd.length - 1] + 2) % 4 === g) wd.pop(); else wd.push(g); if (wd.length > 7) { st.word = []; st.trail = []; } st.trail.push(pos(st.word)); if (st.trail.length > 30) st.trail.shift(); }
+      const acc = '#8c98ff';
+      ctx.strokeStyle = acc; ctx.lineWidth = 2.5 * DPR; ctx.beginPath(); for (let i = 0; i <= st.word.length; i++) { const p = pos(st.word.slice(0, i)); i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]); } ctx.stroke();
+      const p = pos(st.word); ctx.fillStyle = acc; ctx.beginPath(); ctx.arc(p[0], p[1], 6 * DPR, 0, 7); ctx.fill();
+      ctx.fillStyle = ink; ctx.beginPath(); ctx.arc(cx, cy, 3.5 * DPR, 0, 7); ctx.fill();
+    }
+  };
+
+  const canv = [...document.querySelectorAll('canvas[data-fig]')].map(el => ({el, ctx: el.getContext('2d'), fn: figs[el.dataset.fig], st: {}, vis: true}));
+  const visible = new Set([phase, ...canv.map(c => c.el)]);
+  if ('IntersectionObserver' in window) {
+    const vio = new IntersectionObserver(es => es.forEach(e => e.isIntersecting ? visible.add(e.target) : visible.delete(e.target)), {rootMargin: '100px'});
+    [phase, ...canv.map(c => c.el)].forEach(el => vio.observe(el));
+  }
+  function size(c) { const r = c.el.getBoundingClientRect(), W = Math.round(r.width * DPR), H = Math.round(r.height * DPR); if (W && (c.el.width !== W || c.el.height !== H)) { c.el.width = W; c.el.height = H; } }
+  let T = 0;
+  function drawAll(force) {
+    if (force || visible.has(phase)) drawPhase(T);
+    canv.forEach(c => { if (!force && !visible.has(c.el)) return; size(c); c.ctx.clearRect(0, 0, c.el.width, c.el.height); c.fn(c.ctx, c.el.width, c.el.height, T, c.st); });
+  }
+  if (reduce) { T = 4; drawAll(true); addEventListener('resize', () => drawAll(true)); }
+  else { let t0 = performance.now(); const loop = now => { T = (now - t0) / 1000; drawAll(false); requestAnimationFrame(loop); }; requestAnimationFrame(loop); }
+})();
+</script>
+</body>
+</html>
