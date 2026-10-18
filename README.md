@@ -8,6 +8,7 @@ Site statique publié avec GitHub Pages : https://yanisberard-sys.github.io/
 |---|---|
 | `index.html` | Page d'accueil (texte, figures animées) |
 | `photography.html` | Page Photography |
+| `fr/` | Version française des deux pages (`fr/index.html`, `fr/photography.html`) |
 | `style.css` | Mise en forme commune aux deux pages |
 | `papers/` | Textes : `gaga.pdf` (rapport de stage), `bezout.pdf`, `kakeya.pdf`, `groupes-simples-60.pdf`, `dualite.pdf`, `maths-en-jeans.pdf` |
 | `tipe/` | `elections.pdf`, `pile-ou-face.pdf`, `treillis.pdf` |
@@ -20,3 +21,7 @@ Site statique publié avec GitHub Pages : https://yanisberard-sys.github.io/
 ## Remplacer un document
 
 Déposer le nouveau fichier dans le bon dossier **avec exactement le même nom** : le lien du site n'a pas besoin de changer. Éviter les espaces et les accents dans les noms de fichiers.
+
+## Deux langues
+
+Le site existe en anglais (racine) et en français (`fr/`). Le drapeau en haut à droite passe d'une version à l'autre. Une modification de texte doit être faite dans les deux versions.

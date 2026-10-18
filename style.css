@@ -31,6 +31,12 @@ p{margin:0}
 .nav{display:flex;gap:22px;overflow-x:auto;scrollbar-width:none}
 .nav a{font-family:var(--label);font-size:12px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;white-space:nowrap;padding-block:6px;border-bottom:1px solid transparent;transition:border-color .2s}
 .nav a:hover{border-color:var(--ink)}
+.mast .wrap > .nav{margin-left:auto}
+.lang{display:flex;gap:8px;flex:none;align-items:center;padding-left:14px;border-left:1px solid var(--rule)}
+.lang a{display:block;line-height:0;padding:3px;border:1px solid transparent;opacity:.45;transition:opacity .2s,border-color .2s}
+.lang a:hover{opacity:1}
+.lang a[aria-current]{opacity:1;border-color:var(--ink)}
+.lang svg{display:block;width:22px;height:15px}
 
 /* hero */
 .hero .wrap{display:grid;grid-template-columns:1fr;gap:24px;padding-block:clamp(36px,6vw,72px) 28px}

@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://yanisberard-sys.github.io/</loc><lastmod>2026-10-18</lastmod></url>
-  <url><loc>https://yanisberard-sys.github.io/photography.html</loc><lastmod>2026-10-18</lastmod></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url><loc>https://yanisberard-sys.github.io/</loc><lastmod>2026-10-18</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://yanisberard-sys.github.io/"/><xhtml:link rel="alternate" hreflang="fr" href="https://yanisberard-sys.github.io/fr/"/></url>
+  <url><loc>https://yanisberard-sys.github.io/fr/</loc><lastmod>2026-10-18</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://yanisberard-sys.github.io/"/><xhtml:link rel="alternate" hreflang="fr" href="https://yanisberard-sys.github.io/fr/"/></url>
+  <url><loc>https://yanisberard-sys.github.io/photography.html</loc><lastmod>2026-10-18</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://yanisberard-sys.github.io/photography.html"/><xhtml:link rel="alternate" hreflang="fr" href="https://yanisberard-sys.github.io/fr/photography.html"/></url>
+  <url><loc>https://yanisberard-sys.github.io/fr/photography.html</loc><lastmod>2026-10-18</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://yanisberard-sys.github.io/photography.html"/><xhtml:link rel="alternate" hreflang="fr" href="https://yanisberard-sys.github.io/fr/photography.html"/></url>
 </urlset>
