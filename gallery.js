@@ -7,24 +7,27 @@
 
   /* ---------- map filter ---------- */
   let place = '';
-  const chips = [...document.querySelectorAll('.chip')], dots = [...document.querySelectorAll('.dot')];
+  const atlas = document.querySelector('.atlas'), status = atlas && atlas.querySelector('.atlas-status');
+  const dots = [...document.querySelectorAll('.dot')], reset = atlas && atlas.querySelector('.chip');
   const setPlace = p => {
     place = p === place ? '' : p;
+    const keys = place.split(' ');
+    const dot = dots.find(d => d.dataset.place === place);
     vt(() => {
-      figs.forEach(f => { f.hidden = !!place && f.dataset.place !== place; f.classList.remove('pending'); });
-      chips.forEach(c => c.setAttribute('aria-pressed', String(c.dataset.place === place)));
-      dots.forEach(d => { d.classList.toggle('active', d.dataset.place === place); d.setAttribute('aria-pressed', String(d.dataset.place === place)); });
-      document.querySelector('.atlas').classList.toggle('filtered', !!place);
+      figs.forEach(f => { f.hidden = !!place && !keys.includes(f.dataset.place); f.classList.remove('pending'); });
+      dots.forEach(d => { d.classList.toggle('active', d === dot); d.setAttribute('aria-pressed', String(d === dot)); });
+      atlas.classList.toggle('filtered', !!place);
+      status.textContent = dot ? dot.getAttribute('aria-label') : status.dataset.hint;
     });
   };
-  chips.forEach(c => c.addEventListener('click', () => setPlace(c.dataset.place)));
   dots.forEach(d => {
     d.addEventListener('click', () => setPlace(d.dataset.place));
     d.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setPlace(d.dataset.place); } });
   });
-  // hovering a chip lights its dot, and the reverse
-  const hl = (p, on) => { dots.forEach(d => d.classList.toggle('hot', on && d.dataset.place === p)); chips.forEach(c => c.classList.toggle('hot', on && c.dataset.place === p)); };
-  [...chips, ...dots].forEach(el => { el.addEventListener('pointerenter', () => hl(el.dataset.place, true)); el.addEventListener('pointerleave', () => hl(el.dataset.place, false)); });
+  if (reset) reset.addEventListener('click', () => setPlace(''));
+  // on a narrow screen the map scrolls sideways: start centred on the Atlantic
+  const sc = atlas && atlas.querySelector('.atlas-scroll');
+  if (sc && sc.scrollWidth > sc.clientWidth) sc.scrollLeft = sc.scrollWidth * .42 - sc.clientWidth / 2;
 
   /* ---------- viewer ---------- */
   const lb = document.getElementById('lb'), stage = lb.querySelector('.lb-stage'), img = document.getElementById('lb-img');
