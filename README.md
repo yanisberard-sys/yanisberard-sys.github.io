@@ -15,6 +15,8 @@ Site statique publié avec GitHub Pages : https://yanisberard-sys.github.io/
 | `cv/` | `CV_YB_en.pdf`, `CV_YB_fr.pdf` et leurs sources `.tex` |
 | `vendor/katex/` | Mise en forme des formules mathématiques |
 | `menu.js` | Menu des téléphones |
+| `site.js` | Bouton clair/sombre et compteur de visites (toutes les pages) |
+| `gallery.js` | Carte des photos et visionneuse de la page Photographie |
 | `images/` | Portrait, icônes de l'onglet |
 | `photos/` | Photos de la galerie |
 | `sitemap.xml`, `robots.txt` | Référencement |
@@ -31,3 +33,13 @@ Le site existe en anglais (racine) et en français (`fr/`). Le drapeau en haut �
 ## Écrire des mathématiques
 
 Les formules s'écrivent en LaTeX entre dollars, directement dans le texte : `$\mathfrak{A}_5$`, `$z \mapsto z^2 + c$`, `$\mathbb{Z}^d$`. Elles sont mises en forme automatiquement par KaTeX, hébergé dans `vendor/katex/` (aucun service extérieur). Les formules déjà présentes sur le site sont pré-calculées dans le HTML, elles s'affichent donc instantanément. Pour un vrai signe dollar, écrire `\$`. Dans le code HTML, `<` s'écrit `&lt;` même dans une formule : `$&lt; 60$`.
+
+## Ajouter une photo
+
+1. Déposer la photo (largeur ~2000 px) dans `photos/`.
+2. Dans `photography.html` et `fr/photography.html`, copier une ligne `<figure id="p…" … data-place="…">` et changer l'`id` (numéro suivant), le fichier, la description (`alt`), la légende et le lieu (`data-place`).
+3. Pour un nouveau lieu, me demander : il faut ajouter un point sur la carte.
+
+## Statistiques de visite
+
+Compteur GoatCounter (sans cookies, sans données personnelles) : https://yanisberard.goatcounter.com

@@ -25,7 +25,9 @@
 <link rel="stylesheet" href="../vendor/katex/katex.min.css">
 <script defer src="../vendor/katex/katex.min.js"></script>
 <script defer src="../vendor/katex/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false}],throwOnError:false})"></script>
-<link rel="stylesheet" href="../style.css?v=8">
+<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<script data-goatcounter="https://yanisberard.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<link rel="stylesheet" href="../style.css?v=9">
 </head>
 <body>
 
@@ -44,6 +46,7 @@
       <a href="photography.html">Photographie</a>
     </nav>
     <div class="lang"><a href="../" hreflang="en" lang="en" title="English" aria-label="English"><svg viewBox="0 0 60 30" aria-hidden="true"><clipPath id="ukc"><path d="M30,15h30v15zv15h-30zh-30v-15zv-15h30z"/></clipPath><rect width="60" height="30" fill="#012169"/><path d="M0,0L60,30M60,0L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0L60,30M60,0L0,30" clip-path="url(#ukc)" stroke="#C8102E" stroke-width="4"/><path d="M30,0v30M0,15h60" stroke="#fff" stroke-width="10"/><path d="M30,0v30M0,15h60" stroke="#C8102E" stroke-width="6"/></svg></a><a href="./" hreflang="fr" lang="fr" title="Français" aria-label="Français" aria-current="true"><svg viewBox="0 0 3 2" aria-hidden="true"><rect width="1" height="2" fill="#0055A4"/><rect x="1" width="1" height="2" fill="#fff"/><rect x="2" width="1" height="2" fill="#EF4135"/></svg></a></div>
+    <button class="theme-btn" type="button" aria-label="Theme"><svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg><svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.6A8.2 8.2 0 0 1 9.4 4a8.2 8.2 0 1 0 10.6 10.6z"/></svg></button>
     <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav" aria-label="Menu"><span></span><span></span><span></span></button>
     
   </div>
@@ -252,7 +255,7 @@
       <a id="mail" href="mailto:yanis.berard@ens-rennes.fr">yanis.berard@ens-rennes.fr</a>
       <button type="button" id="copy">Copier l’adresse</button>
     </div>
-    <div class="colophon meta"><span>© 2026 Yanis Bérard</span><span>Mis à jour en octobre 2026</span></div>
+    <div class="colophon meta"><span>© 2026 Yanis Bérard</span><span class="visits" hidden></span><span>Mis à jour en octobre 2026</span></div>
   </div>
 </footer>
 
@@ -538,7 +541,13 @@ void main(){ gl_FragColor = vec4((shade(gl_FragCoord.xy + vec2(.25)) + shade(gl_
     }
   };
 
-  const canv = [...document.querySelectorAll('canvas[data-fig]')].map(el => ({el, ctx: el.getContext('2d'), fn: figs[el.dataset.fig], st: {}, vis: true}));
+  const canv = [...document.querySelectorAll('canvas[data-fig]')].map(el => ({el, ctx: el.getContext('2d'), fn: figs[el.dataset.fig], st: {}, vis: true, t: 0, sp: 1, tg: 1}));
+  // hover: the figure under the mouse speeds up, the others slow down
+  if (matchMedia('(hover: hover) and (pointer: fine)').matches) document.querySelectorAll('.story, .feature, .tipe-row').forEach(card => {
+    const mine = canv.find(c => card.contains(c.el)); if (!mine) return;
+    card.addEventListener('pointerenter', () => canv.forEach(c => c.tg = c === mine ? 2.6 : .3));
+    card.addEventListener('pointerleave', () => canv.forEach(c => c.tg = 1));
+  });
   const visible = new Set([phase, ...canv.map(c => c.el)]);
   if ('IntersectionObserver' in window) {
     const vio = new IntersectionObserver(es => es.forEach(e => e.isIntersecting ? visible.add(e.target) : visible.delete(e.target)), {rootMargin: '100px'});
@@ -548,12 +557,13 @@ void main(){ gl_FragColor = vec4((shade(gl_FragCoord.xy + vec2(.25)) + shade(gl_
   let T = 0;
   function drawAll(force) {
     if (force || visible.has(phase)) drawPhase(T);
-    canv.forEach(c => { if (!force && !visible.has(c.el)) return; size(c); c.ctx.clearRect(0, 0, c.el.width, c.el.height); c.fn(c.ctx, c.el.width, c.el.height, T, c.st); });
+    canv.forEach(c => { if (!force && !visible.has(c.el)) return; size(c); c.ctx.clearRect(0, 0, c.el.width, c.el.height); c.fn(c.ctx, c.el.width, c.el.height, c.t, c.st); });
   }
-  if (reduce) { T = 4; drawAll(true); addEventListener('resize', () => drawAll(true)); }
-  else { let t0 = performance.now(); const loop = now => { T = (now - t0) / 1000; drawAll(false); requestAnimationFrame(loop); }; requestAnimationFrame(loop); }
+  if (reduce) { T = 4; canv.forEach(c => c.t = 4); drawAll(true); addEventListener('resize', () => drawAll(true)); }
+  else { let t0 = performance.now(), last = t0; const loop = now => { const dt = Math.min(.05, (now - last) / 1000); last = now; T = (now - t0) / 1000; canv.forEach(c => { c.sp += (c.tg - c.sp) * .05; c.t += dt * c.sp; }); drawAll(false); requestAnimationFrame(loop); }; requestAnimationFrame(loop); }
 })();
 </script>
 <script defer src="../menu.js"></script>
+<script defer src="../site.js"></script>
 </body>
 </html>
