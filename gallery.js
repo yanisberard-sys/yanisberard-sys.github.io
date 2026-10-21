@@ -25,9 +25,40 @@
     d.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setPlace(d.dataset.place); } });
   });
   if (reset) reset.addEventListener('click', () => setPlace(''));
-  // on a narrow screen the map scrolls sideways: start centred on the Atlantic
+  // on a narrow screen the world map scrolls sideways: start centred on the Atlantic
   const sc = atlas && atlas.querySelector('.atlas-scroll');
-  if (sc && sc.scrollWidth > sc.clientWidth) sc.scrollLeft = sc.scrollWidth * .42 - sc.clientWidth / 2;
+  const centre = () => { if (sc && sc.scrollWidth > sc.clientWidth) sc.scrollLeft = sc.scrollWidth * .42 - sc.clientWidth / 2; };
+  centre();
+
+  // zoom: World / Europe / South America, animating the SVG viewBox; dots keep their size on screen
+  const svg = atlas && atlas.querySelector('svg');
+  if (svg) {
+    const V = JSON.parse(svg.dataset.views), full = V.world[2];
+    let vb = V.world.slice(), anim = 0;
+    const apply = b => {
+      svg.setAttribute('viewBox', b.map(v => v.toFixed(2)).join(' '));
+      const w = svg.getBoundingClientRect().width || full, k = Math.min(b[2] / w * (w < 600 ? .75 : 1.1), 1).toFixed(4);
+      dots.forEach(d => d.firstElementChild.setAttribute('transform', `scale(${k})`));
+    };
+    const zoom = name => {
+      const to = V[name], from = vb.slice(), t0 = performance.now(), dur = reduce ? 0 : 750;
+      atlas.dataset.view = name;
+      atlas.querySelectorAll('.view').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.view === name)));
+      cancelAnimationFrame(anim);
+      // interpolate in log-scale for the width so the zoom feels even
+      const step = now => {
+        let u = dur ? Math.min(1, (now - t0) / dur) : 1; u = u < .5 ? 4 * u * u * u : 1 - Math.pow(-2 * u + 2, 3) / 2;
+        const w = Math.exp(Math.log(from[2]) + (Math.log(to[2]) - Math.log(from[2])) * u), r = (w - from[2]) / ((to[2] - from[2]) || 1);
+        vb = [from[0] + (to[0] - from[0]) * r, from[1] + (to[1] - from[1]) * r, w, from[3] + (to[3] - from[3]) * r];
+        apply(vb);
+        if (u < 1) anim = requestAnimationFrame(step); else if (name === 'world') centre();
+      };
+      anim = requestAnimationFrame(step);
+    };
+    atlas.querySelectorAll('.view').forEach(b => b.addEventListener('click', () => zoom(b.dataset.view)));
+    apply(vb);
+    addEventListener('resize', () => apply(vb));
+  }
 
   /* ---------- viewer ---------- */
   const lb = document.getElementById('lb'), stage = lb.querySelector('.lb-stage'), img = document.getElementById('lb-img');

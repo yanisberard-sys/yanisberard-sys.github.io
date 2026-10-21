@@ -228,16 +228,26 @@ h3 .katex{font-size:.95em}
 
 /* photo map */
 .atlas{display:grid;gap:12px;margin-bottom:clamp(36px,5vw,56px)}
+.atlas-views{display:flex;gap:6px;flex-wrap:wrap}
+.view{font-family:var(--label);font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);background:none;border:0;border-bottom:1px solid transparent;padding:6px 2px;margin-right:14px;cursor:pointer;transition:color .2s,border-color .2s}
+.view:hover{color:var(--ink)}
+.view[aria-pressed="true"]{color:var(--ink);border-color:var(--ink)}
 .atlas-scroll{overflow-x:auto;scrollbar-width:thin;min-width:0}
-.atlas svg{display:block;width:100%;min-width:720px;height:auto;overflow:visible}
+.atlas svg{display:block;width:100%;height:auto;overflow:hidden;aspect-ratio:1000/432}
+.atlas[data-view="world"] svg{min-width:720px}
 .atlas .sphere{fill:color-mix(in srgb,var(--accent) 6%,var(--paper))}
-.atlas .grat{fill:none;stroke:color-mix(in srgb,var(--ink) 9%,transparent);stroke-width:.5}
-.atlas .land{fill:color-mix(in srgb,var(--ink) 15%,var(--paper));stroke:color-mix(in srgb,var(--ink) 40%,transparent);stroke-width:.5}
-.atlas .borders{fill:none;stroke:color-mix(in srgb,var(--paper) 70%,transparent);stroke-width:.5}
+.atlas .grat{fill:none;stroke:color-mix(in srgb,var(--ink) 9%,transparent);stroke-width:.5;vector-effect:non-scaling-stroke}
+.atlas .land{fill:color-mix(in srgb,var(--ink) 15%,var(--paper));stroke:color-mix(in srgb,var(--ink) 40%,transparent);stroke-width:.6;vector-effect:non-scaling-stroke}
+.atlas .borders{fill:none;stroke:color-mix(in srgb,var(--paper) 75%,transparent);stroke-width:.8;vector-effect:non-scaling-stroke}
+.atlas .lvl{transition:opacity .5s ease}
+.atlas .lvl-eu,.atlas .lvl-sa{opacity:0}
+.atlas[data-view="eu"] .lvl-eu,.atlas[data-view="sa"] .lvl-sa{opacity:1}
+.atlas[data-view="eu"] .lvl-world,.atlas[data-view="sa"] .lvl-world{opacity:0}
+.atlas:not([data-view="world"]) .dot text{opacity:1}
 .dot{cursor:pointer;outline:none}
 .dot .pin{fill:var(--accent);stroke:var(--paper);stroke-width:2;transition:r .25s,fill .25s,opacity .25s}
 .dot .halo{fill:var(--accent);opacity:0;transform-box:fill-box;transform-origin:center;animation:pulse 2.6s ease-out infinite}
-.dot text{font-family:var(--label);font-size:13px;font-weight:600;fill:var(--ink);paint-order:stroke;stroke:var(--paper);stroke-width:4px;stroke-linejoin:round;opacity:0;transition:opacity .2s;pointer-events:none}
+.dot text{font-family:var(--label);font-size:12.5px;font-weight:600;fill:var(--ink);paint-order:stroke;stroke:var(--paper);stroke-width:4px;stroke-linejoin:round;opacity:0;transition:opacity .2s;pointer-events:none}
 .dot:hover text,.dot.active text,.dot:focus-visible text{opacity:1}
 .dot:hover .pin,.dot.active .pin,.dot:focus-visible .pin{r:9}
 .dot:hover,.dot:focus-visible,.dot.active{z-index:2}
@@ -273,3 +283,4 @@ h3 .katex{font-size:.95em}
 @media (hover:hover) and (pointer:fine) and (min-width:800px){.lb-side{display:block}.lb-nav [data-go]{display:none}.lb-stage{padding-inline:96px}}
 @media (max-width:560px){.lb-bar{grid-template-columns:auto 1fr;}.lb-nav{grid-column:1/-1;justify-content:space-between}#lb-cap{white-space:normal}}
 .lb-open{overflow:hidden}
+@media (max-width:600px){.atlas:not([data-view="world"]) .dot:not(.active):not(:focus-visible) text{opacity:0}}
