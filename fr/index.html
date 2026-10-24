@@ -27,7 +27,7 @@
 <script defer src="../vendor/katex/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false}],throwOnError:false})"></script>
 <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
 <script data-goatcounter="https://yanisberard.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
-<link rel="stylesheet" href="../style.css?v=14">
+<link rel="stylesheet" href="../style.css?v=16">
 </head>
 <body>
 
@@ -352,11 +352,11 @@ void main(){ gl_FragColor = vec4((shade(gl_FragCoord.xy + vec2(.25)) + shade(gl_
       const fr = document.documentElement.lang === 'fr', cv = ctx.canvas;
       const wide = matchMedia('(min-width: 900px)').matches, el = (wide && cv.closest('.feature')) || cv;
       const R = el.getBoundingClientRect(), vh = innerHeight;
-      let target = wide ? (vh * .45 - R.top) / Math.max(1, R.height - vh * .4) : (vh * .9 - R.top) / (vh * .6 + R.height);
+      let target = wide ? (vh * .6 - R.top) / Math.max(300, R.height - vh * .3) : (vh * .85 - R.top) / (vh * .75);
       target = Math.max(0, Math.min(1, target));
       if (st.p === undefined || reduce) st.p = target; else st.p += (target - st.p) * .1;
       const p = st.p, TAU = 2 * Math.PI, TH = p * 2 * TAU, sheet = TH < TAU ? 1 : 2;
-      const s = Math.min(w, h) * .36, cx = w / 2, cy = h * .47, phi = -.6 + p * 1.2 + .05 * Math.sin(t * .35), ca = Math.cos(phi), sa = Math.sin(phi);
+      const s = Math.min(w, h) * .33, cx = w / 2, cy = h * .45, phi = -.9 + p * 1.9 + .04 * Math.sin(t * .35), ca = Math.cos(phi), sa = Math.sin(phi);
       const P = (r, th) => { const x = r * Math.cos(th), y = r * Math.sin(th), z = Math.sqrt(r) * Math.cos(th / 2) * .85; const x1 = x * ca - y * sa, y1 = x * sa + y * ca; return [cx + s * x1, cy - s * z + s * .42 * y1]; };
       const line = (r0, r1, a0, a1, n) => { ctx.beginPath(); for (let k = 0; k <= n; k++) { const u = k / n, q = P(r0 + (r1 - r0) * u, a0 + (a1 - a0) * u); k ? ctx.lineTo(q[0], q[1]) : ctx.moveTo(q[0], q[1]); } ctx.stroke(); };
       // mesh: the sheet the point is on is drawn a little darker
@@ -431,7 +431,7 @@ void main(){ gl_FragColor = vec4((shade(gl_FragCoord.xy + vec2(.25)) + shade(gl_
       const PAIRS = [['b','a'],['a2','v'],['a2b','ab'],['e','g']], PER = 3;
       const tt = Math.max(0, t), k = Math.floor(tt / PER) % PAIRS.length, ph = (tt % PER) / PER, fade = Math.min(1, ph * 5, (1 - ph) * 5);
       const [p1, p2] = PAIRS[k];
-      const bw = 66 * DPR, bh = 40 * DPR, pad = 10 * DPR;
+      const bw = (w < 520 * DPR ? 58 : 66) * DPR, bh = 40 * DPR, pad = 10 * DPR;
       const sx = (w - bw - 2 * pad) / 3.5, sy = (h - bh - 2 * pad) / 3, x0 = pad + bw / 2 + 1.2 * sx, y0 = h - pad - bh / 2;
       const P = id => [x0 + N[id][0] * sx, y0 - N[id][1] * sy];
       ctx.strokeStyle = C.ink; ctx.globalAlpha = .6; ctx.lineWidth = 1.3 * DPR;
@@ -530,7 +530,7 @@ void main(){ gl_FragColor = vec4((shade(gl_FragCoord.xy + vec2(.25)) + shade(gl_
         else { const free = [1,2,3,4,5].filter(x => !st.bag.includes(x)); const x = free[Math.floor(Math.random() * free.length)]; st.bag.push(x); st.who.push(st.bag.length % 2 ? 0 : 1); if (gen(st.bag) === 5) st.over = true; }
       }
       const cur = gen(st.bag);
-      const narrow = w < 520 * DPR, sx = Math.min(w * (narrow ? .26 : .17), 120 * DPR), sy = h * .22, cx = narrow ? w * .52 : w * .4, by = h * (narrow ? .58 : .8);
+      const narrow = w < 520 * DPR, by = narrow ? h - 52 * DPR : h * .8, sy = narrow ? (by - 100 * DPR) / 2.8 : h * .22, sx = narrow ? (w / 2 - 38 * DPR) / 1.65 : Math.min(w * .17, 120 * DPR), cx = narrow ? w / 2 : w * .4;
       const P = i => [cx + SUB[i].p[0] * sx, by - SUB[i].p[1] * sy];
       ctx.strokeStyle = fg; ctx.globalAlpha = .45; ctx.lineWidth = 1.3 * DPR;
       EDG.forEach(([a, b]) => { const p = P(a), q = P(b); ctx.beginPath(); ctx.moveTo(p[0], p[1]); ctx.lineTo(q[0], q[1]); ctx.stroke(); });
@@ -546,7 +546,7 @@ void main(){ gl_FragColor = vec4((shade(gl_FragCoord.xy + vec2(.25)) + shade(gl_
       const bx = narrow ? 16 * DPR : w * .7, byy = narrow ? 24 * DPR : h * .2;
       ctx.fillStyle = fg; ctx.globalAlpha = .6; ctx.font = `600 ${11 * DPR}px Archivo, sans-serif`; ctx.fillText('LE SAC', bx, byy); ctx.globalAlpha = 1;
       st.bag.forEach((x, k) => {
-        const col = narrow ? k : 0, row = narrow ? 0 : k, X = bx + col * 74 * DPR, Y = byy + 22 * DPR + row * 26 * DPR;
+        const col = narrow ? k : 0, row = narrow ? 0 : k, X = bx + col * 60 * DPR, Y = byy + 22 * DPR + row * 26 * DPR;
         ctx.fillStyle = st.who[k] ? amb : acc; ctx.beginPath(); ctx.arc(X + 5 * DPR, Y - 5 * DPR, 4.5 * DPR, 0, 7); ctx.fill();
         ctx.fillStyle = fg; ctx.font = `${14 * DPR}px "Source Serif 4", Georgia, serif`; ctx.fillText(EL[x], X + 16 * DPR, Y);
       });
