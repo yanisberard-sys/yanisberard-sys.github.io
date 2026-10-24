@@ -13,6 +13,8 @@ Site statique publié avec GitHub Pages : https://yanisberard-sys.github.io/
 | `papers/` | Textes : `gaga.pdf` (rapport de stage), `bezout.pdf`, `kakeya.pdf`, `groupes-simples-60.pdf`, `dualite.pdf`, `maths-en-jeans.pdf` |
 | `tipe/` | `elections.pdf`, `pile-ou-face.pdf`, `treillis.pdf` |
 | `cv/` | `CV_YB_en.pdf`, `CV_YB_fr.pdf` et leurs sources `.tex` |
+| `fonts/` | Polices hébergées avec le site (aucune requête à Google) |
+| `legal.html`, `fr/legal.html` | Mentions légales et confidentialité |
 | `vendor/katex/` | Mise en forme des formules mathématiques |
 | `menu.js` | Menu des téléphones |
 | `site.js` | Bouton clair/sombre et compteur de visites (toutes les pages) |

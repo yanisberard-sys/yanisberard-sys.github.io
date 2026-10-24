@@ -1,6 +1,6 @@
 /* Layout: a magazine front page. Masthead, full-bleed lead figure, one feature story with a side figure, a story grid, a coloured band, then the colophon. */
 :root{
-  --paper:#f3f3ef; --ink:#14151a; --muted:#5d5f6a; --rule:#d4d4cc; --panel:#e7e7e1; --accent:#2b3ff0; --red:#d23a2a;
+  --paper:#f3f3ef; --ink:#14151a; --muted:#5d5f6a; --rule:#d4d4cc; --panel:#e7e7e1; --accent:#2b3ff0; --red:#bf2f1f;
   --display:"Newsreader","Iowan Old Style",Georgia,serif;
   --body:"Source Serif 4",Georgia,"Times New Roman",serif;
   --label:"Archivo","Helvetica Neue",Arial,sans-serif;
@@ -54,7 +54,7 @@ p{margin:0}
 @media (max-width:640px){.stage{aspect-ratio:4/3}}
 .stage #phase{position:absolute;inset:0;width:100%;height:100%;display:block;cursor:crosshair;touch-action:pan-y}
 .stage #inset{position:absolute;right:14px;bottom:14px;width:min(26%,220px);aspect-ratio:13/10;height:auto;border:1px solid rgba(255,255,255,.35);pointer-events:none}
-.cval{position:absolute;left:14px;bottom:12px;font-family:var(--label);font-size:12px;letter-spacing:.06em;color:rgba(255,255,255,.75);font-variant-numeric:tabular-nums;pointer-events:none}
+.cval{position:absolute;left:14px;bottom:12px;font-family:var(--label);font-size:12px;letter-spacing:.06em;color:#fff;background:rgba(10,11,14,.55);padding:3px 8px;border-radius:3px;font-variant-numeric:tabular-nums;pointer-events:none}
 figcaption{font-family:var(--label);font-size:13px;line-height:1.5;color:var(--muted);padding-top:10px;max-width:80ch}
 figcaption b{color:var(--ink);font-weight:600}
 .math{font-family:var(--body);font-style:italic;color:var(--ink);font-size:14px}
@@ -158,7 +158,7 @@ footer h2{font-size:clamp(44px,8vw,104px);font-style:italic;font-weight:400;line
 @media (min-width:800px){.shots a{aspect-ratio:auto;height:100%}}
 .shots img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
 .shots a:hover img{transform:scale(1.04)}
-.shots span{position:absolute;left:0;right:0;bottom:0;padding:28px 14px 12px;font-family:var(--label);font-size:12px;letter-spacing:.06em;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.55))}
+.shots span{position:absolute;left:0;right:0;bottom:0;padding:28px 14px 12px;font-family:var(--label);font-size:12px;letter-spacing:.06em;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.72));text-shadow:0 1px 2px rgba(0,0,0,.5)}
 .shots-foot{margin-top:18px;display:flex;justify-content:flex-end}
 
 /* gallery page */
@@ -219,11 +219,10 @@ h3 .katex{font-size:.95em}
 
 /* hover on project figures (mouse only) */
 @media (hover:hover) and (pointer:fine){
-  .story,.feature .side,.tipe-row figure{transition:opacity .45s ease}
-  .story canvas{transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s}
-  .stories:has(.story:hover) .story:not(:hover){opacity:.5}
+  .story canvas,.tipe-row canvas{transition:opacity .45s ease,transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s}
+    .stories:has(.story:hover) .story:not(:hover) canvas{opacity:.4}
   .story:hover canvas{transform:translateY(-4px);box-shadow:0 18px 30px -22px rgba(0,0,0,.45)}
-  .band > .wrap:has(.tipe-row:hover) .tipe-row:not(:hover) figure{opacity:.45}
+  .band > .wrap:has(.tipe-row:hover) .tipe-row:not(:hover) canvas{opacity:.4}
 }
 
 /* photo map */
@@ -284,3 +283,14 @@ h3 .katex{font-size:.95em}
 @media (max-width:560px){.lb-bar{grid-template-columns:auto 1fr;}.lb-nav{grid-column:1/-1;justify-content:space-between}#lb-cap{white-space:normal}}
 .lb-open{overflow:hidden}
 @media (max-width:600px){.atlas:not([data-view="world"]) .dot:not(.active):not(:focus-visible) text{opacity:0}}
+
+/* legal page */
+.legal{display:grid;gap:28px;padding-bottom:24px}
+.legal-grid{display:grid;grid-template-columns:1fr;gap:36px 56px;max-width:1000px}
+@media (min-width:900px){.legal-grid{grid-template-columns:1fr 1.6fr;align-items:start}.legal-grid section:nth-child(1){grid-area:1/1}.legal-grid section:nth-child(2){grid-area:2/1}.legal-grid section:nth-child(4){grid-area:3/1}.legal-grid section:nth-child(3){grid-area:1/2/5/3}}
+.legal-grid section{display:grid;gap:12px;align-content:start;min-width:0;border-top:1px solid var(--rule);padding-top:14px}
+.legal-grid h2{font-size:clamp(24px,2.4vw,30px);font-style:italic;font-weight:400}
+.legal-grid p{font-size:17px;max-width:64ch}
+.legal-grid a{color:var(--accent);text-underline-offset:3px}
+.colophon{flex-wrap:wrap}
+.colophon a{text-underline-offset:3px}
