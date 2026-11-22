@@ -26,7 +26,7 @@
 <script defer src="../vendor/katex/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false}],throwOnError:false})"></script>
 <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
 <script data-goatcounter="https://yanisberard.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
-<link rel="stylesheet" href="../style.css?v=20">
+<link rel="stylesheet" href="../style.css?v=21">
 </head>
 <body>
 
@@ -126,7 +126,7 @@
 uniform vec2 res; uniform vec2 c; uniform float shift; uniform float scale;
 vec3 pal(float t){
   t = fract(t);
-  vec3 a=vec3(.071,.035,.047), b=vec3(.620,.125,.204), d=vec3(.953,.953,.937), e=vec3(.949,.647,.255), f=vec3(.184,.365,.541);
+  vec3 a=vec3(.102,.071,.051), b=vec3(.420,.290,.169), d=vec3(.953,.929,.878), e=vec3(.788,.604,.290), f=vec3(.290,.086,.125);
   float s = t*5.;
   if(s<1.) return mix(a,b,s); if(s<2.) return mix(b,d,s-1.); if(s<3.) return mix(d,e,s-2.); if(s<4.) return mix(e,f,s-3.); return mix(f,a,s-4.);
 }
@@ -134,7 +134,7 @@ vec3 shade(vec2 frag){
   vec2 z = (frag - .5*res) / res.y * scale;
   float n = 0.;
   for(int i=0;i<300;i++){ if(dot(z,z)>256.) break; z = vec2(z.x*z.x - z.y*z.y, 2.*z.x*z.y) + c; n += 1.; }
-  if(n>=300.) return vec3(.055,.035,.04);
+  if(n>=300.) return vec3(.071,.047,.035);
   float nu = n + 1. - log2(log2(dot(z,z))*.5);
   return pal(sqrt(nu)*.16 + shift);
 }
@@ -156,7 +156,7 @@ void main(){ gl_FragColor = vec4((shade(gl_FragCoord.xy + vec2(.25)) + shade(gl_
       const cx = MB.x0 + (i + .5) / W * (MB.x1 - MB.x0), cy = MB.y1 - (j + .5) / H * (MB.y1 - MB.y0);
       let x = 0, y = 0, n = 0; while (n < 120 && x * x + y * y < 4) { const t = x * x - y * y + cx; y = 2 * x * y + cy; x = t; n++; }
       const o = (j * W + i) * 4, v = Math.min(1, Math.sqrt(n / 40)), inside = n >= 120;
-      d[o] = inside ? 236 : 18 + 150 * v; d[o+1] = inside ? 235 : 12 + 30 * v; d[o+2] = inside ? 229 : 16 + 46 * v; d[o+3] = 235;
+      d[o] = inside ? 243 : 26 + 175 * v; d[o+1] = inside ? 237 : 18 + 136 * v; d[o+2] = inside ? 224 : 13 + 61 * v; d[o+3] = 235;
     }
     mbImg = img;
   }
@@ -335,7 +335,7 @@ void main(){ gl_FragColor = vec4((shade(gl_FragCoord.xy + vec2(.25)) + shade(gl_
       pos.forEach((p, i) => {
         const win = i === E.cw; ctx.lineWidth = 2 * DPR; ctx.strokeStyle = fg;
         ctx.fillStyle = win ? acc : 'rgba(255,255,255,.04)'; ctx.beginPath(); ctx.arc(p[0], p[1], nr, 0, 7); ctx.fill(); ctx.stroke();
-        ctx.fillStyle = win ? '#111216' : fg; ctx.font = `600 ${18 * DPR}px "Newsreader", Georgia, serif`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(L[i], p[0], p[1] + DPR);
+        ctx.fillStyle = win ? '#141314' : fg; ctx.font = `600 ${18 * DPR}px "Newsreader", Georgia, serif`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(L[i], p[0], p[1] + DPR);
       });
       // ballots
       ctx.textAlign = 'left'; ctx.textBaseline = 'alphabetic';
@@ -374,7 +374,7 @@ void main(){ gl_FragColor = vec4((shade(gl_FragCoord.xy + vec2(.25)) + shade(gl_
         const [x, y] = P(i), on = i === cur, bw = 58 * DPR, bh = 30 * DPR;
         ctx.fillStyle = on ? (st.over ? red : acc) : '#1e1316'; ctx.fillRect(x - bw / 2, y - bh / 2, bw, bh);
         ctx.strokeStyle = fg; ctx.lineWidth = (on ? 2 : 1.2) * DPR; ctx.strokeRect(x - bw / 2, y - bh / 2, bw, bh);
-        ctx.fillStyle = on ? '#111216' : fg; ctx.font = `${14 * DPR}px "Source Serif 4", Georgia, serif`; ctx.fillText(S.n, x, y + DPR);
+        ctx.fillStyle = on ? '#141314' : fg; ctx.font = `${14 * DPR}px "Source Serif 4", Georgia, serif`; ctx.fillText(S.n, x, y + DPR);
       });
       // bag
       ctx.textAlign = 'left'; ctx.textBaseline = 'alphabetic';

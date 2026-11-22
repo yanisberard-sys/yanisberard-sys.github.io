@@ -1,6 +1,7 @@
 /* Layout: a magazine front page. Masthead, full-bleed lead figure, one feature story with a side figure, a story grid, a coloured band, then the colophon. */
 :root{
-  --paper:#f3f3ef; --ink:#14151a; --muted:#5d5f6a; --rule:#d4d4cc; --panel:#e7e7e1; --accent:#8c1c2e; --red:#2f5d8a;
+  --paper:#f6f4ee; --ink:#14151a; --muted:#5d5f6a; --rule:#d8d5cb; --panel:#ebe8e0; --accent:#8c1c2e; --red:#2f5d8a;
+  --mark:var(--accent); --mark-hover:var(--ink); --card-top:3px solid var(--accent);
   --name:"Gloock","Iowan Old Style",Georgia,serif;
   --display:"Newsreader","Iowan Old Style",Georgia,serif;
   --body:"Source Serif 4",Georgia,"Times New Roman",serif;
@@ -9,8 +10,8 @@
   --gutter:max(clamp(16px,4vw,40px),env(safe-area-inset-left,0px));
   --gutter-r:max(clamp(16px,4vw,40px),env(safe-area-inset-right,0px));
 }
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#111216;--ink:#ecebe5;--muted:#a3a4ae;--rule:#2d2e35;--panel:#1b1c22;--accent:#ff8a9a;--red:#8fb3ff;color-scheme:dark}}
-:root[data-theme="dark"]{--paper:#111216;--ink:#ecebe5;--muted:#a3a4ae;--rule:#2d2e35;--panel:#1b1c22;--accent:#ff8a9a;--red:#8fb3ff;color-scheme:dark}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#141314;--ink:#ecebe5;--muted:#a3a4ae;--rule:#2e2c2d;--panel:#1d1b1c;--accent:#ff8a9a;--red:#8fb3ff;--mark:var(--ink);--mark-hover:var(--accent);--card-top:1px solid var(--rule);color-scheme:dark}}
+:root[data-theme="dark"]{--paper:#141314;--ink:#ecebe5;--muted:#a3a4ae;--rule:#2e2c2d;--panel:#1d1b1c;--accent:#ff8a9a;--red:#8fb3ff;--mark:var(--ink);--mark-hover:var(--accent);--card-top:1px solid var(--rule);color-scheme:dark}
 
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:72px}
@@ -62,7 +63,7 @@ figcaption b{color:var(--ink);font-weight:600}
 
 /* sections */
 section{padding-block:clamp(56px,8vw,104px) 0}
-.shead{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:3px solid var(--ink);padding-top:14px;margin-bottom:clamp(28px,4vw,44px)}
+.shead{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:3px solid var(--mark);padding-top:14px;margin-bottom:clamp(28px,4vw,44px)}
 .shead h2{font-size:clamp(30px,4vw,44px);font-style:italic;font-weight:400}
 
 /* feature */
@@ -138,7 +139,7 @@ dl.cv dd small{display:block;color:var(--muted);font-size:14px}
 .facts .kicker{color:var(--muted);display:block;margin-bottom:4px}
 
 /* footer */
-footer{margin-top:clamp(64px,9vw,120px);border-top:3px solid var(--ink)}
+footer{margin-top:clamp(64px,9vw,120px);border-top:3px solid var(--mark)}
 footer .wrap{display:grid;gap:24px;padding-block:32px 48px}
 footer h2{font-size:clamp(44px,8vw,104px);font-style:italic;font-weight:400;line-height:.95}
 .mail{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}
@@ -301,11 +302,11 @@ h3 .katex{font-size:.95em}
 .colophon a{text-underline-offset:3px}
 
 /* tabs: one page per section */
-.nav a[aria-current="page"]{border-color:var(--ink)}
+.nav a[aria-current="page"]{border-color:var(--mark)}
 .hero-links{display:flex;flex-wrap:wrap;align-items:center;gap:12px 22px}
 @media (min-width:900px){.hero-links{grid-column:2}}
-.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--label);font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;color:var(--paper);background:var(--ink);padding:11px 16px;transition:background .2s}
-.btn:hover{background:var(--accent)}
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--label);font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;color:var(--paper);background:var(--mark);padding:11px 16px;transition:background .2s}
+.btn:hover{background:var(--mark-hover)}
 .btn span{transition:transform .25s}
 .btn:hover span{transform:translateX(4px)}
 .hero-mail{font-family:var(--label);font-size:14px;color:var(--muted);text-decoration:none;border-bottom:1px solid var(--rule)}
@@ -363,3 +364,15 @@ footer h2{font-size:clamp(30px,3.4vw,42px);line-height:1}
 .hero h1.name{font-family:var(--name);font-weight:400;font-size:clamp(68px,10.5vw,136px);line-height:.88;letter-spacing:-.01em}
 .hero h1.name .given{display:block;font-size:.3em;line-height:1;letter-spacing:.01em;margin:0 0 .3em .05em}
 .hero h1.name .family{display:block}
+
+/* Titles: one family (Gloock, roman only) everywhere */
+h1,h2,h3,.hero h1,.ghead h1,.shead h2,footer h2,.legal-grid h2,.band h2,.feature h3,.story h3,.tipe-row h3,.col h3{font-family:var(--name);font-weight:400;font-style:normal}
+h1 em,h2 em,h3 em,.hero h1 em{font-style:normal;font-weight:400}
+.ghead h1{letter-spacing:-.015em}
+.copy .first::first-letter{font-family:var(--name);font-weight:400}
+/* Bordeaux marks (light theme): card tops */
+.tab-card{border-top:var(--card-top)}
+.tab-card:hover{border-top:var(--card-top)}
+@media (min-width:761px){.nav a[aria-current="page"]{border-bottom:2px solid var(--mark);padding-bottom:5px}}
+@media (max-width:760px){.nav a[aria-current="page"]{color:var(--mark)}}
+.feature h3{font-size:clamp(36px,5vw,64px);line-height:1.02}
