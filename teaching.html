@@ -26,7 +26,7 @@
 <script defer src="vendor/katex/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false}],throwOnError:false})"></script>
 <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
 <script data-goatcounter="https://yanisberard.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
-<link rel="stylesheet" href="style.css?v=21">
+<link rel="stylesheet" href="style.css?v=22">
 </head>
 <body>
 
@@ -406,11 +406,10 @@ void main(){ gl_FragColor = vec4((shade(gl_FragCoord.xy + vec2(.25)) + shade(gl_
   };
 
   const canv = [...document.querySelectorAll('canvas[data-fig]')].map(el => ({el, ctx: el.getContext('2d'), fn: figs[el.dataset.fig], st: {}, vis: true, t: 0, sp: 1, tg: 1}));
-  // hover: the figure under the mouse speeds up, the others slow down
-  if (matchMedia('(hover: hover) and (pointer: fine)').matches) document.querySelectorAll('.story, .feature, .tipe-row').forEach(card => {
-    const mine = canv.find(c => card.contains(c.el)); if (!mine) return;
-    card.addEventListener('pointerenter', () => canv.forEach(c => c.tg = c === mine ? 2.6 : .3));
-    card.addEventListener('pointerleave', () => canv.forEach(c => c.tg = 1));
+  // hover: only the figure under the mouse (not its text) speeds up, the others slow down
+  if (matchMedia('(hover: hover) and (pointer: fine)').matches) canv.forEach(mine => {
+    mine.el.addEventListener('pointerenter', () => canv.forEach(c => c.tg = c === mine ? 2.6 : .3));
+    mine.el.addEventListener('pointerleave', () => canv.forEach(c => c.tg = 1));
   });
   const visible = new Set([phase, ...canv.map(c => c.el)]);
   if ('IntersectionObserver' in window) {
