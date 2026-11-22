@@ -349,3 +349,11 @@ section.first{padding-top:0}
 .atlas-toggle{justify-self:end;order:3;font-family:var(--label);font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);background:none;border:0;border-bottom:1px solid var(--ink);padding:4px 0;cursor:pointer}
 .atlas-toggle:hover{color:var(--accent);border-color:var(--accent)}
 .atlas:not(.compact) .atlas-toggle{position:absolute;top:0;right:0}
+
+/* footer: smaller title beside the address */
+footer .wrap{column-gap:28px}
+footer h2{font-size:clamp(30px,3.4vw,42px);line-height:1}
+@media (min-width:640px){
+  footer .wrap:has(> h2){grid-template-columns:auto minmax(0,1fr);align-items:center}
+  footer .wrap:has(> h2) > .kicker,footer .wrap:has(> h2) > .colophon{grid-column:1/-1}
+}
