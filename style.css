@@ -116,7 +116,7 @@ section{padding-block:clamp(56px,8vw,104px) 0}
 .col .meta{font-variant-numeric:tabular-nums}
 
 /* footer */
-footer{margin-top:clamp(64px,9vw,120px);border-top:3px solid var(--mark)}
+footer{margin-top:clamp(40px,5vw,64px);border-top:3px solid var(--mark)}
 footer .wrap{display:grid;gap:24px;padding-block:32px 48px}
 footer h2{font-size:clamp(44px,8vw,104px);font-style:italic;font-weight:400;line-height:.95}
 .mail{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}
@@ -299,6 +299,9 @@ section.first{padding-top:0}
 @media (min-width:900px){.hero.with-photo .wrap{grid-template-columns:minmax(0,1fr) minmax(0,340px);gap:56px}.hero.with-photo h1{font-size:clamp(56px,7vw,104px);line-height:.95}.hero-photo{aspect-ratio:4/5}}
 
 /* photography: small map beside the title, full width on demand */
+.photo-top .wrap{display:grid;gap:24px 48px;align-items:center}
+@media (min-width:900px){.photo-top .wrap{grid-template-columns:minmax(0,1fr) minmax(0,300px)}.photo-top .atlas:not(.compact){grid-column:1/-1}}
+.photo-top .atlas{margin-bottom:0;padding-block:0;position:relative}
 .ghead-text{display:grid;gap:16px;align-content:start;min-width:0}
 .atlas.compact .atlas-views,.atlas.compact .atlas-foot{display:none}
 .atlas.compact svg{min-width:0!important;cursor:zoom-in}

@@ -32,7 +32,7 @@
 <script defer src="../vendor/katex/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false}],throwOnError:false})"></script>
 <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
 <script data-goatcounter="https://yanisberard.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
-<link rel="stylesheet" href="../style.css?v=23">
+<link rel="stylesheet" href="../style.css?v=24">
 </head>
 <body>
 
@@ -114,15 +114,6 @@
     const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.remove('pending'); io.unobserve(e.target); } }), {rootMargin: '0px 0px -8% 0px'});
     document.querySelectorAll('.reveal').forEach(el => { if (el.getBoundingClientRect().top > innerHeight) { el.classList.add('pending'); io.observe(el); } });
   }
-
-  /* ---------- copy email ---------- */
-  const copyBtn = document.getElementById('copy');
-  copyBtn.addEventListener('click', () => {
-    const txt = document.getElementById('mail').textContent;
-    const done = () => { copyBtn.textContent = 'Adresse copiée'; setTimeout(() => copyBtn.textContent = 'Copier l’adresse', 1800); };
-    const fallback = () => { const r = document.createRange(); r.selectNodeContents(document.getElementById('mail')); const s = getSelection(); s.removeAllRanges(); s.addRange(r); };
-    try { navigator.clipboard.writeText(txt).then(done, fallback); } catch (e) { fallback(); }
-  });
 
   /* ---------- Julia set (hero, WebGL) ---------- */
   const phase = document.getElementById('phase') || document.createElement('canvas');
@@ -432,6 +423,6 @@ void main(){ gl_FragColor = vec4((shade(gl_FragCoord.xy + vec2(.25)) + shade(gl_
 })();
 </script>
 <script defer src="../menu.js"></script>
-<script defer src="../site.js?v=2"></script>
+<script defer src="../site.js?v=3"></script>
 </body>
 </html>

@@ -1,8 +1,8 @@
 // Shared by every page: light/dark switch and the visit counter in the footer.
 (() => {
   const root = document.documentElement, fr = root.lang === 'fr';
-  const T = fr ? {dark: 'Passer en mode sombre', light: 'Passer en mode clair', visits: n => `${n} visites`}
-               : {dark: 'Switch to dark mode', light: 'Switch to light mode', visits: n => `${n} visits`};
+  const T = fr ? {dark: 'Passer en mode sombre', light: 'Passer en mode clair', visits: n => `${n} visites`, copy: 'Copier l’adresse', copied: 'Copié'}
+               : {dark: 'Switch to dark mode', light: 'Switch to light mode', visits: n => `${n} visits`, copy: 'Copy address', copied: 'Copied'};
 
   /* ---------- theme ---------- */
   const sysDark = matchMedia('(prefers-color-scheme: dark)');
@@ -36,4 +36,12 @@
       .then(r => { const h = r.headers.get('last-modified'), d = h && new Date(h); if (d && !isNaN(d)) up.textContent = (fr ? 'Mis à jour en ' : 'Last updated ') + d.toLocaleDateString(fr ? 'fr-FR' : 'en-GB', {month: 'long', year: 'numeric'}); })
       .catch(() => {});
   }
+
+  /* ---------- copy the email address (footer) ---------- */
+  const copyBtn = document.getElementById('copy'), mail = document.getElementById('mail');
+  if (copyBtn && mail) copyBtn.addEventListener('click', () => {
+    const done = () => { copyBtn.textContent = T.copied; setTimeout(() => copyBtn.textContent = T.copy, 1800); };
+    const fallback = () => { const r = document.createRange(); r.selectNodeContents(mail); const s = getSelection(); s.removeAllRanges(); s.addRange(r); };
+    try { navigator.clipboard.writeText(mail.textContent).then(done, fallback); } catch (e) { fallback(); }
+  });
 })();
