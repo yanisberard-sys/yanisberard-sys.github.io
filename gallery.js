@@ -81,11 +81,11 @@
   const thumb = f => f.querySelector('img');
   const fill = f => {
     cur = f; const t = thumb(f), list = visible();
-    img.src = t.currentSrc || t.src; img.alt = t.alt; bg.src = img.src;
+    img.src = t.dataset.full || t.currentSrc || t.src; img.alt = t.alt; bg.src = img.src;
     cap.textContent = f.querySelector('figcaption').textContent;
     count.textContent = `${list.indexOf(f) + 1} / ${list.length}`;
     history.replaceState(null, '', '#' + f.id);
-    const i = list.indexOf(f); [list[i - 1], list[i + 1]].forEach(n => { if (n) new Image().src = thumb(n).src; });
+    const i = list.indexOf(f); [list[i - 1], list[i + 1]].forEach(n => { if (n) new Image().src = thumb(n).dataset.full || thumb(n).src; });
   };
   const rectOf = el => el.getBoundingClientRect();
   const flip = (from, to) => {

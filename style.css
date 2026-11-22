@@ -1,6 +1,6 @@
 /* Layout: a magazine front page. Masthead, full-bleed lead figure, one feature story with a side figure, a story grid, a coloured band, then the colophon. */
 :root{
-  --paper:#f6f4ee; --ink:#14151a; --muted:#5d5f6a; --rule:#d8d5cb; --panel:#ebe8e0; --accent:#8c1c2e; --red:#2f5d8a;
+  --paper:#f6f4ee; --ink:#14151a; --muted:#5d5f6a; --rule:#d8d5cb; --panel:#ebe8e0; --accent:#8c1c2e; --blue:#2f5d8a;
   --mark:var(--accent); --mark-hover:var(--ink); --card-top:3px solid var(--accent);
   --name:"Gloock","Iowan Old Style",Georgia,serif;
   --display:"Newsreader","Iowan Old Style",Georgia,serif;
@@ -10,8 +10,8 @@
   --gutter:max(clamp(16px,4vw,40px),env(safe-area-inset-left,0px));
   --gutter-r:max(clamp(16px,4vw,40px),env(safe-area-inset-right,0px));
 }
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#141314;--ink:#ecebe5;--muted:#a3a4ae;--rule:#2e2c2d;--panel:#1d1b1c;--accent:#ff8a9a;--red:#8fb3ff;--mark:var(--ink);--mark-hover:var(--accent);--card-top:1px solid var(--rule);color-scheme:dark}}
-:root[data-theme="dark"]{--paper:#141314;--ink:#ecebe5;--muted:#a3a4ae;--rule:#2e2c2d;--panel:#1d1b1c;--accent:#ff8a9a;--red:#8fb3ff;--mark:var(--ink);--mark-hover:var(--accent);--card-top:1px solid var(--rule);color-scheme:dark}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#141314;--ink:#ecebe5;--muted:#a3a4ae;--rule:#2e2c2d;--panel:#1d1b1c;--accent:#ff8a9a;--blue:#8fb3ff;--mark:var(--ink);--mark-hover:var(--accent);--card-top:1px solid var(--rule);color-scheme:dark}}
+:root[data-theme="dark"]{--paper:#141314;--ink:#ecebe5;--muted:#a3a4ae;--rule:#2e2c2d;--panel:#1d1b1c;--accent:#ff8a9a;--blue:#8fb3ff;--mark:var(--ink);--mark-hover:var(--accent);--card-top:1px solid var(--rule);color-scheme:dark}
 
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:72px}
@@ -22,12 +22,12 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 .wrap{max-width:1200px;margin:0 auto;padding-left:var(--gutter);padding-right:var(--gutter-r)}
 .kicker{font-family:var(--label);font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
 .meta{font-family:var(--label);font-size:13px;color:var(--muted);letter-spacing:.02em}
-h1,h2,h3{font-family:var(--display);font-weight:500;font-optical-sizing:auto;text-wrap:balance;margin:0}
+h1,h2,h3{font-optical-sizing:auto;text-wrap:balance;margin:0;font-family:var(--name);font-weight:400;font-style:normal}
 p{margin:0}
 
 /* strap + masthead */
 .strap .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-block:10px;font-family:var(--label);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
-.mast{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--paper);border-block:1px solid var(--rule)}
+.mast{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--paper);border-block:1px solid var(--rule);view-transition-name:mast}
 .mast .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:56px}
 .brand{font-family:var(--name);font-style:normal;font-size:22px;text-decoration:none;white-space:nowrap}
 .nav{display:flex;gap:22px;overflow-x:auto;scrollbar-width:none}
@@ -42,8 +42,7 @@ p{margin:0}
 
 /* hero */
 .hero .wrap{display:grid;grid-template-columns:1fr;gap:24px;padding-block:clamp(36px,6vw,72px) 28px}
-.hero h1{font-size:clamp(40px,6vw,76px);line-height:1;letter-spacing:-.02em;font-weight:600}
-.hero h1 em{font-style:italic;font-weight:400}
+.hero h1{font-size:clamp(40px,6vw,76px);line-height:1;letter-spacing:-.02em}
 .hero .dek{font-family:var(--display);font-optical-sizing:auto;font-size:clamp(20px,2.1vw,24px);line-height:1.45;font-weight:400;max-width:50ch;display:grid;gap:10px}
 .hero .dek strong{font-weight:600}
 @media (min-width:900px){.hero .wrap{grid-template-columns:1fr 1.4fr;align-items:start;gap:48px}}
@@ -63,16 +62,16 @@ figcaption b{color:var(--ink);font-weight:600}
 /* sections */
 section{padding-block:clamp(56px,8vw,104px) 0}
 .shead{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:3px solid var(--mark);padding-top:14px;margin-bottom:clamp(28px,4vw,44px)}
-.shead h2{font-size:clamp(30px,4vw,44px);font-style:italic;font-weight:400}
+.shead h2{font-size:clamp(30px,4vw,44px)}
 
 /* feature */
 .feature{display:grid;grid-template-columns:1fr;gap:clamp(28px,4vw,56px)}
 @media (min-width:900px){.feature{grid-template-columns:7fr 5fr}}
 .feature > *{min-width:0}
-.feature h3{font-size:clamp(40px,6vw,76px);line-height:.98;letter-spacing:-.015em;margin-block:10px 18px}
+.feature h3{letter-spacing:-.015em;margin-block:10px 18px;font-size:clamp(36px,5vw,64px);line-height:1.02}
 .byline{border-block:1px solid var(--rule);padding-block:10px;margin-bottom:24px;display:flex;flex-wrap:wrap;gap:6px 18px}
 .copy{display:grid;gap:18px;max-width:64ch}
-.copy .first::first-letter{font-family:var(--display);float:left;font-size:4.6em;line-height:.78;padding:6px 10px 0 0;font-weight:500}
+.copy .first::first-letter{float:left;font-size:4.6em;line-height:.78;padding:6px 10px 0 0;font-family:var(--name);font-weight:400}
 .more{display:inline-flex;align-items:center;gap:8px;font-family:var(--label);font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;color:var(--accent);padding-block:4px;border-bottom:1px solid currentColor;justify-self:start}
 .more span{transition:transform .25s}
 .more:hover span{transform:translateX(5px)}
@@ -117,13 +116,13 @@ section{padding-block:clamp(56px,8vw,104px) 0}
 
 /* footer */
 footer{margin-top:clamp(40px,5vw,64px);border-top:3px solid var(--mark)}
-footer .wrap{display:grid;gap:24px;padding-block:32px 48px}
-footer h2{font-size:clamp(44px,8vw,104px);font-style:italic;font-weight:400;line-height:.95}
+footer .wrap{display:grid;gap:24px;padding-block:32px 48px;column-gap:28px}
+footer h2{font-size:clamp(30px,3.4vw,42px);line-height:1}
 .mail{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}
 .mail a{font-family:var(--display);font-size:clamp(22px,3vw,34px);text-decoration:none;border-bottom:1px solid var(--rule);word-break:break-all}
 .mail button{font-family:var(--label);font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:none;color:var(--ink);border:1px solid var(--ink);padding:8px 14px;cursor:pointer;transition:background .2s,color .2s}
 .mail button:hover{background:var(--ink);color:var(--paper)}
-.colophon{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;border-top:1px solid var(--rule);padding-top:16px}
+.colophon{display:flex;justify-content:space-between;gap:12px;border-top:1px solid var(--rule);padding-top:16px;flex-wrap:wrap}
 
 /* scroll reveal: only for blocks that start below the fold */
 .reveal.pending{opacity:0;transform:translateY(28px)}
@@ -132,7 +131,7 @@ footer h2{font-size:clamp(44px,8vw,104px);font-style:italic;font-weight:400;line
 
 /* gallery page */
 .ghead .wrap{padding-block:clamp(36px,6vw,72px) clamp(24px,4vw,40px);display:grid;gap:16px}
-.ghead h1{font-size:clamp(52px,10vw,132px);line-height:.9;letter-spacing:-.03em;font-weight:600}
+.ghead h1{font-size:clamp(52px,10vw,132px);line-height:.9;letter-spacing:-.015em}
 .ghead p{font-size:clamp(19px,2vw,22px);max-width:46ch}
 .gallery{columns:2;column-gap:10px}
 @media (min-width:640px){.gallery{columns:2;column-gap:24px}}
@@ -177,7 +176,7 @@ h3 .katex{font-size:.95em}
 
 /* page transitions (browsers that support them; others just load the page) */
 @view-transition{navigation:auto}
-.mast{view-transition-name:mast}
+
 ::view-transition-old(root){animation:vt-out .2s ease-in both}
 ::view-transition-new(root){animation:vt-in .42s cubic-bezier(.2,.7,.2,1) both}
 @keyframes vt-out{to{opacity:0;transform:translateY(-10px)}}
@@ -220,7 +219,7 @@ h3 .katex{font-size:.95em}
 .dot:hover text,.dot.active text,.dot:focus-visible text{opacity:1}
 .dot:hover .pin,.dot.active .pin,.dot:focus-visible .pin{r:9}
 .dot:hover,.dot:focus-visible,.dot.active{z-index:2}
-.dot.active .pin{fill:var(--red)}
+.dot.active .pin{fill:var(--blue)}
 .atlas.filtered .dot:not(.active) .pin{opacity:.4}
 @keyframes pulse{0%{opacity:.35;transform:scale(.3)}80%,100%{opacity:0;transform:scale(1.2)}}
 .atlas-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;min-height:36px}
@@ -259,10 +258,10 @@ h3 .katex{font-size:.95em}
 .legal-grid{display:grid;grid-template-columns:1fr;gap:36px 56px;max-width:1000px}
 @media (min-width:900px){.legal-grid{grid-template-columns:1fr 1.6fr;align-items:start}.legal-grid section:nth-child(1){grid-area:1/1}.legal-grid section:nth-child(2){grid-area:2/1}.legal-grid section:nth-child(4){grid-area:3/1}.legal-grid section:nth-child(3){grid-area:1/2/5/3}}
 .legal-grid section{display:grid;gap:12px;align-content:start;min-width:0;border-top:1px solid var(--rule);padding-top:14px}
-.legal-grid h2{font-size:clamp(24px,2.4vw,30px);font-style:italic;font-weight:400}
+.legal-grid h2{font-size:clamp(24px,2.4vw,30px)}
 .legal-grid p{font-size:17px;max-width:64ch}
 .legal-grid a{color:var(--accent);text-underline-offset:3px}
-.colophon{flex-wrap:wrap}
+
 .colophon a{text-underline-offset:3px}
 
 /* tabs: one page per section */
@@ -277,16 +276,16 @@ h3 .katex{font-size:.95em}
 .hero-mail:hover{color:var(--ink);border-color:var(--ink)}
 .tab-grid{display:grid;grid-template-columns:1fr;gap:12px}
 @media (min-width:640px){.tab-grid{grid-template-columns:repeat(2,1fr)}}
-@media (min-width:1000px){.tab-grid{grid-template-columns:repeat(3,1fr)}}
-.tab-card{position:relative;display:grid;gap:10px;align-content:start;min-height:132px;padding:20px 48px 22px 20px;border:1px solid var(--rule);text-decoration:none;color:var(--ink);background:var(--paper);transition:border-color .25s,background .25s,transform .35s cubic-bezier(.2,.7,.2,1)}
+@media (min-width:1000px){.tab-grid{grid-template-columns:repeat(6,1fr)}}
+.tab-card{position:relative;display:grid;gap:10px;align-content:start;min-height:132px;padding:20px 48px 22px 20px;border:1px solid var(--rule);text-decoration:none;color:var(--ink);background:var(--paper);transition:border-color .25s,background .25s,transform .35s cubic-bezier(.2,.7,.2,1);border-top:var(--card-top)}
 .tab-card .tab-desc{font-family:var(--display);font-size:22px;line-height:1.25}
 .tab-card .tab-go{position:absolute;right:18px;bottom:18px;font-family:var(--label);font-size:18px;color:var(--accent);transition:transform .25s}
-.tab-card:hover{border-color:var(--ink);background:var(--panel);transform:translateY(-2px)}
+.tab-card:hover{border-color:var(--ink);background:var(--panel);transform:translateY(-2px);border-top:var(--card-top)}
 .tab-card:hover .tab-go{transform:translateX(4px)}
 section.first{padding-top:0}
 .band.first{margin-top:0}
 @media (min-width:640px) and (max-width:999px){.tab-card:last-child{grid-column:1/-1}}
-@media (min-width:1000px){.tab-grid{grid-template-columns:repeat(6,1fr)}.tab-card{grid-column:span 2}.tab-card:nth-child(n+4){grid-column:span 3}}
+@media (min-width:1000px){.tab-card{grid-column:span 2}.tab-card:nth-child(n+4){grid-column:span 3}}
 
 /* home hero with portrait */
 .hero.with-photo .wrap{grid-template-columns:1fr;align-items:center}
@@ -314,26 +313,23 @@ section.first{padding-top:0}
 .atlas:not(.compact) .atlas-toggle{position:absolute;top:0;right:0}
 
 /* footer: smaller title beside the address */
-footer .wrap{column-gap:28px}
-footer h2{font-size:clamp(30px,3.4vw,42px);line-height:1}
+
 @media (min-width:640px){
   footer .wrap:has(> h2){grid-template-columns:auto minmax(0,1fr);align-items:center}
   footer .wrap:has(> h2) > .kicker,footer .wrap:has(> h2) > .colophon{grid-column:1/-1}
 }
 
 /* Name: family name large in Gloock, given name small above it */
-.hero h1.name{font-family:var(--name);font-weight:400;font-size:clamp(68px,10.5vw,136px);line-height:.88;letter-spacing:-.01em}
+.hero h1.name{font-size:clamp(68px,10.5vw,136px);line-height:.88;letter-spacing:-.01em}
 .hero h1.name .given{display:block;font-size:.3em;line-height:1;letter-spacing:.01em;margin:0 0 .3em .05em}
 .hero h1.name .family{display:block}
 
 /* Titles: one family (Gloock, roman only) everywhere */
-h1,h2,h3,.hero h1,.ghead h1,.shead h2,footer h2,.legal-grid h2,.band h2,.feature h3,.story h3,.tipe-row h3,.col h3{font-family:var(--name);font-weight:400;font-style:normal}
-h1 em,h2 em,h3 em,.hero h1 em{font-style:normal;font-weight:400}
-.ghead h1{letter-spacing:-.015em}
-.copy .first::first-letter{font-family:var(--name);font-weight:400}
+
+h1 em,h2 em,h3 em{font-style:normal;font-weight:400}
+
 /* Bordeaux marks (light theme): card tops */
-.tab-card{border-top:var(--card-top)}
-.tab-card:hover{border-top:var(--card-top)}
+
 @media (min-width:761px){.nav a[aria-current="page"]{border-bottom:2px solid var(--mark);padding-bottom:5px}}
 @media (max-width:760px){.nav a[aria-current="page"]{color:var(--mark)}}
-.feature h3{font-size:clamp(36px,5vw,64px);line-height:1.02}
+

@@ -21,9 +21,11 @@ Site statique publié avec GitHub Pages : https://yanisberard-sys.github.io/
 | `menu.js` | Menu des téléphones |
 | `site.js` | Bouton clair/sombre, compteur de visites et date de mise à jour du pied de page (automatique) |
 | `gallery.js` | Carte des photos et visionneuse de la page Photographie |
+| `figures.js` | Ensemble de Julia et figures animées (Accueil, Stages, Projets, TIPE) |
+| `tools/photos.py` | Fabrique les versions web des photos (voir « Ajouter une photo ») |
 | `images/` | Portrait, icônes de l'onglet, image de la page 404 |
 | `images/og/` | Aperçus affichés quand on partage un lien (WhatsApp, mail, réseaux), un par page et par langue |
-| `photos/` | Photos de la galerie |
+| `photos/` | Photos de la galerie (originaux) ; `photos/web/` : versions allégées affichées sur le site |
 | `sitemap.xml`, `robots.txt` | Référencement |
 | `Yanis-Berard/` | Redirection depuis l'ancienne adresse |
 
@@ -41,9 +43,10 @@ Les formules s'écrivent en LaTeX entre dollars, directement dans le texte : `$\
 
 ## Ajouter une photo
 
-1. Déposer la photo (largeur ~2000 px) dans `photos/`.
-2. Dans `photography.html` et `fr/photography.html`, copier une ligne `<figure id="p…" … data-place="…">` et changer l'`id` (numéro suivant), le fichier, la description (`alt`), la légende et le lieu (`data-place`).
-3. Pour un nouveau lieu, me demander : il faut ajouter un point sur la carte.
+1. Déposer la photo (largeur ~2000 px, en .jpg) dans `photos/`, avec un nom sans espaces ni accents.
+2. Lancer `python3 tools/photos.py` depuis la racine du site (il faut Pillow : `pip install pillow`). Le script crée dans `photos/web/` une version 800 px pour la galerie et une version 1600 px pour la visionneuse, en WebP. Les photos déjà converties ne sont pas refaites.
+3. Dans `photography.html` et `fr/photography.html`, copier une ligne `<figure id="p…" … data-place="…">` et changer l'`id` (numéro suivant), les trois chemins `photos/web/nom-800.webp` / `nom-1600.webp` (dans `src`, `srcset` et `data-full`), la description (`alt`), `width` et `height` (taille de la photo d'origine), la légende et le lieu (`data-place`).
+4. Pour un nouveau lieu, me demander : il faut ajouter un point sur la carte.
 
 ## Statistiques de visite
 
