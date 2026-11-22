@@ -6,7 +6,8 @@ Site statique publié avec GitHub Pages : https://yanisberard-sys.github.io/
 
 | Dossier / fichier | Contenu |
 |---|---|
-| `index.html` | Page d'accueil (texte, figures animées) |
+| `index.html` | Accueil : présentation, « En ce moment », lien vers le CV, accès aux onglets |
+| `internships.html`, `projects.html`, `tipe.html`, `teaching.html` | Onglets Stages, Projets, TIPE, Enseignement |
 | `photography.html` | Page Photography |
 | `fr/` | Version française des deux pages (`fr/index.html`, `fr/photography.html`) |
 | `style.css` | Mise en forme commune aux deux pages |

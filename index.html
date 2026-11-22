@@ -27,7 +27,7 @@
 <script defer src="vendor/katex/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false}],throwOnError:false})"></script>
 <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
 <script data-goatcounter="https://yanisberard.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
-<link rel="stylesheet" href="style.css?v=11">
+<link rel="stylesheet" href="style.css?v=17">
 </head>
 <body>
 
@@ -36,13 +36,13 @@
 
 <header class="mast">
   <div class="wrap">
-    <a class="brand" href="#top">Y. Bérard</a>
+    <a class="brand" href="index.html">Y. Bérard</a>
     <nav class="nav" id="nav" aria-label="Sections">
-      <a href="#research">Internships</a>
-      <a href="#projects">Projects</a>
-      <a href="#tipe">TIPE</a>
-      <a href="#teaching">Teaching</a>
-      <a href="#about">About</a>
+      <a href="index.html" aria-current="page">Home</a>
+      <a href="internships.html">Internships</a>
+      <a href="projects.html">Projects</a>
+      <a href="tipe.html">TIPE</a>
+      <a href="teaching.html">Teaching</a>
       <a href="photography.html">Photography</a>
     </nav>
     <div class="lang"><a href="./" hreflang="en" lang="en" title="English" aria-label="English" aria-current="true"><svg viewBox="0 0 60 30" aria-hidden="true"><clipPath id="ukc"><path d="M30,15h30v15zv15h-30zh-30v-15zv-15h30z"/></clipPath><rect width="60" height="30" fill="#012169"/><path d="M0,0L60,30M60,0L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0L60,30M60,0L0,30" clip-path="url(#ukc)" stroke="#C8102E" stroke-width="4"/><path d="M30,0v30M0,15h60" stroke="#fff" stroke-width="10"/><path d="M30,0v30M0,15h60" stroke="#C8102E" stroke-width="6"/></svg></a><a href="fr/" hreflang="fr" lang="fr" title="Français" aria-label="Français"><svg viewBox="0 0 3 2" aria-hidden="true"><rect width="1" height="2" fill="#0055A4"/><rect x="1" width="1" height="2" fill="#fff"/><rect x="2" width="1" height="2" fill="#EF4135"/></svg></a></div>
@@ -57,6 +57,7 @@
     <div class="wrap">
       <h1 class="load">Yanis <em>Bérard</em></h1>
       <div class="dek load d2"><p>Welcome to my webpage! I am currently a student at the ENS Rennes. I did my prep school at the Lycée du Parc (Lyon). I enjoy algebraic geometry and topology, group theory and many other fields.</p><p>I also climb, travel, play chess, and like photography!</p></div>
+      <div class="hero-links load d2"><a class="btn" href="cv/CV_YB_en.pdf?v=2">Download my CV <span>→</span></a><a class="hero-mail" href="mailto:yanis.berard@ens-rennes.fr">yanis.berard@ens-rennes.fr</a></div>
     </div>
   </div>
 
@@ -69,191 +70,17 @@
     </div>
   </div>
 
-  <section id="research">
-    <div class="wrap">
-      <div class="shead reveal"><h2>Internships</h2><span class="meta">Internship · Master's level</span></div>
-      <article class="feature">
-        <div class="reveal">
-          <span class="kicker">Complex algebraic geometry</span>
-          <h3>Local holomorphy and global algebraicity: the road to GAGA</h3>
-          <div class="byline meta"><span>Institut Camille Jordan, Lyon</span><span>May – June 2026</span><span>Supervised by Jean-Yves Welschinger</span></div>
-          <div class="copy">
-            <p class="first">My first research internship followed a single thread through the theory of compact Riemann surfaces: how an object defined by local, analytic data turns out to be globally algebraic.</p>
-            <p>The report starts from covering theory and the Riemann–Hurwitz formula, builds sheaf cohomology, and proves the Riemann–Roch theorem and Serre duality. These give enough meromorphic functions to embed every compact Riemann surface in projective space.</p>
-            <p>Chow's theorem then shows that closed analytic subsets of projective space are algebraic. GAGA for curves completes the picture: on a projective curve, analytic and algebraic coherent sheaves have the same cohomology.</p>
-            <a class="more" href="papers/gaga.pdf">Read the report <span>→</span></a>
-          </div>
-        </div>
-        <figure class="side reveal">
-          <canvas data-fig="sqrt" aria-label="Model of the Riemann surface of the square root; a point goes around the branch point as you scroll"></canvas>
-          <figcaption><b>The Riemann surface of <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.04em;vertical-align:-0.2397em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8003em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord" style="padding-left:0.833em;"><span class="mord mathnormal" style="margin-right:0.04398em;">z</span></span></span><span style="top:-2.7603em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg xmlns="http://www.w3.org/2000/svg" width="400em" height="1.08em" viewBox="0 0 400000 1080" preserveAspectRatio="xMinYMin slice"><path d="M95,702
-c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
-c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54
-c44.2,-33.3,65.8,-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10
-s173,378,173,378c0.7,0,35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429
-c69,-144,104.5,-217.7,106.5,-221
-l0 -0
-c5.3,-9.3,12,-14,20,-14
-H400000v40H845.2724
-s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
-c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
-M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2397em;"><span></span></span></span></span></span></span></span></span>.</b> Scroll through the article: the point goes once around the branch point and lands on the other sheet. It needs two full turns to come back to where it started.</figcaption>
-        </figure>
-      </article>
+  <section id="now">
+    <div class="wrap now">
+      <div class="shead reveal"><h2>What I am doing now</h2><span class="meta">Currently</span></div>
+      <ul class="now-list reveal"><li>First-year master’s in mathematics at the Université de Rennes, within the ENS Rennes magistère.</li><li>Preparing a research internship in enumerative geometry for spring 2027.</li><li>Running the ENS Rennes climbing club.</li></ul>
     </div>
   </section>
 
-  <section id="projects">
+  <section id="site">
     <div class="wrap">
-      <div class="shead reveal"><h2>Projects</h2><span class="meta">Expository texts</span></div>
-      <div class="stories">
-        <article class="story wide reveal">
-          <canvas data-fig="bezout" aria-label="An ellipse and a moving cubic, with their real intersection points marked"></canvas>
-          <div class="row"><span class="kicker">Algebraic curves · 2026</span><span class="meta">Three-hour talk</span></div>
-          <h3>An elementary proof of Bézout's theorem</h3>
-          <p>Intersections of plane projective curves, local intersection multiplicities, explicit examples and the geometric meaning of the count. In the figure, the real intersections of a conic and a cubic come and go, while Bézout counts six over the complex numbers.</p>
-          <a class="more" href="papers/bezout.pdf">Read the text <span>→</span></a>
-        </article>
-        <article class="story reveal">
-          <canvas data-fig="kakeya" aria-label="A needle of length 4 turning inside a deltoid"></canvas>
-          <span class="kicker">Harmonic analysis</span>
-          <h3>The Kakeya conjecture</h3>
-          <p>A good bound for the Kakeya problem over finite fields and local fields, and a discussion of the problem over the reals. Pictured: Kakeya's needle, turning inside a deltoid.</p>
-          <a class="more" href="papers/kakeya.pdf">Read the paper <span>→</span></a>
-        </article>
-        <article class="story reveal">
-          <canvas data-fig="ico" aria-label="Rotating icosahedron"></canvas>
-          <span class="kicker">Group theory</span>
-          <h3>No simple groups below 60</h3>
-          <p>The only simple groups of order less than 60 are the cyclic groups of prime order. The bound is sharp: the rotation group of the icosahedron is <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8414em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathfrak">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">5</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>, of order 60.</p>
-          <a class="more" href="papers/groupes-simples-60.pdf">Read the proof <span>→</span></a>
-        </article>
-        <article class="story reveal">
-          <canvas data-fig="dual" aria-label="Subgroup lattice of C4 × C2, with a subgroup and its dual highlighted in red"></canvas>
-          <span class="kicker">Group theory</span>
-          <h3>Duality for finite abelian groups</h3>
-          <p>If the order of a finite abelian group is not a perfect square, it has an even number of subgroups. Pictured: the eight subgroups of <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">⟨</span><span class="mord mathnormal">a</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∣</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace"> </span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">ab</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">ba</span><span class="mclose">⟩</span></span></span></span>. Duality pairs each one, in red, with its orthogonal.</p>
-          <a class="more" href="papers/dualite.pdf">Read the proof <span>→</span></a>
-        </article>
-        <article class="story reveal">
-          <canvas data-fig="euler" aria-label="Moving triangle with its centroid, orthocentre, circumcentre and Euler line"></canvas>
-          <span class="kicker">Euclidean geometry · 2022</span>
-          <h3>Recovering a triangle from its centres</h3>
-          <p>Given special points of a triangle (centroid, orthocentre, circumcentre…), can one find its three vertices? An early MATh.en.JEANS report.</p>
-          <a class="more" href="papers/maths-en-jeans.pdf">Read the report <span>→</span></a>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <div class="band" id="tipe">
-    <div class="wrap">
-      <div class="tipe-head reveal"><span class="kicker">TIPE · Classes préparatoires</span><h2>Three TIPE projects</h2></div>
-
-      <article class="tipe-row">
-        <figure class="reveal">
-          <canvas data-fig="vote" aria-label="Simulated elections with three candidates and the majority graph between them"></canvas>
-          <figcaption>Fifteen random ballots on three candidates. Each arrow points from the winner of a head-to-head duel to the loser. When the arrows form a cycle, there is no Condorcet winner.</figcaption>
-        </figure>
-        <div class="reveal">
-          <span class="kicker">2022 – 2023 · Lycée La Martinière Monplaisir</span>
-          <h3>Elections: the rules of the democratic game</h3>
-          <p>Which voting system should a society use? Arrow lists a few natural axioms and shows that, with three candidates or more, no system satisfies all of them. The project proves the theorem with decisive coalitions, then moves to computational social choice: plurality, Borda and Condorcet winners, and how often they disagree when ballots are drawn at random.</p>
-          <a class="more" href="tipe/elections.pdf">See the slides <span>→</span></a>
-        </div>
-      </article>
-
-      <article class="tipe-row flip">
-        <figure class="reveal">
-          <canvas data-fig="tree" aria-label="Random walk on the Cayley graph of the free group on two generators"></canvas>
-          <figcaption>A random walk on the Cayley graph of the free group <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">F</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>. Like the walk on <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8491em;"></span><span class="mord"><span class="mord mathbb">Z</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8491em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">d</span></span></span></span></span></span></span></span></span></span></span> for <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8304em;vertical-align:-0.136em;"></span><span class="mord mathnormal">d</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">3</span></span></span></span>, it is transient: it drifts off and does not come back.</figcaption>
-        </figure>
-        <div class="reveal">
-          <span class="kicker">2023 – 2024 · Lycée La Martinière Monplaisir</span>
-          <h3>Heads or tails: paradoxes and random walks</h3>
-          <p>Alice and Bob toss a coin and each bets on a pattern. Computing mean waiting times explains why some bets win more often than intuition says. The project then turns to random walks on <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8491em;"></span><span class="mord"><span class="mord mathbb">Z</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8491em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">d</span></span></span></span></span></span></span></span></span></span></span> and Pólya's theorem: the simple random walk comes back to its starting point almost surely if and only if <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8304em;vertical-align:-0.136em;"></span><span class="mord mathnormal">d</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2</span></span></span></span>.</p>
-          <a class="more" href="tipe/pile-ou-face.pdf">See the slides <span>→</span></a>
-        </div>
-      </article>
-
-      <article class="tipe-row">
-        <figure class="reveal">
-          <canvas data-fig="game" aria-label="A generation game played on the dihedral group D3, shown on its subgroup lattice"></canvas>
-          <figcaption>A game on the dihedral group <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>. The subgroup generated by the bag, outlined, climbs the lattice until it is the whole group.</figcaption>
-        </figure>
-        <div class="reveal">
-          <span class="kicker">2024 – 2025 · Lycée du Parc</span>
-          <h3>Lattices of finite groups and a game</h3>
-          <p>Two players, Abel and Burnside, take turns putting elements of a finite group into a bag. Whoever makes the bag generate the whole group loses. The subgroup lattice and the Frattini subgroup decide who has a winning strategy: the project settles cyclic groups, groups such as <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0361em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord"><span class="mord mathrm">GL</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathbb">F</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">p</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>, and finite abelian groups.</p>
-          <a class="more" href="tipe/treillis.pdf">Read the report <span>→</span></a>
-        </div>
-      </article>
-    </div>
-  </div>
-
-  <section id="teaching">
-    <div class="wrap">
-      <div class="shead reveal"><h2>Teaching &amp; outreach</h2><span class="meta">Since 2021</span></div>
-      <div class="cols">
-        <div class="col reveal">
-          <span class="meta">2021 – today</span>
-          <h3>Private tutoring</h3>
-          <p>Mathematics and physics lessons for students from middle school to classes préparatoires, including preparation for the Grandes Écoles entrance exams.</p>
-        </div>
-        <div class="col reveal">
-          <span class="meta">Outreach</span>
-          <h3>Rencontres des Jeunes Mathématiciennes et Informaticiennes</h3>
-          <p>Member of the organising team, and designer of one of the workshops.</p>
-        </div>
-        <div class="col reveal">
-          <span class="meta">2023 · Saint-Étienne</span>
-          <h3>Voting theory at the GATE lab</h3>
-          <p>A first taste of research: social choice and numerical simulations around Arrow's impossibility theorem.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="photography">
-    <div class="wrap">
-      <div class="shead reveal"><h2>Photography</h2><span class="meta">From Paris to the Andes</span></div>
-      <div class="shots reveal">
-        <a href="photography.html#p1"><img src="photos/paris-rivoli.jpg" alt="Hôtel Regina in Paris at golden hour, with police vans in the street" loading="lazy"><span>Paris</span></a>
-        <a href="photography.html#p7"><img src="photos/uyuni.jpg" alt="Cacti at sunrise above a salt flat" loading="lazy"><span>Salar de Uyuni, Bolivia</span></a>
-        <a href="photography.html#p9"><img src="photos/escalade-dws.jpg" alt="A climber on a sea stack" loading="lazy"><span>Playa de Arnía, Spain</span></a>
-      </div>
-      <div class="shots-foot"><a class="more" href="photography.html">All photographs <span>→</span></a></div>
-    </div>
-  </section>
-
-  <section id="about">
-    <div class="wrap">
-      <div class="shead reveal"><h2>About</h2><a class="more" href="cv/CV_YB_en.pdf?v=2">Download my CV <span>→</span></a></div>
-      <div class="about">
-        <div class="photo portrait reveal">
-          <img src="images/portrait.jpg" alt="Portrait of Yanis Bérard" onerror="this.remove()">
-        </div>
-        <div class="bio reveal">
-          <p class="lede">I grew up in Saint-Étienne, went through classes préparatoires in Lyon, and entered ENS Rennes in 2025.</p>
-          <p>Before mathematics took over, I worked as a mechanic at NTD France and on a market-gardening farm. In climbing, I was junior champion of the Loire.</p>
-          <div class="facts">
-            <div><span class="kicker">Languages</span>French (native), English (C1), Portuguese (B2), Spanish (B1), Italian (B1)</div>
-            <div><span class="kicker">Tools</span>LaTeX, Python, OCaml</div>
-          </div>
-        </div>
-        <dl class="cv reveal">
-          <dt>2026 –</dt><dd>Master's in Mathematics, first year<small>Université de Rennes</small></dd>
-          <dt>2025 –</dt><dd>Normalien, Magistère de Mathématiques<small>ENS Rennes</small></dd>
-          <dt>2025 – 26</dt><dd>Licence de Mathématiques, third year<small>Université de Rennes</small></dd>
-          <dt>2024 – 25</dt><dd>CPGE MP*<small>Lycée du Parc, Lyon</small></dd>
-          <dt>2022 – 24</dt><dd>CPGE MPSI, then MP*<small>Lycée La Martinière Monplaisir, Lyon</small></dd>
-          <dt>2022</dt><dd>Baccalauréat, mention Très Bien<small>Lycée Honoré d'Urfé, Saint-Étienne</small></dd>
-        </dl>
-      </div>
-      <figure class="reveal" style="margin:0">
-        <div class="photo wide"><img src="photos/fontainebleau.jpg" alt="Sunset over the forest, with mist rising between the trees" loading="lazy"></div>
-        <figcaption>Fontainebleau, France</figcaption>
-      </figure>
+      <div class="shead reveal"><h2>Explore</h2><span class="meta">On this site</span></div>
+      <div class="tab-grid"><a class="tab-card reveal" href="internships.html"><span class="kicker">Internships</span><span class="tab-desc">My first research internship, on the road to GAGA.</span><span class="tab-go" aria-hidden="true">→</span></a><a class="tab-card reveal" href="projects.html"><span class="kicker">Projects</span><span class="tab-desc">Expository texts: Bézout, Kakeya, finite groups.</span><span class="tab-go" aria-hidden="true">→</span></a><a class="tab-card reveal" href="tipe.html"><span class="kicker">TIPE</span><span class="tab-desc">Elections, random walks, lattices of finite groups.</span><span class="tab-go" aria-hidden="true">→</span></a><a class="tab-card reveal" href="teaching.html"><span class="kicker">Teaching</span><span class="tab-desc">Tutoring and outreach.</span><span class="tab-go" aria-hidden="true">→</span></a><a class="tab-card reveal" href="photography.html"><span class="kicker">Photography</span><span class="tab-desc">From Paris to the Andes.</span><span class="tab-go" aria-hidden="true">→</span></a></div>
     </div>
   </section>
 </main>
@@ -266,7 +93,7 @@ M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
       <a id="mail" href="mailto:yanis.berard@ens-rennes.fr">yanis.berard@ens-rennes.fr</a>
       <button type="button" id="copy">Copy address</button>
     </div>
-    <div class="colophon meta"><span>© 2026 Yanis Bérard</span><span class="visits" hidden></span><a href="legal.html" class="legal-link">Legal notice</a><span>Last updated October 2026</span></div>
+    <div class="colophon meta"><span>© 2026 Yanis Bérard</span><span class="visits" hidden></span><a href="legal.html" class="legal-link">Legal notice</a><span>Last updated November 2026</span></div>
   </div>
 </footer>
 
@@ -296,7 +123,7 @@ M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
   });
 
   /* ---------- Julia set (hero, WebGL) ---------- */
-  const phase = document.getElementById('phase');
+  const phase = document.getElementById('phase') || document.createElement('canvas');
   const gl = phase.getContext('webgl', {antialias: false});
   const FS = `precision highp float;
 uniform vec2 res; uniform vec2 c; uniform float shift; uniform float scale;
@@ -323,7 +150,7 @@ void main(){ gl_FragColor = vec4((shade(gl_FragCoord.xy + vec2(.25)) + shade(gl_
     const loc = gl.getAttribLocation(pr, 'p'); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
     ['res','c','shift','scale'].forEach(k => U[k] = gl.getUniformLocation(pr, k));
   }
-  const inset = document.getElementById('inset'), ictx = inset.getContext('2d'), MB = {x0: -2.2, x1: .7, y0: -1.15, y1: 1.15}, cval = document.getElementById('cval');
+  const inset = document.getElementById('inset') || document.createElement('canvas'), ictx = inset.getContext('2d'), MB = {x0: -2.2, x1: .7, y0: -1.15, y1: 1.15}, cval = document.getElementById('cval');
   let mbImg = null, jTarget = null, cJ = [.7885 * Math.cos(1.9), .7885 * Math.sin(1.9)];
   const fitC = el => { const r = el.getBoundingClientRect(), w = Math.round(r.width * DPR), h = Math.round(r.height * DPR); if (w && (el.width !== w || el.height !== h)) { el.width = w; el.height = h; return true; } return false; };
   function insetBase() {
@@ -596,7 +423,7 @@ void main(){ gl_FragColor = vec4((shade(gl_FragCoord.xy + vec2(.25)) + shade(gl_
   function size(c) { const r = c.el.getBoundingClientRect(), W = Math.round(r.width * DPR), H = Math.round(r.height * DPR); if (W && (c.el.width !== W || c.el.height !== H)) { c.el.width = W; c.el.height = H; } }
   let T = 0;
   function drawAll(force) {
-    if (force || visible.has(phase)) drawPhase(T);
+    if (phase.isConnected && (force || visible.has(phase))) drawPhase(T);
     canv.forEach(c => { if (!force && !visible.has(c.el)) return; size(c); c.ctx.clearRect(0, 0, c.el.width, c.el.height); c.fn(c.ctx, c.el.width, c.el.height, c.t, c.st); });
   }
   if (reduce) { T = 4; canv.forEach(c => c.t = 4); drawAll(true); addEventListener('resize', () => drawAll(true)); let pend = 0; addEventListener('scroll', () => { if (!pend) pend = requestAnimationFrame(() => { pend = 0; drawAll(true); }); }, {passive: true}); }

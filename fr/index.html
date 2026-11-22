@@ -27,7 +27,7 @@
 <script defer src="../vendor/katex/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false}],throwOnError:false})"></script>
 <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
 <script data-goatcounter="https://yanisberard.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
-<link rel="stylesheet" href="../style.css?v=11">
+<link rel="stylesheet" href="../style.css?v=17">
 </head>
 <body>
 
@@ -36,13 +36,13 @@
 
 <header class="mast">
   <div class="wrap">
-    <a class="brand" href="#top">Y. Bérard</a>
+    <a class="brand" href="index.html">Y. Bérard</a>
     <nav class="nav" id="nav" aria-label="Sections">
-      <a href="#research">Stages</a>
-      <a href="#projects">Projets</a>
-      <a href="#tipe">TIPE</a>
-      <a href="#teaching">Enseignement</a>
-      <a href="#about">À propos</a>
+      <a href="index.html" aria-current="page">Accueil</a>
+      <a href="internships.html">Stages</a>
+      <a href="projects.html">Projets</a>
+      <a href="tipe.html">TIPE</a>
+      <a href="teaching.html">Enseignement</a>
       <a href="photography.html">Photographie</a>
     </nav>
     <div class="lang"><a href="../" hreflang="en" lang="en" title="English" aria-label="English"><svg viewBox="0 0 60 30" aria-hidden="true"><clipPath id="ukc"><path d="M30,15h30v15zv15h-30zh-30v-15zv-15h30z"/></clipPath><rect width="60" height="30" fill="#012169"/><path d="M0,0L60,30M60,0L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0L60,30M60,0L0,30" clip-path="url(#ukc)" stroke="#C8102E" stroke-width="4"/><path d="M30,0v30M0,15h60" stroke="#fff" stroke-width="10"/><path d="M30,0v30M0,15h60" stroke="#C8102E" stroke-width="6"/></svg></a><a href="./" hreflang="fr" lang="fr" title="Français" aria-label="Français" aria-current="true"><svg viewBox="0 0 3 2" aria-hidden="true"><rect width="1" height="2" fill="#0055A4"/><rect x="1" width="1" height="2" fill="#fff"/><rect x="2" width="1" height="2" fill="#EF4135"/></svg></a></div>
@@ -57,6 +57,7 @@
     <div class="wrap">
       <h1 class="load">Yanis <em>Bérard</em></h1>
       <div class="dek load d2"><p>Bienvenue ! Je suis actuellement élève en deuxième année à l’ENS Rennes en mathématiques. J’apprécie la géométrie algébrique, la topologie, la théorie des groupes et bien d’autres domaines. À côté de cela, je pratique l’escalade, fais de la photographie et voyage.</p></div>
+      <div class="hero-links load d2"><a class="btn" href="../cv/CV_YB_fr.pdf?v=2">Télécharger mon CV <span>→</span></a><a class="hero-mail" href="mailto:yanis.berard@ens-rennes.fr">yanis.berard@ens-rennes.fr</a></div>
     </div>
   </div>
 
@@ -69,180 +70,17 @@
     </div>
   </div>
 
-  <section id="research">
-    <div class="wrap">
-      <div class="shead reveal"><h2>Stages</h2><span class="meta">Stage de première année</span></div>
-      <article class="feature">
-        <div class="reveal">
-          <span class="kicker">Géométrie algébrique complexe</span>
-          <h3>Un cas particulier du théorème GAGA de Serre</h3>
-          <div class="byline meta"><span>Institut Camille Jordan, Lyon</span><span>Mai – juin 2026</span><span>Encadré par Jean-Yves Welschinger</span></div>
-          <div class="copy">
-            <p class="first">L’idée de ce stage était d’étudier les surfaces de Riemann, leurs plongements, et la régularité des fonctions holomorphes.</p>
-            <p>Le rapport commence par définir l’objet, en passant par la théorie des revêtements et la formule de Riemann–Hurwitz. Ensuite, il construit la cohomologie des faisceaux, puis démontre le théorème de Riemann–Roch et la dualité de Serre. De là, il déduit que toute surface de Riemann compacte peut être plongée dans un espace projectif.</p>
-            <p>Puis, j’énonce le théorème de Chow qui montre que les fermés analytiques de l’espace projectif sont algébriques. Enfin, je démontre GAGA dans le cas particulier des surfaces de Riemann compactes et du faisceau des fonctions régulières.</p>
-            <a class="more" href="../papers/gaga.pdf">Lire le mémoire <span>→</span></a>
-          </div>
-        </div>
-        <figure class="side reveal">
-          <canvas data-fig="sqrt" aria-label="Modèle de la surface de Riemann de la racine carrée ; un point tourne autour du point de ramification pendant le défilement"></canvas>
-          <figcaption><b>Un revêtement de degré 2 du disque unité.</b> Faites défiler l’article : le point fait une fois le tour du point de ramification et arrive sur l’autre feuillet. Il lui faut deux tours complets pour revenir à son point de départ.</figcaption>
-        </figure>
-      </article>
+  <section id="now">
+    <div class="wrap now">
+      <div class="shead reveal"><h2>Ce que je fais</h2><span class="meta">En ce moment</span></div>
+      <ul class="now-list reveal"><li>Master 1 de mathématiques à l’Université de Rennes, dans le cadre du magistère de l’ENS Rennes.</li><li>Je prépare un stage de recherche en géométrie énumérative pour le printemps 2027.</li><li>Je m’occupe du club d’escalade de l’ENS Rennes.</li></ul>
     </div>
   </section>
 
-  <section id="projects">
+  <section id="site">
     <div class="wrap">
-      <div class="shead reveal"><h2>Projets</h2><span class="meta">Textes d’exposition</span></div>
-      <div class="stories">
-        <article class="story wide reveal">
-          <canvas data-fig="bezout" aria-label="Une ellipse et une cubique mobile, avec leurs points d’intersection réels"></canvas>
-          <div class="row"><span class="kicker">Courbes algébriques · 2026</span><span class="meta">Exposé de trois heures</span></div>
-          <h3>Une preuve élémentaire du théorème de Bézout</h3>
-          <p>Intersections de courbes projectives planes, multiplicités d’intersection locales, exemples explicites et sens géométrique du décompte. La figure dénombre les intersections réelles entre une conique et une cubique (<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6889em;"></span><span class="mord mathbb">R</span></span></span></span> n’est pas algébriquement clos).</p>
-          <a class="more" href="../papers/bezout.pdf">Lire le texte <span>→</span></a>
-        </article>
-        <article class="story reveal">
-          <canvas data-fig="kakeya" aria-label="Une aiguille de longueur 4 qui tourne dans une deltoïde"></canvas>
-          <span class="kicker">Analyse harmonique</span>
-          <h3>La conjecture de Kakeya</h3>
-          <p>Une bonne borne pour le problème de Kakeya sur les corps finis et les corps locaux, et une discussion du problème sur les réels. En image : l’aiguille de Kakeya, qui tourne dans une deltoïde.</p>
-          <a class="more" href="../papers/kakeya.pdf">Lire l’article <span>→</span></a>
-        </article>
-        <article class="story reveal">
-          <canvas data-fig="ico" aria-label="Icosaèdre en rotation"></canvas>
-          <span class="kicker">Théorie des groupes</span>
-          <h3>Classification des groupes simples d’ordre <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">60</span></span></span></span></h3>
-          <p>Les seuls groupes simples d’ordre inférieur à 60 sont les groupes cycliques d’ordre premier. La borne est optimale : le groupe des rotations de l’icosaèdre est <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8414em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathfrak">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">5</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>, d’ordre 60.</p>
-          <a class="more" href="../papers/groupes-simples-60.pdf">Lire la preuve <span>→</span></a>
-        </article>
-        <article class="story reveal">
-          <canvas data-fig="dual" aria-label="Treillis des sous-groupes de C4 × C2, avec un sous-groupe et son dual en rouge"></canvas>
-          <span class="kicker">Théorie des groupes</span>
-          <h3>Dualité des groupes abéliens finis</h3>
-          <p>Si l’ordre d’un groupe abélien fini n’est pas un carré parfait, il a un nombre pair de sous-groupes. En image : les huit sous-groupes de <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">⟨</span><span class="mord mathnormal">a</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∣</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace"> </span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">ab</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">ba</span><span class="mclose">⟩</span></span></span></span>. La dualité associe chacun, en rouge, à son orthogonal.</p>
-          <a class="more" href="../papers/dualite.pdf">Lire la preuve <span>→</span></a>
-        </article>
-        <article class="story reveal">
-          <canvas data-fig="euler" aria-label="Triangle mobile avec son centre de gravité, son orthocentre, le centre du cercle circonscrit et la droite d’Euler"></canvas>
-          <span class="kicker">Géométrie euclidienne · 2022</span>
-          <h3>Retrouver un triangle à partir de ses centres</h3>
-          <p>Connaissant des points remarquables d’un triangle (centre de gravité, orthocentre, centre du cercle circonscrit…), peut-on retrouver ses trois sommets ? Un ancien rapport MATh.en.JEANS.</p>
-          <a class="more" href="../papers/maths-en-jeans.pdf">Lire le rapport <span>→</span></a>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <div class="band" id="tipe">
-    <div class="wrap">
-      <div class="tipe-head reveal"><span class="kicker">TIPE · Classes préparatoires</span><h2>Trois TIPE</h2></div>
-
-      <article class="tipe-row">
-        <figure class="reveal">
-          <canvas data-fig="vote" aria-label="Élections simulées entre trois candidats, avec le graphe de majorité"></canvas>
-          <figcaption>Quinze bulletins tirés au hasard pour trois candidats. Chaque flèche va du vainqueur d’un duel au perdant. Quand les flèches forment un cycle, il n’y a pas de vainqueur de Condorcet.</figcaption>
-        </figure>
-        <div class="reveal">
-          <span class="kicker">2022 – 2023 · Lycée La Martinière Monplaisir</span>
-          <h3>Élections, les règles du jeu démocratique</h3>
-          <p>Quel système de vote choisir ? Arrow pose quelques axiomes naturels et montre qu’à partir de trois candidats, aucun système ne les vérifie tous. Le TIPE démontre le théorème grâce aux quorums, puis passe au choix social computationnel : vainqueurs de la pluralité, de Borda et de Condorcet, et fréquence de leurs désaccords quand les bulletins sont tirés au hasard.</p>
-          <a class="more" href="../tipe/elections.pdf">Voir les diapositives <span>→</span></a>
-        </div>
-      </article>
-
-      <article class="tipe-row flip">
-        <figure class="reveal">
-          <canvas data-fig="tree" aria-label="Marche aléatoire sur le graphe de Cayley du groupe libre à deux générateurs"></canvas>
-          <figcaption>Une marche aléatoire sur le graphe de Cayley du groupe libre <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">F</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>. Comme la marche sur <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8491em;"></span><span class="mord"><span class="mord mathbb">Z</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8491em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">d</span></span></span></span></span></span></span></span></span></span></span> pour <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8304em;vertical-align:-0.136em;"></span><span class="mord mathnormal">d</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">3</span></span></span></span>, elle est transiente : elle s’éloigne et ne revient pas.</figcaption>
-        </figure>
-        <div class="reveal">
-          <span class="kicker">2023 – 2024 · Lycée La Martinière Monplaisir</span>
-          <h3>Pile ou face : entre paradoxes et marches aléatoires</h3>
-          <p>Alice et Bob jouent à pile ou face et parient chacun sur un motif. Le calcul des temps d’attente moyens explique pourquoi certains paris gagnent plus souvent que l’intuition ne le dit. Le TIPE passe ensuite aux marches aléatoires sur <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8491em;"></span><span class="mord"><span class="mord mathbb">Z</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8491em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">d</span></span></span></span></span></span></span></span></span></span></span> et au théorème de Pólya : la marche aléatoire simple revient presque sûrement à son point de départ si et seulement si <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8304em;vertical-align:-0.136em;"></span><span class="mord mathnormal">d</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2</span></span></span></span>.</p>
-          <a class="more" href="../tipe/pile-ou-face.pdf">Voir les diapositives <span>→</span></a>
-        </div>
-      </article>
-
-      <article class="tipe-row">
-        <figure class="reveal">
-          <canvas data-fig="game" aria-label="Un jeu d’engendrement sur le groupe diédral D3, suivi sur son treillis de sous-groupes"></canvas>
-          <figcaption>Une partie sur le groupe diédral <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>. Le sous-groupe engendré par le sac, en surbrillance, monte dans le treillis jusqu’à être le groupe entier.</figcaption>
-        </figure>
-        <div class="reveal">
-          <span class="kicker">2024 – 2025 · Lycée du Parc</span>
-          <h3>Treillis de groupes finis et applications</h3>
-          <p>Deux joueurs, Abel et Burnside, placent tour à tour des éléments d’un groupe fini dans un sac. Celui qui fait engendrer le groupe entier par le sac perd. Le treillis des sous-groupes donne une image de la stratégie gagnante : différents types de groupes sont étudiés.</p>
-          <a class="more" href="../tipe/treillis.pdf">Lire le rapport <span>→</span></a>
-        </div>
-      </article>
-    </div>
-  </div>
-
-  <section id="teaching">
-    <div class="wrap">
-      <div class="shead reveal"><h2>Enseignement &amp; médiation</h2><span class="meta">Depuis 2021</span></div>
-      <div class="cols">
-        <div class="col reveal">
-          <span class="meta">2021 – aujourd’hui</span>
-          <h3>Cours particuliers</h3>
-          <p>Cours de mathématiques et de physique, du collège aux classes préparatoires, notamment la préparation aux concours des Grandes Écoles.</p>
-        </div>
-        <div class="col reveal">
-          <span class="meta">Médiation scientifique</span>
-          <h3>Rencontres des Jeunes Mathématiciennes et Informaticiennes</h3>
-          <p>Membre de l’équipe d’organisation et concepteur d’un des ateliers.</p>
-        </div>
-        <div class="col reveal">
-          <span class="meta">2023 · Saint-Étienne</span>
-          <h3>Théorie du vote au laboratoire GATE</h3>
-          <p>Un premier contact avec la recherche : choix social et simulations numériques autour du théorème d’impossibilité d’Arrow.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="photography">
-    <div class="wrap">
-      <div class="shead reveal"><h2>Photographie</h2><span class="meta">De Paris aux Andes</span></div>
-      <div class="shots reveal">
-        <a href="photography.html#p1"><img src="../photos/paris-rivoli.jpg" alt="L’hôtel Regina, le 17 octobre 2026" loading="lazy"><span>Paris</span></a>
-        <a href="photography.html#p7"><img src="../photos/uyuni.jpg" alt="Des cactus au lever du soleil au-dessus d’un salar" loading="lazy"><span>Salar d’Uyuni, Bolivie</span></a>
-        <a href="photography.html#p9"><img src="../photos/escalade-dws.jpg" alt="Peu avant l’éclipse" loading="lazy"><span>Playa de Arnía, Espagne</span></a>
-      </div>
-      <div class="shots-foot"><a class="more" href="photography.html">Toutes les photos <span>→</span></a></div>
-    </div>
-  </section>
-
-  <section id="about">
-    <div class="wrap">
-      <div class="shead reveal"><h2>À propos</h2><a class="more" href="../cv/CV_YB_fr.pdf?v=2">Télécharger mon CV <span>→</span></a></div>
-      <div class="about">
-        <div class="photo portrait reveal">
-          <img src="../images/portrait.jpg" alt="Portrait de Yanis Bérard" onerror="this.remove()">
-        </div>
-        <div class="bio reveal">
-          <p class="lede">J’ai grandi à Saint-Étienne, fait mes classes préparatoires à Lyon, et suis entré à l’ENS Rennes en 2025.</p>
-          <p>J’ai aussi travaillé comme ouvrier mécanicien chez NTD France et dans une ferme maraîchère.</p>
-          <div class="facts">
-            <div><span class="kicker">Langues</span>Français (langue maternelle), anglais (C1), portugais (B2), espagnol (B1), italien (B1)</div>
-            <div><span class="kicker">Outils</span>LaTeX, Python, OCaml</div>
-          </div>
-        </div>
-        <dl class="cv reveal">
-          <dt>2026 –</dt><dd>Master de Mathématiques, première année<small>Université de Rennes</small></dd>
-          <dt>2025 –</dt><dd>Élève normalien, Magistère de Mathématiques<small>ENS Rennes</small></dd>
-          <dt>2025 – 26</dt><dd>Licence de Mathématiques, troisième année<small>Université de Rennes</small></dd>
-          <dt>2024 – 25</dt><dd>CPGE MP*<small>Lycée du Parc, Lyon</small></dd>
-          <dt>2022 – 24</dt><dd>CPGE MPSI, puis MP*<small>Lycée La Martinière Monplaisir, Lyon</small></dd>
-          <dt>2022</dt><dd>Baccalauréat, mention Très Bien<small>Lycée Honoré d’Urfé, Saint-Étienne</small></dd>
-        </dl>
-      </div>
-      <figure class="reveal" style="margin:0">
-        <div class="photo wide"><img src="../photos/fontainebleau.jpg" alt="Coucher de soleil sur la forêt, avec de la brume entre les arbres" loading="lazy"></div>
-        <figcaption>Fontainebleau, France</figcaption>
-      </figure>
+      <div class="shead reveal"><h2>Explorer</h2><span class="meta">Sur ce site</span></div>
+      <div class="tab-grid"><a class="tab-card reveal" href="internships.html"><span class="kicker">Stages</span><span class="tab-desc">Mon premier stage de recherche, sur le chemin de GAGA.</span><span class="tab-go" aria-hidden="true">→</span></a><a class="tab-card reveal" href="projects.html"><span class="kicker">Projets</span><span class="tab-desc">Textes d’exposition : Bézout, Kakeya, groupes finis.</span><span class="tab-go" aria-hidden="true">→</span></a><a class="tab-card reveal" href="tipe.html"><span class="kicker">TIPE</span><span class="tab-desc">Élections, marches aléatoires, treillis de groupes finis.</span><span class="tab-go" aria-hidden="true">→</span></a><a class="tab-card reveal" href="teaching.html"><span class="kicker">Enseignement</span><span class="tab-desc">Cours particuliers et médiation.</span><span class="tab-go" aria-hidden="true">→</span></a><a class="tab-card reveal" href="photography.html"><span class="kicker">Photographie</span><span class="tab-desc">De Paris aux Andes.</span><span class="tab-go" aria-hidden="true">→</span></a></div>
     </div>
   </section>
 </main>
@@ -255,7 +93,7 @@
       <a id="mail" href="mailto:yanis.berard@ens-rennes.fr">yanis.berard@ens-rennes.fr</a>
       <button type="button" id="copy">Copier l’adresse</button>
     </div>
-    <div class="colophon meta"><span>© 2026 Yanis Bérard</span><span class="visits" hidden></span><a href="legal.html" class="legal-link">Mentions légales</a><span>Mis à jour en octobre 2026</span></div>
+    <div class="colophon meta"><span>© 2026 Yanis Bérard</span><span class="visits" hidden></span><a href="legal.html" class="legal-link">Mentions légales</a><span>Mis à jour en novembre 2026</span></div>
   </div>
 </footer>
 
@@ -285,7 +123,7 @@
   });
 
   /* ---------- Julia set (hero, WebGL) ---------- */
-  const phase = document.getElementById('phase');
+  const phase = document.getElementById('phase') || document.createElement('canvas');
   const gl = phase.getContext('webgl', {antialias: false});
   const FS = `precision highp float;
 uniform vec2 res; uniform vec2 c; uniform float shift; uniform float scale;
@@ -312,7 +150,7 @@ void main(){ gl_FragColor = vec4((shade(gl_FragCoord.xy + vec2(.25)) + shade(gl_
     const loc = gl.getAttribLocation(pr, 'p'); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
     ['res','c','shift','scale'].forEach(k => U[k] = gl.getUniformLocation(pr, k));
   }
-  const inset = document.getElementById('inset'), ictx = inset.getContext('2d'), MB = {x0: -2.2, x1: .7, y0: -1.15, y1: 1.15}, cval = document.getElementById('cval');
+  const inset = document.getElementById('inset') || document.createElement('canvas'), ictx = inset.getContext('2d'), MB = {x0: -2.2, x1: .7, y0: -1.15, y1: 1.15}, cval = document.getElementById('cval');
   let mbImg = null, jTarget = null, cJ = [.7885 * Math.cos(1.9), .7885 * Math.sin(1.9)];
   const fitC = el => { const r = el.getBoundingClientRect(), w = Math.round(r.width * DPR), h = Math.round(r.height * DPR); if (w && (el.width !== w || el.height !== h)) { el.width = w; el.height = h; return true; } return false; };
   function insetBase() {
@@ -585,7 +423,7 @@ void main(){ gl_FragColor = vec4((shade(gl_FragCoord.xy + vec2(.25)) + shade(gl_
   function size(c) { const r = c.el.getBoundingClientRect(), W = Math.round(r.width * DPR), H = Math.round(r.height * DPR); if (W && (c.el.width !== W || c.el.height !== H)) { c.el.width = W; c.el.height = H; } }
   let T = 0;
   function drawAll(force) {
-    if (force || visible.has(phase)) drawPhase(T);
+    if (phase.isConnected && (force || visible.has(phase))) drawPhase(T);
     canv.forEach(c => { if (!force && !visible.has(c.el)) return; size(c); c.ctx.clearRect(0, 0, c.el.width, c.el.height); c.fn(c.ctx, c.el.width, c.el.height, c.t, c.st); });
   }
   if (reduce) { T = 4; canv.forEach(c => c.t = 4); drawAll(true); addEventListener('resize', () => drawAll(true)); let pend = 0; addEventListener('scroll', () => { if (!pend) pend = requestAnimationFrame(() => { pend = 0; drawAll(true); }); }, {passive: true}); }

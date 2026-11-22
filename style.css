@@ -298,3 +298,29 @@ h3 .katex{font-size:.95em}
 .legal-grid a{color:var(--accent);text-underline-offset:3px}
 .colophon{flex-wrap:wrap}
 .colophon a{text-underline-offset:3px}
+
+/* tabs: one page per section */
+.nav a[aria-current="page"]{border-color:var(--ink)}
+.hero-links{display:flex;flex-wrap:wrap;align-items:center;gap:12px 22px}
+@media (min-width:900px){.hero-links{grid-column:2}}
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--label);font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;color:var(--paper);background:var(--ink);padding:11px 16px;transition:background .2s}
+.btn:hover{background:var(--accent)}
+.btn span{transition:transform .25s}
+.btn:hover span{transform:translateX(4px)}
+.hero-mail{font-family:var(--label);font-size:14px;color:var(--muted);text-decoration:none;border-bottom:1px solid var(--rule)}
+.hero-mail:hover{color:var(--ink);border-color:var(--ink)}
+.now-list{list-style:none;margin:0;padding:0;display:grid;gap:0;max-width:760px}
+.now-list li{font-family:var(--display);font-size:clamp(20px,2.2vw,26px);line-height:1.35;padding-block:14px;border-bottom:1px solid var(--rule)}
+.now-list li:first-child{padding-top:0}
+.tab-grid{display:grid;grid-template-columns:1fr;gap:12px}
+@media (min-width:640px){.tab-grid{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1000px){.tab-grid{grid-template-columns:repeat(3,1fr)}}
+.tab-card{position:relative;display:grid;gap:10px;align-content:start;min-height:132px;padding:20px 48px 22px 20px;border:1px solid var(--rule);text-decoration:none;color:var(--ink);background:var(--paper);transition:border-color .25s,background .25s,transform .35s cubic-bezier(.2,.7,.2,1)}
+.tab-card .tab-desc{font-family:var(--display);font-size:22px;line-height:1.25}
+.tab-card .tab-go{position:absolute;right:18px;bottom:18px;font-family:var(--label);font-size:18px;color:var(--accent);transition:transform .25s}
+.tab-card:hover{border-color:var(--ink);background:var(--panel);transform:translateY(-2px)}
+.tab-card:hover .tab-go{transform:translateX(4px)}
+section.first{padding-top:0}
+.band.first{margin-top:0}
+@media (min-width:640px) and (max-width:999px){.tab-card:last-child{grid-column:1/-1}}
+@media (min-width:1000px){.tab-grid{grid-template-columns:repeat(6,1fr)}.tab-card{grid-column:span 2}.tab-card:nth-child(n+4){grid-column:span 3}}
