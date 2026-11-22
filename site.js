@@ -28,4 +28,12 @@
       .then(d => { if (d && d.count) { out.textContent = T.visits(String(d.count).replace(/[, ]/g, ' ')); out.hidden = false; } })
       .catch(() => {});
   }
+
+  /* ---------- "last updated": month of the last deploy, read from the server ---------- */
+  const up = document.querySelector('.updated');
+  if (up && location.protocol.startsWith('http')) {
+    fetch(location.href, {method: 'HEAD', cache: 'no-store'})
+      .then(r => { const h = r.headers.get('last-modified'), d = h && new Date(h); if (d && !isNaN(d)) up.textContent = (fr ? 'Mis à jour en ' : 'Last updated ') + d.toLocaleDateString(fr ? 'fr-FR' : 'en-GB', {month: 'long', year: 'numeric'}); })
+      .catch(() => {});
+  }
 })();

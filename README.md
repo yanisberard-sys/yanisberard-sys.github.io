@@ -6,21 +6,23 @@ Site statique publié avec GitHub Pages : https://yanisberard-sys.github.io/
 
 | Dossier / fichier | Contenu |
 |---|---|
-| `index.html` | Accueil : présentation, « En ce moment », lien vers le CV, accès aux onglets |
+| `index.html` | Accueil : nom, portrait, lien vers le CV, ensemble de Julia, accès aux onglets |
 | `internships.html`, `projects.html`, `tipe.html`, `teaching.html` | Onglets Stages, Projets, TIPE, Enseignement |
-| `photography.html` | Page Photography |
-| `fr/` | Version française des deux pages (`fr/index.html`, `fr/photography.html`) |
-| `style.css` | Mise en forme commune aux deux pages |
+| `photography.html` | Onglet Photographie |
+| `fr/` | Version française de toutes les pages |
+| `style.css` | Mise en forme commune à toutes les pages (couleurs et polices en tête du fichier) |
 | `papers/` | Textes : `gaga.pdf` (rapport de stage), `bezout.pdf`, `kakeya.pdf`, `groupes-simples-60.pdf`, `dualite.pdf`, `maths-en-jeans.pdf` |
 | `tipe/` | `elections.pdf`, `pile-ou-face.pdf`, `treillis.pdf` |
 | `cv/` | `CV_YB_en.pdf`, `CV_YB_fr.pdf` et leurs sources `.tex` |
 | `fonts/` | Polices hébergées avec le site (aucune requête à Google) |
 | `legal.html`, `fr/legal.html` | Mentions légales et confidentialité |
+| `404.html` | Page affichée pour une adresse inexistante (français ou anglais selon le navigateur) |
 | `vendor/katex/` | Mise en forme des formules mathématiques |
 | `menu.js` | Menu des téléphones |
-| `site.js` | Bouton clair/sombre et compteur de visites (toutes les pages) |
+| `site.js` | Bouton clair/sombre, compteur de visites et date de mise à jour du pied de page (automatique) |
 | `gallery.js` | Carte des photos et visionneuse de la page Photographie |
-| `images/` | Portrait, icônes de l'onglet |
+| `images/` | Portrait, icônes de l'onglet, image de la page 404 |
+| `images/og/` | Aperçus affichés quand on partage un lien (WhatsApp, mail, réseaux), un par page et par langue |
 | `photos/` | Photos de la galerie |
 | `sitemap.xml`, `robots.txt` | Référencement |
 | `Yanis-Berard/` | Redirection depuis l'ancienne adresse |
@@ -46,3 +48,7 @@ Les formules s'écrivent en LaTeX entre dollars, directement dans le texte : `$\
 ## Statistiques de visite
 
 Compteur GoatCounter (sans cookies, sans données personnelles) : https://yanisberard.goatcounter.com
+
+## Charte graphique
+
+Titres en Gloock, texte en Source Serif 4 et Newsreader, petites capitales en Archivo. Fond ivoire (`#f6f4ee`), accent bordeaux (`#8c1c2e`, rose `#ff8a9a` en mode sombre), couleur secondaire bleu ardoise. Tout est défini dans les premières lignes de `style.css`.
