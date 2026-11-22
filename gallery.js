@@ -3,7 +3,7 @@
   const fr = document.documentElement.lang === 'fr';
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const figs = [...document.querySelectorAll('.gallery figure')];
-  const vt = fn => (document.startViewTransition && !reduce) ? document.startViewTransition(fn) : fn();
+  const vt = fn => { if (!document.startViewTransition || reduce) return fn(); const t = document.startViewTransition(fn); t.ready.catch(() => {}); t.finished.catch(() => {}); t.updateCallbackDone.catch(() => {}); return t; };
 
   /* ---------- map filter ---------- */
   let place = '';
@@ -37,7 +37,7 @@
     let vb = V.world.slice(), anim = 0;
     const apply = b => {
       svg.setAttribute('viewBox', b.map(v => v.toFixed(2)).join(' '));
-      const w = svg.getBoundingClientRect().width || full, k = Math.min(b[2] / w * (w < 600 ? .75 : 1.1), 1).toFixed(4);
+      const w = svg.getBoundingClientRect().width || full, k = (atlas.classList.contains('compact') ? 1.6 : Math.min(b[2] / w * (w < 600 ? .75 : 1.1), 1)).toFixed(4);
       dots.forEach(d => d.firstElementChild.setAttribute('transform', `scale(${k})`));
     };
     const zoom = name => {
@@ -58,6 +58,19 @@
     atlas.querySelectorAll('.view').forEach(b => b.addEventListener('click', () => zoom(b.dataset.view)));
     apply(vb);
     addEventListener('resize', () => apply(vb));
+    // the map starts small beside the title; a click opens it full width
+    const tog = atlas.querySelector('.atlas-toggle');
+    const setBig = big => {
+      vt(() => {
+        atlas.classList.toggle('compact', !big);
+        if (tog) { tog.textContent = big ? tog.dataset.less : tog.dataset.more; tog.setAttribute('aria-expanded', String(big)); }
+        if (!big) { if (place) setPlace(place); vb = V.world.slice(); atlas.dataset.view = 'world'; atlas.querySelectorAll('.view').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.view === 'world'))); }
+        apply(vb);
+      });
+      requestAnimationFrame(() => { apply(vb); if (big) { centre(); atlas.scrollIntoView({block: 'nearest', behavior: reduce ? 'auto' : 'smooth'}); } });
+    };
+    if (tog) tog.addEventListener('click', () => setBig(atlas.classList.contains('compact')));
+    if (sc) sc.addEventListener('click', e => { if (atlas.classList.contains('compact')) { e.stopPropagation(); setBig(true); } }, true);
   }
 
   /* ---------- viewer ---------- */

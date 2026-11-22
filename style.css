@@ -324,3 +324,28 @@ section.first{padding-top:0}
 .band.first{margin-top:0}
 @media (min-width:640px) and (max-width:999px){.tab-card:last-child{grid-column:1/-1}}
 @media (min-width:1000px){.tab-grid{grid-template-columns:repeat(6,1fr)}.tab-card{grid-column:span 2}.tab-card:nth-child(n+4){grid-column:span 3}}
+
+/* home hero with portrait */
+.hero.with-photo .wrap{grid-template-columns:1fr;align-items:center}
+.hero-text{display:grid;gap:22px;align-content:start;min-width:0}
+.hero.with-photo .dek{display:block;max-width:44ch}
+.hero.with-photo .hero-links{grid-column:auto}
+.hero-photo{margin:0;max-width:100%;overflow:hidden;background:var(--panel)}
+.hero-photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 25%}
+@media (max-width:899px){.hero-photo{order:-1;width:min(240px,60%);aspect-ratio:4/5}}
+@media (min-width:900px){.hero.with-photo .wrap{grid-template-columns:minmax(0,1fr) minmax(0,340px);gap:56px}.hero.with-photo h1{font-size:clamp(56px,7vw,104px);line-height:.95}.hero-photo{aspect-ratio:4/5}}
+
+/* photography: small map beside the title, full width on demand */
+.photo-top .wrap{display:grid;gap:28px 48px;align-items:end}
+.ghead-text{display:grid;gap:16px;align-content:start;min-width:0}
+@media (min-width:900px){.photo-top .wrap{grid-template-columns:minmax(0,1fr) minmax(0,440px)}.photo-top .atlas:not(.compact){grid-column:1/-1}}
+.photo-top .atlas{margin-bottom:0;padding-block:0;position:relative}
+.atlas.compact .atlas-views,.atlas.compact .atlas-foot{display:none}
+.atlas.compact svg{min-width:0!important;cursor:zoom-in}
+.atlas.compact .atlas-scroll{overflow:hidden;transition:opacity .2s}
+.atlas.compact .atlas-scroll:hover{opacity:.85}
+.atlas.compact .dot{pointer-events:none}
+.atlas.compact .dot text,.atlas.compact .dot .halo{display:none}
+.atlas-toggle{justify-self:end;order:3;font-family:var(--label);font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);background:none;border:0;border-bottom:1px solid var(--ink);padding:4px 0;cursor:pointer}
+.atlas-toggle:hover{color:var(--accent);border-color:var(--accent)}
+.atlas:not(.compact) .atlas-toggle{position:absolute;top:0;right:0}
