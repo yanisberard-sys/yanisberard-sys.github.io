@@ -108,7 +108,8 @@ section{padding-block:clamp(56px,8vw,104px) 0}
 
 /* columns */
 .cols{display:grid;grid-template-columns:1fr;gap:32px}
-@media (min-width:800px){.cols{grid-template-columns:repeat(3,1fr)}}
+@media (min-width:800px){.cols{grid-template-columns:repeat(3,1fr)}.cols.two{grid-template-columns:repeat(2,1fr)}}
+.cols.after-feature{margin-top:clamp(48px,7vw,88px)}
 .col{border-top:1px solid var(--rule);padding-top:16px;display:grid;gap:10px;align-content:start;min-width:0}
 .col h3{font-size:25px;line-height:1.15}
 .col p{font-size:17px;color:var(--muted)}
