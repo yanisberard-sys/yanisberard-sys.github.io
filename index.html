@@ -19,15 +19,15 @@
 
 <link rel="preload" href="fonts/newsreader-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/source-serif-4-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="fonts/fonts.css">
-<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
-<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+<link rel="stylesheet" href="fonts/fonts.css?v=2">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png?v=2">
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png?v=2">
 <link rel="stylesheet" href="vendor/katex/katex.min.css">
 <script defer src="vendor/katex/katex.min.js"></script>
 <script defer src="vendor/katex/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false}],throwOnError:false})"></script>
 <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
 <script data-goatcounter="https://yanisberard.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
-<link rel="stylesheet" href="style.css?v=19">
+<link rel="stylesheet" href="style.css?v=20">
 </head>
 <body>
 
@@ -56,7 +56,7 @@
   <div class="hero with-photo">
     <div class="wrap">
       <div class="hero-text">
-        <h1 class="load">Yanis <em>Bérard</em></h1>
+        <h1 class="load name"><span class="given">Yanis</span> <span class="family">Bérard</span></h1>
         <p class="dek load d2">Second-year student at the ENS Rennes. Head of the school’s climbing club.</p>
         <div class="hero-links load d2"><a class="btn" href="cv/CV_YB_en.pdf?v=2">Download my CV <span>→</span></a><a class="hero-mail" href="mailto:yanis.berard@ens-rennes.fr">yanis.berard@ens-rennes.fr</a></div>
       </div>
@@ -126,7 +126,7 @@
 uniform vec2 res; uniform vec2 c; uniform float shift; uniform float scale;
 vec3 pal(float t){
   t = fract(t);
-  vec3 a=vec3(.043,.063,.149), b=vec3(.169,.247,.941), d=vec3(.953,.953,.937), e=vec3(.949,.647,.255), f=vec3(.478,.122,.239);
+  vec3 a=vec3(.071,.035,.047), b=vec3(.620,.125,.204), d=vec3(.953,.953,.937), e=vec3(.949,.647,.255), f=vec3(.184,.365,.541);
   float s = t*5.;
   if(s<1.) return mix(a,b,s); if(s<2.) return mix(b,d,s-1.); if(s<3.) return mix(d,e,s-2.); if(s<4.) return mix(e,f,s-3.); return mix(f,a,s-4.);
 }
@@ -134,7 +134,7 @@ vec3 shade(vec2 frag){
   vec2 z = (frag - .5*res) / res.y * scale;
   float n = 0.;
   for(int i=0;i<300;i++){ if(dot(z,z)>256.) break; z = vec2(z.x*z.x - z.y*z.y, 2.*z.x*z.y) + c; n += 1.; }
-  if(n>=300.) return vec3(.04,.045,.065);
+  if(n>=300.) return vec3(.055,.035,.04);
   float nu = n + 1. - log2(log2(dot(z,z))*.5);
   return pal(sqrt(nu)*.16 + shift);
 }
@@ -156,7 +156,7 @@ void main(){ gl_FragColor = vec4((shade(gl_FragCoord.xy + vec2(.25)) + shade(gl_
       const cx = MB.x0 + (i + .5) / W * (MB.x1 - MB.x0), cy = MB.y1 - (j + .5) / H * (MB.y1 - MB.y0);
       let x = 0, y = 0, n = 0; while (n < 120 && x * x + y * y < 4) { const t = x * x - y * y + cx; y = 2 * x * y + cy; x = t; n++; }
       const o = (j * W + i) * 4, v = Math.min(1, Math.sqrt(n / 40)), inside = n >= 120;
-      d[o] = inside ? 236 : 13 + 30 * v; d[o+1] = inside ? 235 : 15 + 48 * v; d[o+2] = inside ? 229 : 23 + 200 * v; d[o+3] = 235;
+      d[o] = inside ? 236 : 18 + 150 * v; d[o+1] = inside ? 235 : 12 + 30 * v; d[o+2] = inside ? 229 : 16 + 46 * v; d[o+3] = 235;
     }
     mbImg = img;
   }
@@ -304,7 +304,7 @@ void main(){ gl_FragColor = vec4((shade(gl_FragCoord.xy + vec2(.25)) + shade(gl_
       [[O, 'O'], [G, 'G'], [H, 'H']].forEach(([p, l]) => { const q = S(p); ctx.fillStyle = C.accent; ctx.beginPath(); ctx.arc(q[0], q[1], 4.5 * DPR, 0, 7); ctx.fill(); ctx.fillStyle = C.ink; ctx.fillText(l, q[0] + 8 * DPR, q[1] - 8 * DPR); });
     },
     vote(ctx, w, h, t, st) {
-      const fg = getComputedStyle(document.querySelector('.band')).color, acc = '#8c98ff', red = '#ff6b57', amb = '#f2a541';
+      const fg = getComputedStyle(document.querySelector('.band')).color, acc = '#ff8a9a', red = '#8fb3ff', amb = '#f2a541';
       const PER = 3.2, ORD = [[0,1,2],[0,2,1],[1,0,2],[1,2,0],[2,0,1],[2,1,0]], L = ['A','B','C'];
       const idx = Math.floor(Math.max(0, t) / PER);
       if (st.idx !== idx) {
@@ -353,7 +353,7 @@ void main(){ gl_FragColor = vec4((shade(gl_FragCoord.xy + vec2(.25)) + shade(gl_
       ctx.fillText(`${st.n} elections · ${st.cyc || 0} cycles · plurality ≠ Condorcet: ${st.dis || 0}`, 16 * DPR, h - 14 * DPR); ctx.globalAlpha = 1;
     },
     game(ctx, w, h, t, st) {
-      const fg = getComputedStyle(document.querySelector('.band')).color, acc = '#8c98ff', amb = '#f2a541', red = '#ff6b57';
+      const fg = getComputedStyle(document.querySelector('.band')).color, acc = '#ff8a9a', amb = '#f2a541', red = '#8fb3ff';
       const EL = ['e','r','r²','s','rs','r²s'];
       const SUB = [{n: '{1}', s: [0], p: [0.25, 0]}, {n: '⟨s⟩', s: [0,3], p: [-0.35, 1]}, {n: '⟨rs⟩', s: [0,4], p: [0.65, 1]}, {n: '⟨r²s⟩', s: [0,5], p: [1.65, 1]}, {n: '⟨r⟩', s: [0,1,2], p: [-1.65, 1.6]}, {n: 'D₃', s: [0,1,2,3,4,5], p: [0.25, 2.8]}];
       const EDG = [[0,1],[0,2],[0,3],[0,4],[1,5],[2,5],[3,5],[4,5]];
@@ -372,7 +372,7 @@ void main(){ gl_FragColor = vec4((shade(gl_FragCoord.xy + vec2(.25)) + shade(gl_
       ctx.globalAlpha = 1; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
       SUB.forEach((S, i) => {
         const [x, y] = P(i), on = i === cur, bw = 58 * DPR, bh = 30 * DPR;
-        ctx.fillStyle = on ? (st.over ? red : acc) : '#16182a'; ctx.fillRect(x - bw / 2, y - bh / 2, bw, bh);
+        ctx.fillStyle = on ? (st.over ? red : acc) : '#1e1316'; ctx.fillRect(x - bw / 2, y - bh / 2, bw, bh);
         ctx.strokeStyle = fg; ctx.lineWidth = (on ? 2 : 1.2) * DPR; ctx.strokeRect(x - bw / 2, y - bh / 2, bw, bh);
         ctx.fillStyle = on ? '#111216' : fg; ctx.font = `${14 * DPR}px "Source Serif 4", Georgia, serif`; ctx.fillText(S.n, x, y + DPR);
       });
@@ -398,7 +398,7 @@ void main(){ gl_FragColor = vec4((shade(gl_FragCoord.xy + vec2(.25)) + shade(gl_
       rec([], [cx, cy], L0, 1); ctx.globalAlpha = 1;
       if (!st.word) { st.word = []; st.trail = []; st.last = 0; }
       if (t - st.last > .28) { st.last = t; const g = Math.floor(Math.random() * 4); const wd = st.word; if (wd.length && (wd[wd.length - 1] + 2) % 4 === g) wd.pop(); else wd.push(g); if (wd.length > 7) { st.word = []; st.trail = []; } st.trail.push(pos(st.word)); if (st.trail.length > 30) st.trail.shift(); }
-      const acc = '#8c98ff';
+      const acc = '#ff8a9a';
       ctx.strokeStyle = acc; ctx.lineWidth = 2.5 * DPR; ctx.beginPath(); for (let i = 0; i <= st.word.length; i++) { const p = pos(st.word.slice(0, i)); i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]); } ctx.stroke();
       const p = pos(st.word); ctx.fillStyle = acc; ctx.beginPath(); ctx.arc(p[0], p[1], 6 * DPR, 0, 7); ctx.fill();
       ctx.fillStyle = ink; ctx.beginPath(); ctx.arc(cx, cy, 3.5 * DPR, 0, 7); ctx.fill();

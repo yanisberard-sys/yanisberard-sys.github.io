@@ -1,15 +1,16 @@
 /* Layout: a magazine front page. Masthead, full-bleed lead figure, one feature story with a side figure, a story grid, a coloured band, then the colophon. */
 :root{
-  --paper:#f3f3ef; --ink:#14151a; --muted:#5d5f6a; --rule:#d4d4cc; --panel:#e7e7e1; --accent:#2b3ff0; --red:#bf2f1f;
+  --paper:#f3f3ef; --ink:#14151a; --muted:#5d5f6a; --rule:#d4d4cc; --panel:#e7e7e1; --accent:#8c1c2e; --red:#2f5d8a;
+  --name:"Gloock","Iowan Old Style",Georgia,serif;
   --display:"Newsreader","Iowan Old Style",Georgia,serif;
   --body:"Source Serif 4",Georgia,"Times New Roman",serif;
   --label:"Archivo","Helvetica Neue",Arial,sans-serif;
-  --band:#16182a; --band-fg:#ecebe5;
+  --band:#1e1316; --band-fg:#ecebe5;
   --gutter:max(clamp(16px,4vw,40px),env(safe-area-inset-left,0px));
   --gutter-r:max(clamp(16px,4vw,40px),env(safe-area-inset-right,0px));
 }
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#111216;--ink:#ecebe5;--muted:#a3a4ae;--rule:#2d2e35;--panel:#1b1c22;--accent:#8c98ff;--red:#ff6b57;color-scheme:dark}}
-:root[data-theme="dark"]{--paper:#111216;--ink:#ecebe5;--muted:#a3a4ae;--rule:#2d2e35;--panel:#1b1c22;--accent:#8c98ff;--red:#ff6b57;color-scheme:dark}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#111216;--ink:#ecebe5;--muted:#a3a4ae;--rule:#2d2e35;--panel:#1b1c22;--accent:#ff8a9a;--red:#8fb3ff;color-scheme:dark}}
+:root[data-theme="dark"]{--paper:#111216;--ink:#ecebe5;--muted:#a3a4ae;--rule:#2d2e35;--panel:#1b1c22;--accent:#ff8a9a;--red:#8fb3ff;color-scheme:dark}
 
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:72px}
@@ -27,7 +28,7 @@ p{margin:0}
 .strap .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-block:10px;font-family:var(--label);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 .mast{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--paper);border-block:1px solid var(--rule)}
 .mast .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:56px}
-.brand{font-family:var(--display);font-style:italic;font-size:24px;text-decoration:none;white-space:nowrap}
+.brand{font-family:var(--name);font-style:normal;font-size:22px;text-decoration:none;white-space:nowrap}
 .nav{display:flex;gap:22px;overflow-x:auto;scrollbar-width:none}
 .nav a{font-family:var(--label);font-size:12px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;white-space:nowrap;padding-block:6px;border-bottom:1px solid transparent;transition:border-color .2s}
 .nav a:hover{border-color:var(--ink)}
@@ -357,3 +358,8 @@ footer h2{font-size:clamp(30px,3.4vw,42px);line-height:1}
   footer .wrap:has(> h2){grid-template-columns:auto minmax(0,1fr);align-items:center}
   footer .wrap:has(> h2) > .kicker,footer .wrap:has(> h2) > .colophon{grid-column:1/-1}
 }
+
+/* Name: family name large in Gloock, given name small above it */
+.hero h1.name{font-family:var(--name);font-weight:400;font-size:clamp(68px,10.5vw,136px);line-height:.88;letter-spacing:-.01em}
+.hero h1.name .given{display:block;font-size:.3em;line-height:1;letter-spacing:.01em;margin:0 0 .3em .05em}
+.hero h1.name .family{display:block}
